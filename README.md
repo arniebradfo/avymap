@@ -1,28 +1,31 @@
 # Avymaps
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+## Map
+Data points need:
+- Elevation - [Mapbox](https://blog.mapbox.com/global-elevation-data-6689f1d0ba65)
+- Slope - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm)
+- Aspect - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm)
+- Fall line?
 
-## Development server
+### Examples:
+- [Hillshade](https://jsfiddle.net/mapbox/55k5q9c0/?utm_source=website&utm_medium=embed&utm_campaign=55k5q9c0)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Offline Maps
+- [Run node.js on cordova?](https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/)
+- [Use node.js mbtiles generator to pull saved maps?](https://github.com/jawg/mbtiles-generator)
+- [Use TileStream to host the maps locally?](https://github.com/cutting-room-floor/tilestream)
+- [Cordova MapBoxJS offline](https://github.com/oscarfonts/mapbox-gl-cordova-mbtiles)
+- old/abandoned
+    - https://github.com/trevorpowell/mapbox-gl-js-cordova-offline-example
+    - https://github.com/klokantech/mapbox-gl-js-offline-example
 
-## Code scaffolding
+## Other Features:
+- [Surface API](https://blog.mapbox.com/introducing-the-surface-api-d123ed4943c2) for line analysis
+- acclerometer based inclinometer
+- record route
+- notify when in avalance conditions
+- avalance safety info
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+http://AvyMaps.com is owned by Leslie Doyle in Aspen, CO
+Registered 2014-01-17
+Expires 2019-01-17
