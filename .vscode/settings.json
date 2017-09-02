@@ -1,0 +1,15 @@
+{
+    "vsicons.presets.angular": false,
+    "files.exclude": {
+        "node_modules/": true,
+        "dist/": true,
+        "mockups/": true,
+        "e2e": true,
+        "karma.conf.js": true,
+        "package-lock.json": true,
+        "protractor.conf.js": true,
+        "src/test.ts": true,
+        "**/*.spec.ts": true,
+        "src/favicon.ico": true
+    }
+}
