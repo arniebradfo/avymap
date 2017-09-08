@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+
+  map;
+  accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
+
+  constructor() { }
+
+  ngOnInit(): void {
+    mapboxgl.accessToken = this.accessToken;
+    this.map = new mapboxgl.Map({
+        container: 'avymap',
+        style: 'mapbox://styles/mapbox/streets-v9'
+    });
+  }
 }
