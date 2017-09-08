@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
     mapboxgl.accessToken = this.accessToken;
     this.map = new mapboxgl.Map({
         container: 'avymap',
-        style: 'mapbox://styles/mapbox/streets-v9'
+        style: 'mapbox://styles/mapbox/outdoors-v9',
+        zoom: 8,
+        center: [-112, 41.5],
+        hash: true
     });
   }
 }
