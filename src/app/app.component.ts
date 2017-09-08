@@ -22,5 +22,12 @@ export class AppComponent implements OnInit {
         center: [-112, 41.5],
         hash: true
     });
+
+
+    // get elevation data
+    // listen for zoomlevel
+    // calculate slope and aspect
+    // sream lines onto the map
+
   }
 }
