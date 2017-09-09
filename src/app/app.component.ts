@@ -81,7 +81,8 @@ export class AppComponent implements OnInit {
             dataArray[i] = tDataVal;
         }
 
-        console.log(dataArray);
+        console.log('dataArray.length: ',dataArray.length);
+        console.log('total image pixels: ', imageObj.height * imageObj.width);
         
 
       // elevWorker.postMessage({
