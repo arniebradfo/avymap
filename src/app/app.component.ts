@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
     });
 
     this.map.on('load', () => {
-      this.map.addLayer({
+      var addedLayer = this.map.addLayer({
         "id": "terrain-rgb",
         "type": "raster",
         "source": {
@@ -51,7 +51,31 @@ export class AppComponent implements OnInit {
           "raster-opacity": 0.5
         }
       });
+      // console.log(addedLayer);
     });
+
+    this.map.on('data', (e)=>{
+      if (e.sourceId != 'terrain-rgb') return;
+      console.log('data: ', e);
+
+      // add geojson source
+      // update geojson source
+      // https://www.mapbox.com/mapbox-gl-js/example/live-geojson/
+
+    });
+
+    // this.map.on('error', (e)=>{
+    //   console.log('error: ', e);
+    // });
+    // this.map.on('sourcedata', (e)=>{
+    //   console.log('sourcedata: ', e);
+    // });
+    // this.map.on('dataloading', (e)=>{
+    //   console.log('dataloading: ', e);
+    // });
+    // this.map.on('style.load', (e)=>{
+    //   console.log('style.load: ', e);
+    // });
 
     // get elevation data
     // const url = 'https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/' + this.z + '/' + this.x + '/' + this.y + '.pngraw?access_token=' + this.accessToken;
