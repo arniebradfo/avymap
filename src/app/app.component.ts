@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import * as mapboxgl from 'mapbox-gl';
 import * as geoViewport from '@mapbox/geo-viewport';
+import * as SphericalMercator from '@mapbox/sphericalmercator';
 
 
 /**
@@ -36,11 +37,11 @@ export class AppComponent implements OnInit {
 		private http: Http
 	) { }
 
-	// elevationpoints: [number, number][] = [];
-	// elevationGeoJson = {
-	// 	"type": "MultiPoint",
-	// 	"coordinates": this.elevationpoints
-	// }
+	elevationpoints: [number, number][] = [];
+	elevationGeoJson = {
+		"type": "MultiPoint",
+		"coordinates": this.elevationpoints
+	}
 
 	ngOnInit(): void {
 
@@ -54,6 +55,8 @@ export class AppComponent implements OnInit {
 		});
 
 		this.map.on('load', () => {
+
+			this.map.showTileBoundaries = true;
 
 			// this.map.addLayer({
 			// 	"id": "terrain-data",
@@ -83,30 +86,26 @@ export class AppComponent implements OnInit {
 				},
 				"minzoom": 10,
 				"source-layer": "terrain-rgb",
-				// "paint": {
-				// 	"raster-opacity": 0.5
-				// }
+				"paint": {
+					"raster-opacity": 0.5
+				}
 			});
 
 			this.gl = this.map.getCanvas().getContext('webgl');
 			// this.gl = document.createElement('canvas').getContext('webgl');
-			console.log(this.gl);
-			console.log(this.gl.getParameter(this.gl.VIEWPORT));
+			// console.log(this.gl);
+			// console.log(this.gl.getParameter(this.gl.VIEWPORT));
 
 
-			// window.setInterval(()=>{
-			// 	this.map.getSource('elevation-circles').setData(this.elevationGeoJson);
-			// }, 2000);
-
-			// this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationGeoJson });
-			// this.map.addLayer({
-			// 	"id": "elevation-circles",
-			// 	"type": "circle",
-			// 	"source": "elevation-circles",
-			// 	"paint": {
-			// 		"circle-radius": 3
-			// 	}
-			// });
+			this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationGeoJson });
+			this.map.addLayer({
+				"id": "elevation-circles",
+				"type": "circle",
+				"source": "elevation-circles",
+				"paint": {
+					"circle-radius": 1
+				}
+			});
 		});
 
 		// this.map.on('data', (e)=>{
@@ -156,53 +155,6 @@ export class AppComponent implements OnInit {
 
 		console.log(tile);
 
-		// make a framebuffer
-		let fb = this.gl.createFramebuffer();
-
-		// make this the current frame buffer
-		this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, fb);
-
-		// // attach the texture to the framebuffer.
-		this.gl.framebufferTexture2D(
-			this.gl.FRAMEBUFFER, this.gl.COLOR_ATTACHMENT0,
-			this.gl.TEXTURE_2D, tile.texture, 0);
-
-		// check if you can read from this type of texture.
-		let canRead: boolean = (this.gl.checkFramebufferStatus(this.gl.FRAMEBUFFER) == this.gl.FRAMEBUFFER_COMPLETE);
-
-		// Unbind the framebuffer
-		this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, null);
-
-		if (canRead) {
-
-			// bind the framebuffer
-			this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, fb);
-			this.gl.viewport(0,0,tile.texture.size, tile.texture.size);
-			
-			let imageData = new Uint8Array(tile.texture.size * tile.texture.size * 4);
-			// read the pixels
-			this.gl.readPixels(
-				0, 0,
-				tile.texture.size, tile.texture.size,
-				this.gl.RGBA,
-				this.gl.UNSIGNED_BYTE,
-				imageData
-			);
-			console.log(imageData);
-
-
-			// Unbind the framebuffer
-			this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, null);
-
-			var dataArray = new Float32Array(tile.texture.size * tile.texture.size);
-			for (var i = 0; i < imageData.length / 4; i++) {
-				dataArray[i] = this.decodeRgbToElevation(imageData[i * 4], imageData[i * 4 + 1], imageData[i * 4 + 2]);
-			}
-			console.log(dataArray);
-		}
-
-
-
 		// get elevation data
 		const url = 'https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/' + tile.coord.z + '/' + tile.coord.x + '/' + tile.coord.y + '.pngraw?access_token=' + this.accessToken;
 		// console.log(url);
@@ -222,31 +174,52 @@ export class AppComponent implements OnInit {
 
 			// Get Image Data
 			var terrainImgData = context.getImageData(0, 0, terrainImg.width, terrainImg.height);
-			console.dir(terrainImgData.data);
+			// console.dir(terrainImgData.data);
 
 			var dataArray = new Float32Array(terrainImgData.height * terrainImgData.width);
 			for (var i = 0; i < terrainImgData.data.length / 4; i++) {
 				dataArray[i] = this.decodeRgbToElevation(terrainImgData.data[i * 4], terrainImgData.data[i * 4 + 1], terrainImgData.data[i * 4 + 2]);
 			}
-			console.log(dataArray);
+			// console.log(dataArray);
+			dataArray.reverse();
 
-			// const tileCenter = tile.sourceCache.transform.center; // DAMMIT THIS IS THE CENTER OF THE MAP!!!
-			// const tileZoom = tile.sourceCache.transform.zoom;
-			// console.log(tileCenter);
-			// const imgViewport = geoViewport.bounds([tileCenter.lng, tileCenter.lat], tileZoom, [terrainImg.width, terrainImg.height], terrainImg.width);
-			// console.log(imgViewport);
+			let sphericalMercator =  new SphericalMercator();
+			let bboxArray = sphericalMercator.bbox(tile.coord.x, tile.coord.y, tile.coord.z); // [w, s, e, n]
+			let bbox = {
+				west: bboxArray[0],
+				south: bboxArray[1],
+				east: bboxArray[2],
+				north: bboxArray[3]
+			}
+			console.log(tile.coord.z+'/'+tile.coord.x+'/'+tile.coord.y, bbox);
+			
+			let lngStep = (bbox.west - bbox.east)/terrainImg.width;
+			let latStep = (bbox.north - bbox.south)/terrainImg.height;
+			console.log(lngStep, latStep);
+			
+			for (var row = 0; row < terrainImg.height; row++) {
+				for (var col = 0; col < terrainImg.width; col++) {
+					var currentElevation = dataArray[this.getGridCellIndexOfArray(terrainImg.height,terrainImg.width,row,col)];
+					if (currentElevation > 2000) continue;
 
-			// pixel counts match
-			// console.log('dataArray.length: ', dataArray.length);
-			// console.log('total image pixels: ', terrainImg.height * terrainImg.width);
+					let x = lngStep * col + (lngStep / 2) + bbox.east;
+					let y = latStep * row + (latStep / 2) + bbox.south;
+					this.elevationpoints.push([x,y]);		
+				}			
+			}
+
+			console.log(this.elevationpoints);
+			this.map.getSource('elevation-circles').setData({
+				"type": "MultiPoint",
+				"coordinates": this.elevationpoints
+			});
 
 		};
-
 		terrainImg.crossOrigin = 'Anonymous';
 		terrainImg.src = url;
 	}
 
-	getGridCellFromArray(height: number, width: number, row: number, column: number): number {
+	getGridCellIndexOfArray(height: number, width: number, row: number, column: number): number {
 		// row and col are 0 indexed
 		return width * row + column;
 	}

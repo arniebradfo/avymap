@@ -25,6 +25,7 @@
     "core-js": "^2.4.1",
     "mapbox-gl": "^0.39.1",
     "rxjs": "^5.4.2",
+    "sphericalmercator": "^1.0.5",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
