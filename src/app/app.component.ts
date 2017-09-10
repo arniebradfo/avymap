@@ -3,16 +3,12 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import * as mapboxgl from 'mapbox-gl';
-import * as geoViewport from '@mapbox/geo-viewport';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 
 
 /**
-	get rawdata from terrain tiles
-	use surface API
-	translate tile xy to latlon - project, unproject
-	SpehricalMercador.xyz() // https://github.com/mapbox/mapbox-studio-classic/blob/5ac2ead1e523b24c8b8ad8655babb66389166e87/ext/sphericalmercator.js
-	
+	get rawdata from terrain tiles and translate it to elevation somehow
+	use surface API	
 **/
 
 
@@ -26,12 +22,9 @@ export class AppComponent implements OnInit {
 
 	map;
 	accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
-	z = 8;
-	x = -112;
-	y = 41;
-
-	gl: WebGLRenderingContext;
-
+	zoom = 8;
+	lat = -112;
+	lng = 41;
 
 	constructor(
 		private http: Http
@@ -49,8 +42,8 @@ export class AppComponent implements OnInit {
 		this.map = new mapboxgl.Map({
 			container: 'avymap',
 			style: 'mapbox://styles/mapbox/outdoors-v9',
-			zoom: this.z,
-			center: [this.x, this.y],
+			zoom: this.zoom,
+			center: [this.lat, this.lng],
 			hash: true
 		});
 
@@ -91,12 +84,6 @@ export class AppComponent implements OnInit {
 				}
 			});
 
-			this.gl = this.map.getCanvas().getContext('webgl');
-			// this.gl = document.createElement('canvas').getContext('webgl');
-			// console.log(this.gl);
-			// console.log(this.gl.getParameter(this.gl.VIEWPORT));
-
-
 			this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationGeoJson });
 			this.map.addLayer({
 				"id": "elevation-circles",
@@ -108,36 +95,12 @@ export class AppComponent implements OnInit {
 			});
 		});
 
-		// this.map.on('data', (e)=>{
-		//   if (e.sourceId != 'terrain-rgb') return;
-		//   console.log('data: ', e);
-
-		//   add geojson source
-		//   update geojson source
-		//   https://www.mapbox.com/mapbox-gl-js/example/live-geojson/
-
-		// });
-
-
-
-		// this.map.on('error', (e)=>{
-		//   console.log('error: ', e);
-		// });
 		this.map.on('sourcedata', (e) => {
 			if (e.sourceId != 'terrain-rgb') return;
 			// console.log('sourcedata: ', e);
-
 			if (e.tile)
 				this.generateTileInfo(e.tile);
-
 		});
-		// this.map.on('dataloading', (e)=>{
-		//   if (e.sourceId != 'terrain-rgb') return;
-		//   console.log('dataloading: ', e);
-		// });
-		// this.map.on('style.load', (e)=>{
-		//   console.log('style.load: ', e);
-		// });
 
 	}
 
@@ -201,7 +164,6 @@ export class AppComponent implements OnInit {
 				for (var col = 0; col < terrainImg.width; col++) {
 					var currentElevation = dataArray[this.getGridCellIndexOfArray(terrainImg.height,terrainImg.width,row,col)];
 					if (currentElevation > 2000) continue;
-
 					let x = lngStep * col + (lngStep / 2) + bbox.east;
 					let y = latStep * row + (latStep / 2) + bbox.south;
 					this.elevationpoints.push([x,y]);		
