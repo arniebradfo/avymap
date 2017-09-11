@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
 				"minzoom": 10,
 				"source-layer": "terrain-rgb",
 				"paint": {
-					"raster-opacity": 0.5
+					"raster-opacity": 0.0
 				}
 			});
 
@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
 				"type": "circle",
 				"source": "elevation-circles",
 				"paint": {
-					"circle-radius": 1
+					"circle-radius": 1,
 				}
 			});
 		});
