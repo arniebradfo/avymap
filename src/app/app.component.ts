@@ -5,6 +5,9 @@ import { Observable } from 'rxjs/Rx';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 
+import * as workerPath from 'file-loader?name=[name].js!./test.worker';
+
+
 
 /**
 	get rawdata from terrain tiles and translate it to elevation somehow
@@ -26,9 +29,18 @@ export class AppComponent implements OnInit {
 	lat = -112;
 	lng = 41;
 
+	worker: Worker;
+
 	constructor(
 		private http: Http
-	) { }
+	) { 
+		this.worker = new Worker(workerPath);
+		console.log(workerPath, this.worker);
+		this.worker.addEventListener('message', message => {
+			console.log(message);
+		});
+		this.worker.postMessage('this is a test message to the worker');
+	}
 
 	elevationpoints: [number, number][] = [];
 	elevationGeoJson = {
