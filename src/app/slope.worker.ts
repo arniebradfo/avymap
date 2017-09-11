@@ -40,7 +40,8 @@ addEventListener('message', (message) => {
                 dataArray[getGridCellIndexOfArray(h, w, row + 1, col - 1)], dataArray[getGridCellIndexOfArray(h, w, row + 1, col)], dataArray[getGridCellIndexOfArray(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            if (currentSlope < 35 || currentSlope > 50) continue;
+            if (currentSlope < 30 ) continue;
+            // encode all slopes here
 
             let x = lngStep * col + (lngStep / 2) + bbox.east;
             let y = latStep * row + (latStep / 2) + bbox.south;

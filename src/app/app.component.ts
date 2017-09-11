@@ -124,6 +124,10 @@ export class AppComponent implements OnInit {
 			});
 		});
 
+		this.map.on('zoom', (e) => {
+			this.elevationpoints = [];
+			// not to kill the gl
+		});
 
 	}
 
