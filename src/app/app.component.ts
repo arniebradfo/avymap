@@ -111,12 +111,12 @@ export class AppComponent implements OnInit {
 	onlyOnce: boolean = false;
 	generateTileInfo(tile) {
 
-		if (!this.onlyOnce)
-			this.onlyOnce = true;
-		else
-			return;
+		// if (!this.onlyOnce)
+		// 	this.onlyOnce = true;
+		// else
+		// 	return;
 
-		console.log(tile);
+		// console.log(tile);
 
 		// get elevation data
 		const url = 'https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/' + tile.coord.z + '/' + tile.coord.x + '/' + tile.coord.y + '.pngraw?access_token=' + this.accessToken;
@@ -155,13 +155,13 @@ export class AppComponent implements OnInit {
 				north: bboxArray[3]
 			}
 			
-			console.log(tile.coord.z+'/'+tile.coord.x+'/'+tile.coord.y, bbox);
+			// console.log(tile.coord.z+'/'+tile.coord.x+'/'+tile.coord.y, bbox);
 			
 			let lngStep = (bbox.west - bbox.east)/terrainImg.width;
 			let latStep = (bbox.north - bbox.south)/terrainImg.height;
 			let xStepMeters = (this.distanceLatLng([bbox.north, bbox.west],[bbox.north, bbox.east]) + this.distanceLatLng([bbox.south, bbox.west],[bbox.south, bbox.east])) / 2 / terrainImg.width;
 			let yStepMeters = (this.distanceLatLng([bbox.north, bbox.west],[bbox.south, bbox.west]) + this.distanceLatLng([bbox.north, bbox.east],[bbox.south, bbox.east])) / 2 / terrainImg.height;
-			console.log(lngStep, latStep, xStepMeters, yStepMeters);
+			// console.log(lngStep, latStep, xStepMeters, yStepMeters);
 			
 			let h = terrainImg.height;
 			let w = terrainImg.width;
@@ -183,7 +183,7 @@ export class AppComponent implements OnInit {
 				}			
 			}
 
-			console.log(this.elevationpoints);
+			// console.log(this.elevationpoints);
 			this.map.getSource('elevation-circles').setData({
 				"type": "MultiPoint",
 				"coordinates": this.elevationpoints
