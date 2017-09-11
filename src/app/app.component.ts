@@ -154,19 +154,32 @@ export class AppComponent implements OnInit {
 				east: bboxArray[2],
 				north: bboxArray[3]
 			}
+			
 			console.log(tile.coord.z+'/'+tile.coord.x+'/'+tile.coord.y, bbox);
 			
 			let lngStep = (bbox.west - bbox.east)/terrainImg.width;
 			let latStep = (bbox.north - bbox.south)/terrainImg.height;
-			console.log(lngStep, latStep);
+			let xStepMeters = (this.distanceLatLng([bbox.north, bbox.west],[bbox.north, bbox.east]) + this.distanceLatLng([bbox.south, bbox.west],[bbox.south, bbox.east])) / 2 / terrainImg.width;
+			let yStepMeters = (this.distanceLatLng([bbox.north, bbox.west],[bbox.south, bbox.west]) + this.distanceLatLng([bbox.north, bbox.east],[bbox.south, bbox.east])) / 2 / terrainImg.height;
+			console.log(lngStep, latStep, xStepMeters, yStepMeters);
 			
+			let h = terrainImg.height;
+			let w = terrainImg.width;
 			for (var row = 0; row < terrainImg.height; row++) {
 				for (var col = 0; col < terrainImg.width; col++) {
 					var currentElevation = dataArray[this.getGridCellIndexOfArray(terrainImg.height,terrainImg.width,row,col)];
-					if (currentElevation > 2000) continue;
+
+					const slope = this.slope(
+						dataArray[this.getGridCellIndexOfArray(h,w,row-1,col-1)], dataArray[this.getGridCellIndexOfArray(h,w,row-1,col)], dataArray[this.getGridCellIndexOfArray(h,w,row-1,col+1)], 
+						dataArray[this.getGridCellIndexOfArray(h,w,row,col-1)],   dataArray[this.getGridCellIndexOfArray(h,w,row,col)],   dataArray[this.getGridCellIndexOfArray(h,w,row,col+1)], 
+						dataArray[this.getGridCellIndexOfArray(h,w,row+1,col-1)], dataArray[this.getGridCellIndexOfArray(h,w,row+1,col)], dataArray[this.getGridCellIndexOfArray(h,w,row+1,col+1)], 
+						xStepMeters, yStepMeters
+					);
+					if (slope < 35 || slope > 50) continue;
+
 					let x = lngStep * col + (lngStep / 2) + bbox.east;
 					let y = latStep * row + (latStep / 2) + bbox.south;
-					this.elevationpoints.push([x,y]);		
+					this.elevationpoints.push([x,y]);
 				}			
 			}
 
@@ -181,9 +194,51 @@ export class AppComponent implements OnInit {
 		terrainImg.src = url;
 	}
 
-	getGridCellIndexOfArray(height: number, width: number, row: number, column: number): number {
+	getGridCellIndexOfArray(height: number, width: number, row: number, col: number): number {
 		// row and col are 0 indexed
-		return width * row + column;
+		if (row > height || row < 0 || col > width || col < 0) return NaN;
+		return width * row + col;
 	}
+
+	slope(
+		a:number,b:number,c:number,
+		d:number,e:number,f:number,
+		g:number,h:number,i:number,
+		xCellsize:number, yCellsize:number
+	): number {
+		// http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
+		for (var index = 0; index < arguments.length; index++) {
+			if (isNaN(arguments[index])) return 0;
+		}
+		const dzdx = ((c + f*2 + i) - (a + d*2 + g)) / (8 * xCellsize);
+		const dzdy = ((g + h*2 + i) - (a + b*2 + c)) / (8 * yCellsize);
+		const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
+		// console.log(riseRun);
+		const slopeRad = Math.atan(riseRun);
+		const slopeDeg = slopeRad * (180 / Math.PI)
+		
+		return slopeDeg;
+	}
+
+	distanceLatLng(latlng1:[number, number],latlng2:[number, number]): number {
+		// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+		// Haversine Formula: https://en.wikipedia.org/wiki/Haversine_formula
+
+		function deg2rad(deg) { return deg * (Math.PI/180) }
+
+		var R = 6371; // Radius of the earth in km
+		var dLat = deg2rad(latlng2[0]-latlng1[0]);  // deg2rad below
+		var dLng = deg2rad(latlng2[1]-latlng1[1]);
+		var a = 
+		  Math.sin(dLat/2) * Math.sin(dLat/2) +
+		  Math.cos(deg2rad(latlng1[0])) * Math.cos(deg2rad(latlng2[0])) * 
+		  Math.sin(dLng/2) * Math.sin(dLng/2)
+		  ; 
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		var d = R * c; // Distance in km
+		return d * 1000; // Distance in meters
+	  }
+	  
+
 
 }

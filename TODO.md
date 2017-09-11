@@ -1,2 +1,4 @@
 # TODOs:
-- get example into angular
+- webworkerify
+    - use surface api
+    - fill all coordinates on panning
