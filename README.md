@@ -10,6 +10,9 @@ Data points need:
 ##### Examples
 - [Hillshade](https://jsfiddle.net/mapbox/55k5q9c0/?utm_source=website&utm_medium=embed&utm_campaign=55k5q9c0)
 - [Global Warming](https://www.mapbox.com/bites/00307/)
+- [Swiss Ski Map Style](https://blog.mapbox.com/designing-the-swiss-ski-style-in-mapbox-studio-d6d25d1a2aa0)
+- [Winter Wonderland](https://blog.mapbox.com/ski-maps-70f435febc15)
+- [Russian Ski Map](https://www.mapbox.com/gallery/#map-2)
 
 ## Offline Maps
 - [Run node.js on cordova?](https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/)
