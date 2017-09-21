@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import * as mapboxgl from 'mapbox-gl';
-import * as SphericalMercator from '@mapbox/sphericalmercator';
+import * as SphericalMercator from 'sphericalmercator';
 
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
 
@@ -30,12 +30,9 @@ export class AppComponent implements OnInit {
 	lng = 41;
 	sphericalMercator: SphericalMercator;
 
-	worker: Worker;
-
 	constructor(
 		private http: Http
 	) {
-		this.worker = new Worker(workerPath);
 		this.sphericalMercator = new SphericalMercator();
 	}
 
@@ -47,7 +44,9 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		mapboxgl.accessToken = this.accessToken;
+		Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(this.accessToken);
+		// https://stackoverflow.com/a/44393954/5648839
+
 		this.map = new mapboxgl.Map({
 			container: 'avymap',
 			style: 'mapbox://styles/mapbox/outdoors-v9',
@@ -111,23 +110,10 @@ export class AppComponent implements OnInit {
 				this.generateTileInfo(e.tile);
 		});
 
-
-		this.worker.addEventListener('message', message => {
-			// console.log(message.data.elevationpoints);
-
-			this.elevationpoints = this.elevationpoints.concat(message.data.elevationpoints);
-
-			console.log(this.elevationpoints.length);
-			this.map.getSource('elevation-circles').setData({
-				"type": "MultiPoint",
-				"coordinates": this.elevationpoints
-			});
-		});
-
-		this.map.on('zoom', (e) => {
-			this.elevationpoints = [];
-			// not to kill the gl
-		});
+		// this.map.on('zoom', (e) => {
+		// 	this.elevationpoints = [];
+		// 	// not to kill the gl
+		// });
 
 	}
 
@@ -135,7 +121,25 @@ export class AppComponent implements OnInit {
 	onlyOnce: boolean = false;
 	generateTileInfo(tile) {
 
+		if (tile.coord.z != 15) return;
+
 		// console.log(tile);
+
+		let worker = new Worker(workerPath);
+
+		worker.addEventListener('message', message => {
+			// console.log(message.data.elevationpoints);
+
+			this.elevationpoints = this.elevationpoints.concat(message.data.elevationpoints);
+
+			// console.log(this.elevationpoints.length);
+			this.map.getSource('elevation-circles').setData({
+				"type": "MultiPoint",
+				"coordinates": this.elevationpoints
+			});
+
+			worker.terminate();
+		});
 
 		// get elevation data
 		const url = 'https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/' + tile.coord.z + '/' + tile.coord.x + '/' + tile.coord.y + '.pngraw?access_token=' + this.accessToken;
@@ -158,7 +162,7 @@ export class AppComponent implements OnInit {
 			// console.dir(terrainImgData.data);
 
 			// console.log(coord.z+'/'+coord.x+'/'+coord.y, bbox);
-			this.worker.postMessage({
+			worker.postMessage({
 				bboxArray: this.sphericalMercator.bbox(tile.coord.x, tile.coord.y, tile.coord.z), // [w, s, e, n]
 				terrainImgData: terrainImgData,
 				terrainImg: {
