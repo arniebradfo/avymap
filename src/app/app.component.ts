@@ -113,6 +113,9 @@ export class AppComponent implements OnInit {
 				"id": "elevation-lines",
 				"type": "line",
 				"source": "elevation-lines",
+				"layout":{
+					"line-cap": "round"
+				},
 				"paint": {
 					"line-width": 1,
 				}

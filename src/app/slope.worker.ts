@@ -3,11 +3,11 @@ addEventListener('message', (message) => {
     // console.log(message);
 
     let elevationpoints: [number, number][] = [];
-    let elevationlines: [[number, number],[number, number]][] = [];
+    let elevationlines: [[number, number], [number, number]][] = [];
 
     const avyStartAngle = 30;
     const avyEndAngle = 50;
-    
+
     // TODO: add these to the message
     const bbox = {
         west: message.data.bboxArray[0],
@@ -43,17 +43,17 @@ addEventListener('message', (message) => {
 
             const currentSlopeAndAspect = slopeAndAspect(
                 d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
-                d[c(h, w, row,     col - 1)], d[c(h, w, row,     col)], d[c(h, w, row,     col + 1)],
+                d[c(h, w, row, col - 1)], d[c(h, w, row, col)], d[c(h, w, row, col + 1)],
                 d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            if (currentSlopeAndAspect.slope < avyStartAngle ) continue;
+            if (currentSlopeAndAspect.slope < avyStartAngle) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
 
             if (currentSlopeAndAspect.slope > avyEndAngle) {
-                elevationpoints.push([x,y]);
+                elevationpoints.push([x, y]);
                 continue;
             }
 
@@ -62,10 +62,16 @@ addEventListener('message', (message) => {
             const value = Math.abs(center - (currentSlopeAndAspect.slope - avyStartAngle));
             const length = (value / center) * maxLineLength;
 
-            const y1 = y + ((maxLineLength - length) / 2);
-            const y2 = y - ((maxLineLength - length) / 2);
-
-            elevationlines.push([[x,y1],[x,y2]]);
+            // let x1 = x + ((maxLineLength - length) / 2);
+            // let x2 = x - ((maxLineLength - length) / 2);
+            // const p1 = rotatePoint([x1,y],[x,y],currentSlopeAndAspect.aspect);
+            // const p2 = rotatePoint([x2,y],[x,y],currentSlopeAndAspect.aspect);
+            let y1 = y + ((maxLineLength - length) / 2);
+            // let y2 = y - ((maxLineLength - length) / 2);
+            const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect*2);
+            // const p2 = rotatePoint([x,y2],[x,y],currentSlopeAndAspect.aspect);
+            
+            elevationlines.push([p1,[x,y]]);
 
         }
     }
@@ -77,6 +83,26 @@ addEventListener('message', (message) => {
 
 
 });
+
+function rotatePoint(
+    point: [number, number],
+    center: [number, number],
+    rotationDeg: number
+): [number, number] {
+    let x = point[0];
+    let y = point[1];
+    let cx = center[0];
+    let cy = center[1];
+    const rad = rotationDeg * Math.PI / 180;
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+
+    x = cos * (x - cx) - sin * (y - cy) + cx;
+    y = sin * (x - cx) + cos * (y - cy) + cy;
+
+    return [x, y];
+}
+
 
 function decodeRgbToElevation(r: number, g: number, b: number): number {
     return -10000 + ((r * 256 * 256 + g * 256 + b) * 0.1)
@@ -102,10 +128,10 @@ function slopeAndAspect(
     const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
     // console.log(riseRun);
-    const aspectDeg = Math.atan2(dzdy, -dzdx) * (180 / Math.PI);
+    const aspectDeg = Math.atan2(dzdy, dzdx * -1) * (180 / Math.PI);
     let aspectCompassDeg: number;
     if (aspectDeg < 0)
-        aspectCompassDeg = 90.0 - aspectDeg  
+        aspectCompassDeg = 90.0 - aspectDeg
     else if (aspectDeg > 90.0)
         aspectCompassDeg = 360.0 - aspectDeg + 90.0
     else
@@ -114,7 +140,7 @@ function slopeAndAspect(
     const slopeRad = Math.atan(riseRun);
     const slopeDeg = slopeRad * (180 / Math.PI)
 
-    return { slope: slopeDeg, aspect: aspectCompassDeg };
+    return { slope: slopeDeg, aspect: aspectDeg };
 }
 
 function distanceLatLng(latlng1: [number, number], latlng2: [number, number]): number {
