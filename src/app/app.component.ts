@@ -36,11 +36,18 @@ export class AppComponent implements OnInit {
 		this.sphericalMercator = new SphericalMercator();
 	}
 
-	elevationpoints: [number, number][] = [];
-	elevationGeoJson = {
+	elevationpoints: [number,number][] = [];
+	elevationlines: [[number,number],[number,number]][] = [];
+	
+	elevationPointsGeoJson = {
 		"type": "MultiPoint",
 		"coordinates": this.elevationpoints
 	}
+	elevationLinesGeoJson = {
+		"type": "MultiLineString",
+		"coordinates": this.elevationlines
+	}
+
 
 	ngOnInit(): void {
 
@@ -92,13 +99,22 @@ export class AppComponent implements OnInit {
 				}
 			});
 
-			this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationGeoJson });
+			this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationPointsGeoJson });
 			this.map.addLayer({
 				"id": "elevation-circles",
 				"type": "circle",
 				"source": "elevation-circles",
 				"paint": {
 					"circle-radius": 1,
+				}
+			});
+			this.map.addSource('elevation-lines', { type: 'geojson', data: this.elevationLinesGeoJson });
+			this.map.addLayer({
+				"id": "elevation-lines",
+				"type": "line",
+				"source": "elevation-lines",
+				"paint": {
+					"line-width": 1,
 				}
 			});
 		});
@@ -131,11 +147,15 @@ export class AppComponent implements OnInit {
 			// console.log(message.data.elevationpoints);
 
 			this.elevationpoints = this.elevationpoints.concat(message.data.elevationpoints);
-
-			// console.log(this.elevationpoints.length);
 			this.map.getSource('elevation-circles').setData({
 				"type": "MultiPoint",
 				"coordinates": this.elevationpoints
+			});
+
+			this.elevationlines = this.elevationlines.concat(message.data.elevationlines);
+			this.map.getSource('elevation-lines').setData({
+				"type": "MultiLineString",
+				"coordinates": this.elevationlines
 			});
 
 			worker.terminate();

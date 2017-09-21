@@ -3,7 +3,11 @@ addEventListener('message', (message) => {
     // console.log(message);
 
     let elevationpoints: [number, number][] = [];
+    let elevationlines: [[number, number],[number, number]][] = [];
 
+    const avyStartAngle = 30;
+    const avyEndAngle = 50;
+    
     // TODO: add these to the message
     const bbox = {
         west: message.data.bboxArray[0],
@@ -43,16 +47,32 @@ addEventListener('message', (message) => {
                 d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            if (currentSlopeAndAspect.slope < 30 ) continue;
+            if (currentSlopeAndAspect.slope < avyStartAngle ) continue;
 
-            let x = lngStep * col + (lngStep / 2) + bbox.east;
-            let y = latStep * row + (latStep / 2) + bbox.south;
-            elevationpoints.push([x,y]);
+            const x = lngStep * col + (lngStep / 2) + bbox.east;
+            const y = latStep * row + (latStep / 2) + bbox.south;
+
+            if (currentSlopeAndAspect.slope > avyEndAngle) {
+                elevationpoints.push([x,y]);
+                continue;
+            }
+
+            const maxLineLength = (lngStep + lngStep) / 2;
+            const center = (avyEndAngle - avyStartAngle) / 2;
+            const value = Math.abs(center - (currentSlopeAndAspect.slope - avyStartAngle));
+            const length = (value / center) * maxLineLength;
+
+            const y1 = y + ((maxLineLength - length) / 2);
+            const y2 = y - ((maxLineLength - length) / 2);
+
+            elevationlines.push([[x,y1],[x,y2]]);
+
         }
     }
 
     postMessage({
-        elevationpoints: elevationpoints
+        elevationpoints: elevationpoints,
+        elevationlines: elevationlines
     }, undefined);
 
 
