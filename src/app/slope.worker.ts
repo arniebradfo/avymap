@@ -47,29 +47,25 @@ addEventListener('message', (message) => {
                 d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            if (currentSlopeAndAspect.slope < avyStartAngle) continue;
+            const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
+
+            if (currentSlope < avyStartAngle) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
 
-            if (currentSlopeAndAspect.slope > avyEndAngle) {
+            if (currentSlope > avyEndAngle) {
                 elevationpoints.push([x, y]);
                 continue;
             }
 
             const maxLineLength = (lngStep + lngStep) / 2;
             const center = (avyEndAngle - avyStartAngle) / 2;
-            const value = Math.abs(center - (currentSlopeAndAspect.slope - avyStartAngle));
+            const value = Math.abs(center - (currentSlope - avyStartAngle));
             const length = (value / center) * maxLineLength;
 
-            // let x1 = x + ((maxLineLength - length) / 2);
-            // let x2 = x - ((maxLineLength - length) / 2);
-            // const p1 = rotatePoint([x1,y],[x,y],currentSlopeAndAspect.aspect);
-            // const p2 = rotatePoint([x2,y],[x,y],currentSlopeAndAspect.aspect);
-            let y1 = y + ((maxLineLength - length) / 2);
-            // let y2 = y - ((maxLineLength - length) / 2);
-            const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect*2);
-            // const p2 = rotatePoint([x,y2],[x,y],currentSlopeAndAspect.aspect);
+            let x1 = x + ((maxLineLength - length) / 2);            
+            const p1 = rotatePoint([x1,y],[x,y],currentSlopeAndAspect.aspect);
             
             elevationlines.push([p1,[x,y]]);
 
@@ -87,13 +83,13 @@ addEventListener('message', (message) => {
 function rotatePoint(
     point: [number, number],
     center: [number, number],
-    rotationDeg: number
+    rad: number
 ): [number, number] {
     let x = point[0];
     let y = point[1];
     let cx = center[0];
     let cy = center[1];
-    const rad = rotationDeg * Math.PI / 180;
+    // const rad = rotationDeg * Math.PI / 180;
     const cos = Math.cos(rad);
     const sin = Math.sin(rad);
 
@@ -120,27 +116,29 @@ function slopeAndAspect(
     g: number, h: number, i: number,
     xCellsize: number, yCellsize: number
 ): { slope: number, aspect: number } {
-    // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     for (var index = 0; index < arguments.length; index++) {
         if (isNaN(arguments[index])) return { slope: 0, aspect: 0 };
     }
     const dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / (8 * xCellsize);
-    const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);
+    const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);    
+    
+    // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
+    const aspectRad = Math.atan2(dzdx, (dzdy * -1)) * 2; // I added the '*2' here, I'm not sure why it was nessasary...
+    // const aspectDeg = aspectRad * (180 / Math.PI);
+    // let aspectCompassDeg: number;
+    // if (aspectDeg < 0)
+    //     aspectCompassDeg = 90.0 - aspectDeg
+    // else if (aspectDeg > 90.0)
+    //     aspectCompassDeg = 360.0 - aspectDeg + 90.0
+    // else
+    //     aspectCompassDeg = 90.0 - aspectDeg
+    
+    // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
-    // console.log(riseRun);
-    const aspectDeg = Math.atan2(dzdy, dzdx * -1) * (180 / Math.PI);
-    let aspectCompassDeg: number;
-    if (aspectDeg < 0)
-        aspectCompassDeg = 90.0 - aspectDeg
-    else if (aspectDeg > 90.0)
-        aspectCompassDeg = 360.0 - aspectDeg + 90.0
-    else
-        aspectCompassDeg = 90.0 - aspectDeg
-
     const slopeRad = Math.atan(riseRun);
-    const slopeDeg = slopeRad * (180 / Math.PI)
+    // const slopeDeg = slopeRad * (180 / Math.PI)
 
-    return { slope: slopeDeg, aspect: aspectDeg };
+    return { slope: slopeRad, aspect: aspectRad };
 }
 
 function distanceLatLng(latlng1: [number, number], latlng2: [number, number]): number {
