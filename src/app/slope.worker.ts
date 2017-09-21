@@ -30,18 +30,20 @@ addEventListener('message', (message) => {
 
     let h = terrainImg.height;
     let w = terrainImg.width;
+    let d = dataArray;
+    let c = getGridCellIndexOfArray;
     for (var row = 0; row < terrainImg.height; row++) {
         for (var col = 0; col < terrainImg.width; col++) {
-            var currentElevation = dataArray[getGridCellIndexOfArray(terrainImg.height, terrainImg.width, row, col)];
 
-            const currentSlope = slope(
-                dataArray[getGridCellIndexOfArray(h, w, row - 1, col - 1)], dataArray[getGridCellIndexOfArray(h, w, row - 1, col)], dataArray[getGridCellIndexOfArray(h, w, row - 1, col + 1)],
-                dataArray[getGridCellIndexOfArray(h, w, row, col - 1)], dataArray[getGridCellIndexOfArray(h, w, row, col)], dataArray[getGridCellIndexOfArray(h, w, row, col + 1)],
-                dataArray[getGridCellIndexOfArray(h, w, row + 1, col - 1)], dataArray[getGridCellIndexOfArray(h, w, row + 1, col)], dataArray[getGridCellIndexOfArray(h, w, row + 1, col + 1)],
+            // let currentElevation = dataArray[getGridCellIndexOfArray(terrainImg.height, terrainImg.width, row, col)];
+
+            const currentSlopeAndAspect = slopeAndAspect(
+                d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
+                d[c(h, w, row,     col - 1)], d[c(h, w, row,     col)], d[c(h, w, row,     col + 1)],
+                d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            if (currentSlope < 30 ) continue;
-            // encode all slopes here
+            if (currentSlopeAndAspect.slope < 30 ) continue;
 
             let x = lngStep * col + (lngStep / 2) + bbox.east;
             let y = latStep * row + (latStep / 2) + bbox.south;
@@ -66,24 +68,33 @@ function getGridCellIndexOfArray(height: number, width: number, row: number, col
     return width * row + col;
 }
 
-function slope(
+function slopeAndAspect(
     a: number, b: number, c: number,
     d: number, e: number, f: number,
     g: number, h: number, i: number,
     xCellsize: number, yCellsize: number
-): number {
+): { slope: number, aspect: number } {
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     for (var index = 0; index < arguments.length; index++) {
-        if (isNaN(arguments[index])) return 0;
+        if (isNaN(arguments[index])) return { slope: 0, aspect: 0 };
     }
     const dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / (8 * xCellsize);
     const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
     // console.log(riseRun);
+    const aspectDeg = Math.atan2(dzdy, -dzdx) * (180 / Math.PI);
+    let aspectCompassDeg: number;
+    if (aspectDeg < 0)
+        aspectCompassDeg = 90.0 - aspectDeg  
+    else if (aspectDeg > 90.0)
+        aspectCompassDeg = 360.0 - aspectDeg + 90.0
+    else
+        aspectCompassDeg = 90.0 - aspectDeg
+
     const slopeRad = Math.atan(riseRun);
     const slopeDeg = slopeRad * (180 / Math.PI)
 
-    return slopeDeg;
+    return { slope: slopeDeg, aspect: aspectCompassDeg };
 }
 
 function distanceLatLng(latlng1: [number, number], latlng2: [number, number]): number {
