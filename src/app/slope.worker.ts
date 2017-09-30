@@ -5,8 +5,8 @@ addEventListener('message', (message) => {
     let elevationpoints: [number, number][] = [];
     let elevationlines: [[number, number], [number, number]][] = [];
 
-    const avyStartAngle = 30;
-    const avyEndAngle = 50;
+    // const avyStartAngle = 30;
+    // const avyEndAngle = 50;
 
     const bbox = {
         west: message.data.bboxArray[0],
@@ -22,6 +22,8 @@ addEventListener('message', (message) => {
 
     let lngStep = (bbox.west - bbox.east) / terrainImg.width;
     let latStep = (bbox.north - bbox.south) / terrainImg.height;
+
+    console.log(lngStep, latStep)
     let xStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.north, bbox.east]) + distanceLatLng([bbox.south, bbox.west], [bbox.south, bbox.east])) / 2 / terrainImg.width;
     let yStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.south, bbox.west]) + distanceLatLng([bbox.north, bbox.east], [bbox.south, bbox.east])) / 2 / terrainImg.height;
     // console.log(lngStep, latStep, xStepMeters, yStepMeters);
@@ -41,25 +43,22 @@ addEventListener('message', (message) => {
             );
             const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
 
-            if (currentSlope < avyStartAngle) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
 
-            if (currentSlope > avyEndAngle) {
-                elevationpoints.push([x, y]);
-                continue;
-            }
+            const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
 
-            const maxLineLength = (lngStep + lngStep) / 2;
-            const center = (avyEndAngle - avyStartAngle) / 2;
-            const value = Math.abs(center - (currentSlope - avyStartAngle));
-            const length = (value / center) * maxLineLength;
-
-            let x1 = x + ((maxLineLength - length) / 2);            
-            const p1 = rotatePoint([x1,y],[x,y],currentSlopeAndAspect.aspect);
+            const slideProbibilityGussian = avalancheProbibilitySigmoid(currentSlope)
+            if (slideProbibilityGussian < 0.01) continue;
+            // const length = maxLineLength;
+            const length = slideProbibilityGussian * maxLineLength;
+            
+            let y1 = y + length;
+            const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect);
             
             elevationlines.push([p1,[x,y]]);
+            elevationpoints.push([x,y]);
 
         }
     }
@@ -125,8 +124,14 @@ function rotatePoint(
     const cos = Math.cos(rad);
     const sin = Math.sin(rad);
 
-    x = cos * (x - cx) - sin * (y - cy) + cx;
-    y = sin * (x - cx) + cos * (y - cy) + cy;
+    x -= cx;
+    y -= cy;
+
+    x = cos * x - sin * y;
+    y = sin * x + cos * y;
+    
+    x += cx;
+    y += cy
 
     return [x, y];
 }
@@ -155,15 +160,13 @@ function slopeAndAspect(
     const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);    
     
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
-    const aspectRad = Math.atan2(dzdx, (dzdy * -1)) * 2; // I added the '*2' here, I'm not sure why it was nessasary...
-    // const aspectDeg = aspectRad * (180 / Math.PI);
-    // let aspectCompassDeg: number;
-    // if (aspectDeg < 0)
-    //     aspectCompassDeg = 90.0 - aspectDeg
-    // else if (aspectDeg > 90.0)
-    //     aspectCompassDeg = 360.0 - aspectDeg + 90.0
-    // else
-    //     aspectCompassDeg = 90.0 - aspectDeg
+    let aspectRad = Math.atan2(dzdx, (dzdy * -1));
+    if (aspectRad > Math.PI/2)
+        aspectRad = Math.PI*2 - aspectRad + Math.PI/2;
+    else
+        aspectRad = Math.PI/2 - aspectRad;
+    aspectRad -= Math.PI/2;
+    // let aspectDeg = aspectRad * (180 / Math.PI);
     
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))

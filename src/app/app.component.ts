@@ -106,6 +106,7 @@ export class AppComponent implements OnInit {
 				"source": "elevation-circles",
 				"paint": {
 					"circle-radius": 1,
+					// "circle-opacity": 0.5
 				}
 			});
 			this.map.addSource('elevation-lines', { type: 'geojson', data: this.elevationLinesGeoJson });
@@ -118,6 +119,7 @@ export class AppComponent implements OnInit {
 				},
 				"paint": {
 					"line-width": 1,
+					"line-opacity": 0.5,
 				}
 			});
 		});
