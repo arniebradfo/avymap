@@ -37,28 +37,29 @@ addEventListener('message', (message) => {
 
             const currentSlopeAndAspect = slopeAndAspect(
                 d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
-                d[c(h, w, row, col - 1)], d[c(h, w, row, col)], d[c(h, w, row, col + 1)],
+                d[c(h, w, row,     col - 1)], d[c(h, w, row,     col)], d[c(h, w, row,     col + 1)],
                 d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
+            
             const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
-
+            const slideProbibilityGussian = avalancheProbibilityGussian(currentSlope)
+            const slideProbibilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
+            if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
-
-            const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
-
-            const slideProbibilityGussian = avalancheProbibilitySigmoid(currentSlope)
-            if (slideProbibilityGussian < 0.01) continue;
-            // const length = maxLineLength;
-            const length = slideProbibilityGussian * maxLineLength;
-            
-            let y1 = y + length;
-            const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect);
-            
-            elevationlines.push([p1,[x,y]]);
             elevationpoints.push([x,y]);
+
+            if (slideProbibilityGussian < 0.01) continue;
+            const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
+            const length = slideProbibilityGussian * maxLineLength;                
+            if (length > maxLineLength / 50) {
+                let y1 = y + length;
+                const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect);
+                elevationlines.push([p1,[x,y]]);
+            }
+
 
         }
     }
@@ -143,7 +144,7 @@ function decodeRgbToElevation(r: number, g: number, b: number): number {
 
 function getGridCellIndexOfArray(height: number, width: number, row: number, col: number): number {
     // row and col are 0 indexed
-    if (row > height || row < 0 || col > width || col < 0) return NaN;
+    if (row > height || row < 0 || col >= width || col < 0) return NaN;
     return width * row + col;
 }
 
