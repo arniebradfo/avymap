@@ -14,6 +14,10 @@ Data points need:
 - [Winter Wonderland](https://blog.mapbox.com/ski-maps-70f435febc15)
 - [Russian Ski Map](https://www.mapbox.com/gallery/#map-2)
 
+## Graphs
+- https://www.desmos.com/calculator/yh2cbmqaw4
+- ... based on https://utahavalanchecenter.org/blog-steepness
+
 ## Offline Maps
 - [Run node.js on cordova?](https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/)
 - [Use node.js mbtiles generator to pull saved maps?](https://github.com/jawg/mbtiles-generator)

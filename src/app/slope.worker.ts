@@ -8,7 +8,6 @@ addEventListener('message', (message) => {
     const avyStartAngle = 30;
     const avyEndAngle = 50;
 
-    // TODO: add these to the message
     const bbox = {
         west: message.data.bboxArray[0],
         south: message.data.bboxArray[1],
@@ -19,12 +18,7 @@ addEventListener('message', (message) => {
     const terrainImg = message.data.terrainImg;
     const coord = message.data.coord;
 
-    var dataArray = new Float32Array(terrainImgData.height * terrainImgData.width);
-    for (var i = 0; i < terrainImgData.data.length / 4; i++) {
-        dataArray[i] = decodeRgbToElevation(terrainImgData.data[i * 4], terrainImgData.data[i * 4 + 1], terrainImgData.data[i * 4 + 2]);
-    }
-    // console.log(dataArray);
-    dataArray.reverse();
+    let elevationArray = decodeImgDataToElevationArray(terrainImgData.data, terrainImgData.height, terrainImgData.width);
 
     let lngStep = (bbox.west - bbox.east) / terrainImg.width;
     let latStep = (bbox.north - bbox.south) / terrainImg.height;
@@ -34,12 +28,10 @@ addEventListener('message', (message) => {
 
     let h = terrainImg.height;
     let w = terrainImg.width;
-    let d = dataArray;
+    let d = elevationArray;
     let c = getGridCellIndexOfArray;
     for (var row = 0; row < terrainImg.height; row++) {
         for (var col = 0; col < terrainImg.width; col++) {
-
-            // let currentElevation = dataArray[getGridCellIndexOfArray(terrainImg.height, terrainImg.width, row, col)];
 
             const currentSlopeAndAspect = slopeAndAspect(
                 d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
@@ -79,6 +71,46 @@ addEventListener('message', (message) => {
 
 
 });
+
+
+function decodeImgDataToElevationArray(data: number[], height: number, width: number) {
+    var dataArray = new Float32Array(height * width);
+    for (var i = 0; i < data.length / 4; i++) {
+        dataArray[i] = decodeRgbToElevation(data[i * 4], data[i * 4 + 1], data[i * 4 + 2]);
+    }
+    return dataArray.reverse();
+}
+
+
+// DANGER FUNCTIONS //
+// given a slope in deg, how likely is an avalanche trigger?
+var center = 39; // highest avalanche probility is at 39°
+var height = 1; // relative avalanche probility is returned as a value between 0 & 1
+/**
+ * @description an s-curve theory of avy danger increasing with steepness
+ * @param deg slope steepness in degrees
+ * @returns relative probibility of a slide as a number between 0 and 1
+ * @see https://www.desmos.com/calculator/yh2cbmqaw4
+**/
+function avalancheProbibilitySigmoid(deg) {
+    // 
+    deg -= center;
+    const halfHeight = height / 2;
+    var magic = 33;
+    return deg * halfHeight / Math.sqrt(magic + deg ** 2) + halfHeight
+}
+/**
+ * @description a bell-curve theory of avalance probibiliy, with slopes > 39° decreasing in danger
+ * @param deg slope steepness in degrees
+ * @returns relative probibility of a slide as a number between 0 & 1
+ * @see https://www.desmos.com/calculator/yh2cbmqaw4
+**/
+function avalancheProbibilityGussian(deg) {
+    var power = 1.6;
+    var steepness = 20;
+    return (height * Math.E) ** (-1 * (steepness * ((Math.abs(-1 + (1/center) * deg)) ** power)));
+}
+
 
 function rotatePoint(
     point: [number, number],
