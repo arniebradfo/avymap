@@ -36,19 +36,6 @@ export class AppComponent implements OnInit {
 		this.sphericalMercator = new SphericalMercator();
 	}
 
-	elevationpoints: [number,number][] = [];
-	elevationlines: [[number,number],[number,number]][] = [];
-	
-	elevationPointsGeoJson = {
-		"type": "MultiPoint",
-		"coordinates": this.elevationpoints
-	}
-	elevationLinesGeoJson = {
-		"type": "MultiLineString",
-		"coordinates": this.elevationlines
-	}
-
-
 	ngOnInit(): void {
 
 		Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(this.accessToken);
@@ -99,29 +86,7 @@ export class AppComponent implements OnInit {
 				}
 			});
 
-			this.map.addSource('elevation-circles', { type: 'geojson', data: this.elevationPointsGeoJson });
-			this.map.addLayer({
-				"id": "elevation-circles",
-				"type": "circle",
-				"source": "elevation-circles",
-				"paint": {
-					"circle-radius": 1,
-					// "circle-opacity": 0.5
-				}
-			});
-			this.map.addSource('elevation-lines', { type: 'geojson', data: this.elevationLinesGeoJson });
-			this.map.addLayer({
-				"id": "elevation-lines",
-				"type": "line",
-				"source": "elevation-lines",
-				"layout":{
-					"line-cap": "round"
-				},
-				"paint": {
-					"line-width": 1,
-					"line-opacity": 0.5,
-				}
-			});
+
 		});
 
 		this.map.on('sourcedata', (e) => {
@@ -138,31 +103,53 @@ export class AppComponent implements OnInit {
 
 	}
 
-
+	layerCount = 0;
 	onlyOnce: boolean = false;
 	generateTileInfo(tile) {
 
 		if (tile.coord.z != 15) return;
 
-		// console.log(tile);
-
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
-			// console.log(message.data.elevationpoints);
-
-			this.elevationpoints = this.elevationpoints.concat(message.data.elevationpoints);
-			this.map.getSource('elevation-circles').setData({
-				"type": "MultiPoint",
-				"coordinates": this.elevationpoints
+			const circleName = 'elevation-circles-'+this.layerCount
+			this.map.addSource(circleName, { 
+				type: 'geojson', 
+				data: {
+					"type": "MultiPoint",
+					"coordinates": message.data.elevationpoints
+				} 
 			});
-
-			this.elevationlines = this.elevationlines.concat(message.data.elevationlines);
-			this.map.getSource('elevation-lines').setData({
-				"type": "MultiLineString",
-				"coordinates": this.elevationlines
+			this.map.addLayer({
+				"id": circleName,
+				"source": circleName,
+				"type": "circle",
+				"paint": {
+					"circle-radius": 1,
+					// "circle-opacity": 0.5
+				}
 			});
-
+			const linesName = 'elevation-lines-'+this.layerCount			
+			this.map.addSource(linesName, { 
+				type: 'geojson', 
+				data: {
+					"type": "MultiLineString",
+					"coordinates": message.data.elevationlines
+				} 
+			});
+			this.map.addLayer({
+				"id": linesName,
+				"source": linesName,
+				"type": "line",
+				"layout":{
+					"line-cap": "round"
+				},
+				"paint": {
+					"line-width": 1,
+					"line-opacity": 0.5,
+				}
+			});
+			this.layerCount++;			
 			worker.terminate();
 		});
 

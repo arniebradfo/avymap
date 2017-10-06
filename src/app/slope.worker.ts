@@ -23,7 +23,7 @@ addEventListener('message', (message) => {
     let lngStep = (bbox.west - bbox.east) / terrainImg.width;
     let latStep = (bbox.north - bbox.south) / terrainImg.height;
 
-    console.log(lngStep, latStep)
+    // console.log(lngStep, latStep)
     let xStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.north, bbox.east]) + distanceLatLng([bbox.south, bbox.west], [bbox.south, bbox.east])) / 2 / terrainImg.width;
     let yStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.south, bbox.west]) + distanceLatLng([bbox.north, bbox.east], [bbox.south, bbox.east])) / 2 / terrainImg.height;
     // console.log(lngStep, latStep, xStepMeters, yStepMeters);
