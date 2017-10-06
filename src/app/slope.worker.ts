@@ -157,23 +157,29 @@ function slopeAndAspect(
     for (var index = 0; index < arguments.length; index++) {
         if (isNaN(arguments[index])) return { slope: 0, aspect: 0 };
     }
-    const dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / (8 * xCellsize);
-    const dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / (8 * yCellsize);    
-    
+
+    let dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / 8;
+    let dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / 8;   
+    dzdx /= xCellsize;
+    dzdy /= yCellsize;
+
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
-    let aspectRad = Math.atan2(dzdx, (dzdy * -1));
+    let aspectRad = Math.atan2(dzdy, (dzdx * -1));
+
+    // TODO: simplify math here
     if (aspectRad > Math.PI/2)
         aspectRad = Math.PI*2 - aspectRad + Math.PI/2;
     else
         aspectRad = Math.PI/2 - aspectRad;
-    aspectRad -= Math.PI/2;
-    // let aspectDeg = aspectRad * (180 / Math.PI);
+    aspectRad = Math.PI*2 - aspectRad + Math.PI;
     
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
     const slopeRad = Math.atan(riseRun);
-    // const slopeDeg = slopeRad * (180 / Math.PI)
 
+
+    // const aspectDeg = aspectRad * (180 / Math.PI);
+    // const slopeDeg = slopeRad * (180 / Math.PI)
     return { slope: slopeRad, aspect: aspectRad };
 }
 
