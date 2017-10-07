@@ -45,24 +45,21 @@ addEventListener('message', (message) => {
             const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
             const slideProbibilityGussian = avalancheProbibilityGussian(currentSlope)
             const slideProbibilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
-            // if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1) continue;
+            if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
             elevationpoints.push([x,y]);
             const xy: [number, number] = [x,y];
 
-            // if (slideProbibilityGussian < 0.01) continue;
+            if (slideProbibilityGussian < 0.01) continue;
             const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
             const length = slideProbibilityGussian * maxLineLength;                
-            // if (length > maxLineLength / 50) {
-                // let y1 = y + length;
-                // const p1 = rotatePoint([x,y1],xy,currentSlopeAndAspect.aspect);
-                // elevationlines.push([p1,xy]);
-                let x1 = x + maxLineLength;
-                const p1 = rotatePoint([x1,y],xy,currentSlopeAndAspect.aspect);
-                elevationlines.push([p1,xy]);
-            // }
+            if (length > maxLineLength / 50) {
+                let x1 = x + length;
+                const xy1 = rotatePoint([x1,y],xy,currentSlopeAndAspect.aspect);
+                elevationlines.push([xy,xy1]);
+            }
 
             // let feature = {
             //     type: 'Feature',
