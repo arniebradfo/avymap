@@ -1,5 +1,5 @@
 addEventListener('message', (message) => {
-
+    
     // console.log(message);
 
     let elevationpoints: [number, number][] = [];
@@ -45,21 +45,40 @@ addEventListener('message', (message) => {
             const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
             const slideProbibilityGussian = avalancheProbibilityGussian(currentSlope)
             const slideProbibilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
-            if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1) continue;
+            // if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1) continue;
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
             elevationpoints.push([x,y]);
+            const xy: [number, number] = [x,y];
 
-            if (slideProbibilityGussian < 0.01) continue;
+            // if (slideProbibilityGussian < 0.01) continue;
             const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
             const length = slideProbibilityGussian * maxLineLength;                
-            if (length > maxLineLength / 50) {
-                let y1 = y + length;
-                const p1 = rotatePoint([x,y1],[x,y],currentSlopeAndAspect.aspect);
-                elevationlines.push([p1,[x,y]]);
-            }
+            // if (length > maxLineLength / 50) {
+                // let y1 = y + length;
+                // const p1 = rotatePoint([x,y1],xy,currentSlopeAndAspect.aspect);
+                // elevationlines.push([p1,xy]);
+                let x1 = x + maxLineLength;
+                const p1 = rotatePoint([x1,y],xy,currentSlopeAndAspect.aspect);
+                elevationlines.push([p1,xy]);
+            // }
 
+            // let feature = {
+            //     type: 'Feature',
+            //     geometries: [{
+            //         type: 'Point',
+            //         coordinates: xy
+            //       }, {
+            //         type: 'LineString',
+            //         coordinates: [p1,xy]
+            //       }],
+            //     properties:{
+            //         elevation: 0,
+            //         danger: 0,
+            //         aspect: 0,
+            //     }
+            // }
 
         }
     }
@@ -138,6 +157,7 @@ function rotatePoint(
 }
 
 
+
 function decodeRgbToElevation(r: number, g: number, b: number): number {
     return -10000 + ((r * 256 * 256 + g * 256 + b) * 0.1)
 }
@@ -164,19 +184,23 @@ function slopeAndAspect(
     dzdy /= yCellsize;
 
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
-    let aspectRad = Math.atan2(dzdy, (dzdx * -1));
-
+    let aspectRad = Math.atan2(dzdx > 0 ? dzdy * -1 : dzdy, dzdx);
     // TODO: simplify math here
-    if (aspectRad > Math.PI/2)
-        aspectRad = Math.PI*2 - aspectRad + Math.PI/2;
-    else
-        aspectRad = Math.PI/2 - aspectRad;
-    aspectRad = Math.PI*2 - aspectRad + Math.PI;
+    // if (aspectRad > Math.PI/2)
+    //     aspectRad = Math.PI*2 - aspectRad + Math.PI/2;
+    // else
+    //     aspectRad = Math.PI/2 - aspectRad;
+    // aspectRad = Math.PI*2 - aspectRad;
     
+
+    // if (aspectRad > Math.PI/2 || aspectRad < -1 * Math.PI/2)
+        // aspectRad = Math.PI*2 - aspectRad;
+    
+    // console.log(aspectRad);
+        
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
     const slopeRad = Math.atan(riseRun);
-
 
     // const aspectDeg = aspectRad * (180 / Math.PI);
     // const slopeDeg = slopeRad * (180 / Math.PI)

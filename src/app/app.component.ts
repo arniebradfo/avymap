@@ -112,6 +112,7 @@ export class AppComponent implements OnInit {
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
+			console.log(message);
 			const circleName = 'elevation-circles-'+this.layerCount
 			this.map.addSource(circleName, { 
 				type: 'geojson', 
