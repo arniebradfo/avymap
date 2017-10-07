@@ -147,13 +147,13 @@ function rotatePoint(
     x -= cx;
     y -= cy;
 
-    x = cos * x - sin * y;
-    y = sin * x + cos * y;
+    let x1 = cos * x - sin * y;
+    let y1 = sin * x + cos * y;
     
-    x += cx;
-    y += cy
+    x1 += cx;
+    y1 += cy
 
-    return [x, y];
+    return [x1, y1];
 }
 
 
@@ -184,19 +184,7 @@ function slopeAndAspect(
     dzdy /= yCellsize;
 
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
-    let aspectRad = Math.atan2(dzdx > 0 ? dzdy * -1 : dzdy, dzdx);
-    // TODO: simplify math here
-    // if (aspectRad > Math.PI/2)
-    //     aspectRad = Math.PI*2 - aspectRad + Math.PI/2;
-    // else
-    //     aspectRad = Math.PI/2 - aspectRad;
-    // aspectRad = Math.PI*2 - aspectRad;
-    
-
-    // if (aspectRad > Math.PI/2 || aspectRad < -1 * Math.PI/2)
-        // aspectRad = Math.PI*2 - aspectRad;
-    
-    // console.log(aspectRad);
+    let aspectRad = Math.atan2(dzdy * -1, dzdx);
         
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
