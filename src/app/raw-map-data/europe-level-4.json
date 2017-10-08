@@ -1,0 +1,2192 @@
+[
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 756,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "no report",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 705,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "no report",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 642,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 642,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 616,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 616,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 616,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 616,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 13,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 12,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 11,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 10,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 9,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 8,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 7,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 6,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 5,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 4,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 3,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 2,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 10,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 9,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 8,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 7,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 6,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 5,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 4,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 3,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 14,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 14,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 14,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 13,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 13,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 13,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "no snow",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 12,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 12,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 11,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 11,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 11,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 11,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 10,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 10,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 10,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 9,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 9,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 9,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 9,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 11,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 10,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 9,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 13,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 12,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 11,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 10,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 9,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 352,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 352,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 352,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 10,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 9,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 9,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 8,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 4,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 14,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 13,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 12,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 11,
+        "level": "5",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 10,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 9,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "5",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 6,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 5,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 4,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 3,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 2,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 203,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 203,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 12,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 11,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 10,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 9,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "5",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "5",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 4,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "2",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "1",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 8,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 7,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 6,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 5,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 4,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 3,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 2,
+        "level": "4",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "5",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    },
+    {
+        "countryId": 20,
+        "provId": 1,
+        "regionId": 1,
+        "subregId": 1,
+        "level": "3",
+        "validUntil": "2020-03-30 00:00:00",
+        "editor": "Tester",
+        "entryDate": "2015-05-21 15:27:08"
+    }
+]

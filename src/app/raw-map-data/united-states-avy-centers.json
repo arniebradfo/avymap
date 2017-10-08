@@ -1,0 +1,93 @@
+{
+    "total_rows": "8",
+    "rows": [
+        {
+            "row": {
+                "id": "AAIC",
+                "name": "Alaska Avalanche",
+                "url": "http://www.valdezavalanchecenter.org",
+                "center_point": "(-146.3053,61.1231)",
+                "lat": "61.1231",
+                "lng": "-146.3053",
+                "icon": "center_i.gif"
+            }
+        },
+        {
+            "row": {
+                "id": "MWAC",
+                "name": "Mt. Washington",
+                "url": "http://www.mountwashingtonavalanchecenter.org/index.php",
+                "center_point": "(-71.302643,44.25897)",
+                "lat": "44.25897",
+                "lng": "-71.302643",
+                "icon": "center.png"
+            }
+        },
+        {
+            "row": {
+                "id": "KPAC",
+                "name": "Flagstaff/Kachina Peaks",
+                "url": "http://www.kachinapeaks.org/",
+                "center_point": "(-111.6506,35.1981)",
+                "lat": "35.1981",
+                "lng": "-111.6506",
+                "icon": "center_i.gif"
+            }
+        },
+        {
+            "row": {
+                "id": "WAC",
+                "name": "Wallowa",
+                "url": "http://wallowaavalanchecenter.org/",
+                "center_point": "(-117.2286,45.3544)",
+                "lat": "45.3544",
+                "lng": "-117.2286",
+                "icon": "center_i.gif"
+            }
+        },
+        {
+            "row": {
+                "id": "ESAC",
+                "name": "Eastern Sierra",
+                "url": "http://www.esavalanche.org/advisory",
+                "center_point": "(-118.9711,37.6486)",
+                "lat": "37.6486",
+                "lng": "-118.9711",
+                "icon": "center.png"
+            }
+        },
+        {
+            "row": {
+                "id": "CTCAK",
+                "name": "Cordova",
+                "url": "http://www.cityofcordova.net/residents/a-safe-cordova/avalanche-conditions",
+                "center_point": "(-145.7022,60.5392)",
+                "lat": "60.5392",
+                "lng": "-145.7022",
+                "icon": "center.png"
+            }
+        },
+        {
+            "row": {
+                "id": "JUAK",
+                "name": "Juneau",
+                "url": "http://www.juneau.org/avalanche/",
+                "center_point": "(-134.5116,58.3514)",
+                "lat": "58.3514",
+                "lng": "-134.5116",
+                "icon": "center.png"
+            }
+        },
+        {
+            "row": {
+                "id": "HPAC",
+                "name": "Hatcher Pass",
+                "url": "http://hatcherpassavalanchecenter.org/",
+                "center_point": "(-149.17152,61.47511)",
+                "lat": "61.7697222",
+                "lng": "-149.3088889",
+                "icon": "center_i.gif"
+            }
+        }
+    ]
+}

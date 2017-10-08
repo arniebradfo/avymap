@@ -1,0 +1,825 @@
+[
+    {
+        "id": 17,
+        "countryId": 20,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Andorra",
+        "services": [
+            {
+                "serviceId": 1,
+                "name": "Servei de Meteorologia - Andorra",
+                "nameShort": "Meteo Andorra",
+                "url": "http://www.meteo.ad/estatneu"
+            },
+            {
+                "serviceId": 126,
+                "name": "Service de Météorologie - Andorre",
+                "nameShort": "Météo Andorre",
+                "url": "http://www.meteo.ad/fr/etatneige"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "countryId": 40,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Kärnten",
+        "services": [
+            {
+                "serviceId": 2,
+                "name": "LWD Kärnten",
+                "nameShort": "LWD Kärnten",
+                "url": "http://www.lawinenwarndienst.ktn.gv.at/143241_DE"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "countryId": 40,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Niederösterreich",
+        "services": [
+            {
+                "serviceId": 3,
+                "name": "LWD Niederösterreich",
+                "nameShort": "LWD Niederösterreich",
+                "url": "http://www.lawinenwarndienst-niederoesterreich.at/"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "countryId": 40,
+        "provId": 4,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Oberösterreich",
+        "services": [
+            {
+                "serviceId": 4,
+                "name": "LWD Oberösterreich",
+                "nameShort": "LWD Oberösterreich",
+                "url": "http://www.land-oberoesterreich.gv.at/cps/rde/xchg/ooe/hs.xsl/was_lnw_DEU_HTML.htm"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "countryId": 40,
+        "provId": 5,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Salzburg",
+        "services": [
+            {
+                "serviceId": 5,
+                "name": "LWD Salzburg",
+                "nameShort": "LWD Salzburg",
+                "url": "http://www.lawine.salzburg.at/start.html"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "countryId": 40,
+        "provId": 6,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Steiermark",
+        "services": [
+            {
+                "serviceId": 6,
+                "name": "LWD Steiermark",
+                "nameShort": "LWD Steiermark",
+                "url": "http://www.lawine-steiermark.at/"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "countryId": 40,
+        "provId": 7,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Tirol",
+        "services": [
+            {
+                "serviceId": 7,
+                "name": "LWD Tirol",
+                "nameShort": "LWD Tirol",
+                "url": "http://lawine.tirol.gv.at/"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "countryId": 40,
+        "provId": 8,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Vorarlberg",
+        "services": [
+            {
+                "serviceId": 8,
+                "name": "LWZ Vorarlberg",
+                "nameShort": "LWZ Vorarlberg",
+                "url": "http://warndienste.cnv.at/dibos/lawine/"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "countryId": 203,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Cechy",
+        "services": [
+            {
+                "serviceId": 9,
+                "name": "Lavinové predpovedi - Krkonose",
+                "nameShort": "Lavinové predpovedi - Krkonoše",
+                "url": "http://www.horskasluzba.cz/cz/pocasi-na-horach/lavinova-predpoved/krkonose"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "countryId": 203,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Morava a Ceské Slezsko",
+        "services": [
+            {
+                "serviceId": 10,
+                "name": "Lavinové predpovedi - Jeseníky",
+                "nameShort": "Lavinové predpovedi - Jeseníky",
+                "url": "http://www.horskasluzba.cz/cz/pocasi-na-horach/lavinova-predpoved/jeseniky"
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "countryId": 246,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Lappi/Lappland - Kuusamo",
+        "services": [
+            {
+                "serviceId": 11,
+                "name": "Ilmatieteen Laitos",
+                "nameShort": "Ilmatieteen Laitos",
+                "url": "http://ilmatieteenlaitos.fi/lumivyoryennuste"
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "countryId": 250,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Départements des Alpes",
+        "services": [
+            {
+                "serviceId": 12,
+                "name": "Météo France - Montagne",
+                "nameShort": "Météo France",
+                "url": "http://www.meteofrance.com/previsions-meteo-montagne/"
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "countryId": 250,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Corse",
+        "services": [
+            {
+                "serviceId": 38,
+                "name": "Météo France - Corse",
+                "nameShort": "Météo France",
+                "url": "http://www.meteofrance.com/previsions-meteo-montagne/corse/monp007corse"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "countryId": 250,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Départements des Pyrénées",
+        "services": [
+            {
+                "serviceId": 41,
+                "name": "Météo France - Pyrenees",
+                "nameShort": "Météo France",
+                "url": "http://www.meteofrance.com/previsions-meteo-montagne/pyrenees/monp007pyrenees"
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "countryId": 276,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Bayern",
+        "services": [
+            {
+                "serviceId": 52,
+                "name": "LWD Bayern",
+                "nameShort": "LWD Bayern",
+                "url": "http://www.lawinenwarndienst-bayern.de/index.php"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "countryId": 352,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Austurland",
+        "services": [
+            {
+                "serviceId": 53,
+                "name": "Veðurstofa Íslands - Overview",
+                "nameShort": "Veðurstofa Íslands",
+                "url": "http://en.vedur.is/#tab=snjoflod"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "countryId": 352,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Norðurland",
+        "services": [
+            {
+                "serviceId": 53,
+                "name": "Veðurstofa Íslands - Overview",
+                "nameShort": "Veðurstofa Íslands",
+                "url": "http://en.vedur.is/#tab=snjoflod"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "countryId": 352,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Vestfirðir",
+        "services": [
+            {
+                "serviceId": 53,
+                "name": "Veðurstofa Íslands - Overview",
+                "nameShort": "Veðurstofa Íslands",
+                "url": "http://en.vedur.is/#tab=snjoflod"
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "countryId": 380,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Piemonte",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            },
+            {
+                "serviceId": 57,
+                "name": "AINEVA Piemonte",
+                "nameShort": "AINEVA",
+                "url": "http://www.arpa.piemonte.it/bollettini/bollettino_valanghe.pdf/at_download/file"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "countryId": 380,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Valle d'Aosta",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            },
+            {
+                "serviceId": 59,
+                "name": "AINEVA Valle d'Aosta",
+                "nameShort": "AINEVA",
+                "url": "http://appweb.regione.vda.it/DBWeb/bollnivometeo/bollnivometeo.nsf/vista_i/$first?OpenDocument&L=_i"
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "countryId": 380,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Lombardia",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            },
+            {
+                "serviceId": 61,
+                "name": "AINEVA Lombardia",
+                "nameShort": "AINEVA",
+                "url": "http://www.arpalombardia.it/siti/arpalombardia/meteo/previsionimeteo/bollettino-neve-valanghe/Pagine/BollettinoNeve.aspx "
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "countryId": 380,
+        "provId": 4,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Trentino",
+        "services": [
+            {
+                "serviceId": 65,
+                "name": "AINEVA Trentino",
+                "nameShort": "AINEVA",
+                "url": "http://www.meteotrentino.it/bollettini/today/valanghe_it.aspx?id=9"
+            },
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "countryId": 380,
+        "provId": 5,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Südtirol/Alto Adige",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            },
+            {
+                "serviceId": 64,
+                "name": "AINEVA Provincia Bolzano / Provinz Bozen",
+                "nameShort": "AINEVA",
+                "url": "http://www.provincia.bz.it/valanghe/home.asp"
+            },
+            {
+                "serviceId": 63,
+                "name": "LLB Südtirol / PVA Alto Adige",
+                "nameShort": "LLB Südtirol",
+                "url": "http://www.provinz.bz.it/lawinen/home.asp"
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "countryId": 380,
+        "provId": 6,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Veneto",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            },
+            {
+                "serviceId": 68,
+                "name": "AINEVA Veneto",
+                "nameShort": "AINEVA",
+                "url": "http://www.arpa.veneto.it/neve_valanghe/it/html/index.php"
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "countryId": 380,
+        "provId": 7,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Friuli-Venezia Giulia",
+        "services": [
+            {
+                "serviceId": 70,
+                "name": "AINEVA Friuli-Venezia-Giulia",
+                "nameShort": "AINEVA",
+                "url": "http://www.regione.fvg.it/asp/valanghe/welcome.asp"
+            },
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "countryId": 380,
+        "provId": 8,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Emilia-Romagna",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "countryId": 380,
+        "provId": 9,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Liguria-Toscana",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "countryId": 380,
+        "provId": 10,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Marche",
+        "services": [
+            {
+                "serviceId": 72,
+                "name": "AINEVA Marche",
+                "nameShort": "AINEVA",
+                "url": "http://protezionecivile.regione.marche.it/moduli.asp?modulo=bneve"
+            },
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "countryId": 380,
+        "provId": 11,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Lazio-Abruzzo-Molise",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "countryId": 380,
+        "provId": 12,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Umbria",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "countryId": 380,
+        "provId": 13,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Campania-Puglia-Basilicata-Calabria",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "countryId": 380,
+        "provId": 14,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Sicilia",
+        "services": [
+            {
+                "serviceId": 55,
+                "name": "Meteomont Italia",
+                "nameShort": "Meteomont Italia",
+                "url": "http://www.meteomont.gov.it"
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "countryId": 578,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Sør-Norge",
+        "services": [
+            {
+                "serviceId": 79,
+                "name": "Varsom - Norge",
+                "nameShort": "Varsom - Norge",
+                "url": "http://www.varsom.no/Snoskred/"
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "countryId": 578,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Nord-Norge",
+        "services": [
+            {
+                "serviceId": 79,
+                "name": "Varsom - Norge",
+                "nameShort": "Varsom - Norge",
+                "url": "http://www.varsom.no/Snoskred/"
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "countryId": 616,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Województwo Dolnoslaskie",
+        "services": [
+            {
+                "serviceId": 104,
+                "name": "GOPR - Zagrozenie lawinowe",
+                "nameShort": "GOPR - Zagrozenie lawinowe",
+                "url": "http://www.gopr.pl/lawiny"
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "countryId": 616,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Województwo Malopolskie",
+        "services": [
+            {
+                "serviceId": 104,
+                "name": "GOPR - Zagrozenie lawinowe",
+                "nameShort": "GOPR - Zagrozenie lawinowe",
+                "url": "http://www.gopr.pl/lawiny"
+            },
+            {
+                "serviceId": 103,
+                "name": "TOPR - Zagrozenie lawinowe",
+                "nameShort": "TOPR - Zagrozenie lawinowe",
+                "url": "http://www.topr.pl/"
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "countryId": 616,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Województwo Podkarpackie",
+        "services": [
+            {
+                "serviceId": 104,
+                "name": "GOPR - Zagrozenie lawinowe",
+                "nameShort": "GOPR - Zagrozenie lawinowe",
+                "url": "http://www.gopr.pl/lawiny"
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "countryId": 616,
+        "provId": 4,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Powiat Tatrzanski",
+        "services": []
+    },
+    {
+        "id": 55,
+        "countryId": 642,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Sibiu-Brasov-Prahova-Dambovita-Arges-Valcea",
+        "services": [
+            {
+                "serviceId": 108,
+                "name": "Meteo România",
+                "nameShort": "Meteo România",
+                "url": "http://www.inmh.ro/images/nivologie/nivologie.pdf"
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "countryId": 703,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Slovensko",
+        "services": [
+            {
+                "serviceId": 109,
+                "name": "Lavínová situácia - Slovensko",
+                "nameShort": "Lavínová situácia - Slovensko",
+                "url": "http://www.laviny.sk/aktualne-informacie/lavinova-situacia/"
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "countryId": 705,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Slovenija",
+        "services": [
+            {
+                "serviceId": 110,
+                "name": "Meteo Slovenija",
+                "nameShort": "Meteo Slovenija",
+                "url": "http://meteo.arso.gov.si/met/sl/weather/bulletin/mountain/avalanche/"
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "countryId": 724,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Catalunya",
+        "services": [
+            {
+                "serviceId": 114,
+                "name": "BPA Val d'Aran",
+                "nameShort": "BPA Val d'Aran",
+                "url": "http://www.lauegi.conselharan.org/"
+            },
+            {
+                "serviceId": 112,
+                "name": "BPA Catalunya",
+                "nameShort": "BPA Catalunya",
+                "url": "http://www.igc.cat/web/es/allaus_butlleti.php"
+            },
+            {
+                "serviceId": 113,
+                "name": "AEMET Pirineo Catalán",
+                "nameShort": "AEMET",
+                "url": "http://www.aemet.es/es/eltiempo/prediccion/montana?w=2&p=cat1"
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "countryId": 724,
+        "provId": 2,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Aragón-Navarra",
+        "services": [
+            {
+                "serviceId": 115,
+                "name": "AEMET Pirineo Aragones y Navarro",
+                "nameShort": "AEMET",
+                "url": "http://www.aemet.es/es/eltiempo/prediccion/montana?w=2&p=arn1"
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "countryId": 724,
+        "provId": 3,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Asturias-Cantabria-León",
+        "services": [
+            {
+                "serviceId": 116,
+                "name": "AEMET Picos de Europa",
+                "nameShort": "AEMET",
+                "url": "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=peu1"
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "countryId": 724,
+        "provId": 4,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Madrid-Segovia",
+        "services": [
+            {
+                "serviceId": 117,
+                "name": "AEMET Sierra de Guadarrama",
+                "nameShort": "AEMET",
+                "url": "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=mad2"
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "countryId": 756,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Schweiz - Suisse - Svizzera - Svizra",
+        "services": [
+            {
+                "serviceId": 118,
+                "name": "SLF Schweiz - Suisse - Svizzera - Svizra",
+                "nameShort": "SLF Schweiz - Suisse - Svizzera - Svizra",
+                "url": "http://www.slf.ch/"
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "countryId": 826,
+        "provId": 1,
+        "regionId": 0,
+        "subregId": 0,
+        "name": "Scotland",
+        "services": [
+            {
+                "serviceId": 119,
+                "name": "AIS Scotland",
+                "nameShort": "AIS Scotland",
+                "url": "http://www.sais.gov.uk/"
+            }
+        ]
+    }
+]

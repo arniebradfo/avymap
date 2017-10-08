@@ -1,0 +1,333 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "little-yoho",
+                "display": "Little Yoho"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.501571107755424,
+                    51.501457954569304
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "banff-yoho-kootenay",
+                "display": "Banff Yoho & Kootenay National Park"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.140003839708896,
+                    51.365557506620569
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "yukon",
+                "display": "Yukon"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -135.145724569184921,
+                    60.00435182795745
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "northwest-coastal",
+                "display": "Northwest Coastal"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -129.777162193450948,
+                    55.70031480370605
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "northwest-inland",
+                "display": "Northwest Inland"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -128.098183754783349,
+                    56.025271175546308
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "sea-to-sky",
+                "display": "Sea To Sky"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -123.651238882992175,
+                    50.291779958078727
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "south-coast-inland",
+                "display": "South Coast Inland"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.942498141319817,
+                    50.08743390300431
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "north-shore",
+                "display": "North Shore"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -123.069707573792257,
+                    49.381767393632821
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "north-rockies",
+                "display": "North Rockies"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.461466116715854,
+                    54.668562861981286
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "cariboos",
+                "display": "Cariboos"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -120.591473940006281,
+                    52.72093721460341
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "north-columbia",
+                "display": "North Columbia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.941846040814141,
+                    51.498436933678619
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "south-columbia",
+                "display": "South Columbia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.054246550631845,
+                    50.419850556903349
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "purcells",
+                "display": "Purcells"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.337586816034559,
+                    50.009478075370033
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "kootenay-boundary",
+                "display": "Kootenay Boundary"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.341599869965378,
+                    49.481522927796917
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "south-rockies",
+                "display": "South Rockies"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -114.920448887864609,
+                    49.860633347746415
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "lizard-range",
+                "display": "Lizard Range and Flathead"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -114.813688269750202,
+                    49.315573019227465
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "vancouver-island",
+                "display": "Vancouver Island, VIAC"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -126.003280753802002,
+                    49.846951780830942
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "whistler-blackcomb",
+                "display": "Whistler-Blackcomb Backcountry"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.954444441409308,
+                    50.114115135530227
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "jasper",
+                "display": "Jasper National Park"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.618371264122999,
+                    52.445557601942298
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "kananaskis",
+                "display": "Kananaskis Country, Alberta Parks"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -115.189834080004744,
+                    50.768253102477274
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "waterton",
+                "display": "Waterton Lakes National Park"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -113.976337742261407,
+                    49.081338391799548
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "chic-chocs",
+                "display": "Chic Chocs, CAHG"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -66.086855782900869,
+                    48.909684297640375
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "glacier",
+                "display": "Glacier National Park"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.52623359552976,
+                    51.269155942732112
+                ]
+            }
+        }
+    ]
+}
