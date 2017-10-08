@@ -1,39 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
-
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
-
-
-
-/**
-	get rawdata from terrain tiles and translate it to elevation somehow
-	use surface API	
-**/
-
+import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator'
 
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css']
+	template: '<div id="avymap"></div>',
+	styles: [`
+		#avymap{
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+	`]
 })
 export class AppComponent implements OnInit {
 
 	map;
-	accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
-	zoom = 8;
-	lat = -112;
-	lng = 41;
+	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
+	readonly zoom = 8;
+	readonly lat = -112;
+	readonly lng = 41;
+	createAvyDangerMap: boolean = false;
+
 	sphericalMercator: SphericalMercator;
+	zoneDataTranslator: ZoneDataTranslator;
 
 	constructor(
 		private http: Http
 	) {
 		this.sphericalMercator = new SphericalMercator();
+		this.zoneDataTranslator = new ZoneDataTranslator();
 	}
 
 	ngOnInit(): void {
@@ -51,25 +52,7 @@ export class AppComponent implements OnInit {
 
 		this.map.on('load', () => {
 
-			this.map.showTileBoundaries = true;
-
-			// this.map.addLayer({
-			// 	'id': 'terrain-data',
-			// 	'type': 'line',
-			// 	'source': {
-			// 		type: 'vector',
-			// 		url: 'mapbox://mapbox.mapbox-terrain-v2'
-			// 	},
-			// 	'source-layer': 'contour',
-			// 	'layout': {
-			// 		'line-join': 'round',
-			// 		'line-cap': 'round'
-			// 	},
-			// 	'paint': {
-			// 		'line-color': '#ff69b4',
-			// 		'line-width': 1
-			// 	}
-			// });
+			this.map.showTileBoundaries = true; // for debug
 
 			this.map.addLayer({
 				'id': 'terrain-rgb',
@@ -82,17 +65,16 @@ export class AppComponent implements OnInit {
 				'minzoom': 10,
 				'source-layer': 'terrain-rgb',
 				'paint': {
-					'raster-opacity': 0.0
+					'raster-opacity': 0.5
 				}
 			});
-
 
 		});
 
 		this.map.on('sourcedata', (e) => {
 			if (e.sourceId != 'terrain-rgb') return;
 			// console.log('sourcedata: ', e);
-			if (e.tile)
+			if (e.tile && this.createAvyDangerMap)
 				this.generateTileInfo(e.tile);
 		});
 
