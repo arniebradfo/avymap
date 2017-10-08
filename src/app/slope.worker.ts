@@ -57,6 +57,15 @@ addEventListener('message', (message) => {
     for (var row = 0; row < terrainImg.height; row++) {
         for (var col = 0; col < terrainImg.width; col++) {
 
+            let feature: Feature<GeometryCollection> = {
+                type: 'Feature',
+                geometry: {
+                    type: 'GeometryCollection',
+                    geometries: [],
+                },
+                properties: {}
+            }
+
             const currentSlopeAndAspect = slopeAndAspect(
                 d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
                 d[c(h, w, row, col - 1)], d[c(h, w, row, col)], d[c(h, w, row, col + 1)],
@@ -81,23 +90,19 @@ addEventListener('message', (message) => {
             const xy1 = rotatePoint([x1, y], xy, currentSlopeAndAspect.aspect);
             // }
 
-            let feature: Feature<GeometryCollection> = {
-                type: 'Feature',
-                geometry: {
-                    type: 'GeometryCollection',
-                    geometries: [{
-                        type: 'Point',
-                        coordinates: xy
-                    }, {
-                        type: 'LineString',
-                        coordinates: [xy, xy1]
-                    }],
-                },
-                properties: {
-                    elevation: 0,
-                    danger: 0,
-                    aspect: 0,
-                }
+            feature.geometry.geometries = [{
+                type: 'Point',
+                coordinates: xy
+            }, {
+                type: 'LineString',
+                coordinates: [xy, xy1]
+            }]
+
+            feature.properties = {
+                elevation: d[c(h, w, row, col)],
+                slope: currentSlopeAndAspect.slope,
+                aspect: currentSlopeAndAspect.aspect,
+                danger: slideProbibilityGussian,
             }
 
             featureCollection.features.push(feature);

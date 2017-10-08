@@ -54,35 +54,35 @@ export class AppComponent implements OnInit {
 			this.map.showTileBoundaries = true;
 
 			// this.map.addLayer({
-			// 	"id": "terrain-data",
-			// 	"type": "line",
-			// 	"source": {
+			// 	'id': 'terrain-data',
+			// 	'type': 'line',
+			// 	'source': {
 			// 		type: 'vector',
 			// 		url: 'mapbox://mapbox.mapbox-terrain-v2'
 			// 	},
-			// 	"source-layer": "contour",
-			// 	"layout": {
-			// 		"line-join": "round",
-			// 		"line-cap": "round"
+			// 	'source-layer': 'contour',
+			// 	'layout': {
+			// 		'line-join': 'round',
+			// 		'line-cap': 'round'
 			// 	},
-			// 	"paint": {
-			// 		"line-color": "#ff69b4",
-			// 		"line-width": 1
+			// 	'paint': {
+			// 		'line-color': '#ff69b4',
+			// 		'line-width': 1
 			// 	}
 			// });
 
 			this.map.addLayer({
-				"id": "terrain-rgb",
-				"type": "raster",
-				"source": {
-					"type": "raster",
-					"url": "mapbox://mapbox.terrain-rgb",
-					"tileSize": 256,
+				'id': 'terrain-rgb',
+				'type': 'raster',
+				'source': {
+					'type': 'raster',
+					'url': 'mapbox://mapbox.terrain-rgb',
+					'tileSize': 256,
 				},
-				"minzoom": 10,
-				"source-layer": "terrain-rgb",
-				"paint": {
-					"raster-opacity": 0.0
+				'minzoom': 10,
+				'source-layer': 'terrain-rgb',
+				'paint': {
+					'raster-opacity': 0.0
 				}
 			});
 
@@ -122,25 +122,34 @@ export class AppComponent implements OnInit {
 				data:  message.data.featureCollection
 			});
 			this.map.addLayer({
-				"id": circleName,
-				"source": sourceName,
-				"type": "circle",
-				"paint": {
-					"circle-radius": 1,
-					// "circle-opacity": 0.5
-				}
+				'id': circleName,
+				'source': sourceName,
+				'type': 'circle',
+				'paint': {
+					'circle-radius': 2,
+					'circle-opacity': {
+						'property': 'danger',
+						'type': 'identity'
+					}
+				},
+				'filter': ['==', '$type', 'Point'],
 			});
 			this.map.addLayer({
-				"id": linesName,
-				"source": sourceName,
-				"type": "line",
-				"layout":{
-					"line-cap": "round"
+				'id': linesName,
+				'source': sourceName,
+				'type': 'line',
+				'layout':{
+					'line-cap': 'round'
 				},
-				"paint": {
-					"line-width": 1,
-					"line-opacity": 0.5,
-				}
+				'paint': {
+					'line-width': 1,
+					'line-opacity': {
+						'property': 'danger',
+						'type': 'identity'
+					}
+				},
+				'filter': ['==', '$type', 'LineString'],
+				
 			});	
 			this.layerCount++;			
 			worker.terminate();
@@ -154,7 +163,7 @@ export class AppComponent implements OnInit {
 		terrainImg.onload = (e) => {
 			// console.dir(terrainImg);
 
-			var canvas: HTMLCanvasElement = document.createElement("canvas");
+			var canvas: HTMLCanvasElement = document.createElement('canvas');
 			canvas.width = terrainImg.width;
 			canvas.height = terrainImg.height;
 
