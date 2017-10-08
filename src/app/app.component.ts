@@ -112,7 +112,7 @@ export class AppComponent implements OnInit {
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
-			console.log(message);
+			// console.log(message);
 
 			const sourceName = 'elevation-'+this.layerCount;
 			const circleName = 'elevation-circles-'+this.layerCount;
@@ -126,9 +126,9 @@ export class AppComponent implements OnInit {
 				'source': sourceName,
 				'type': 'circle',
 				'paint': {
-					'circle-radius': 2,
+					'circle-radius': 1,
 					'circle-opacity': {
-						'property': 'danger',
+						'property': 'slideProbibilitySigmoid',
 						'type': 'identity'
 					}
 				},
@@ -144,7 +144,7 @@ export class AppComponent implements OnInit {
 				'paint': {
 					'line-width': 1,
 					'line-opacity': {
-						'property': 'danger',
+						'property': 'slideProbibilityGussian',
 						'type': 'identity'
 					}
 				},

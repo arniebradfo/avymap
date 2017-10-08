@@ -75,6 +75,7 @@ Expires 2019-01-17
 ### Skiing/Snowboarding
 | App| Installs | Reviews | Stars | Price | Platform |
 |-|:-:|:-:|:-:|:-:|-:|
+| [Avalanche Canada](https://play.google.com/store/apps/details?id=com.idearebel.avalanchereports&hl=en) | 10,000-50,000 | 130 | 4.3 | Free | Android |
 | [Avalanche Forecasts](https://play.google.com/store/apps/details?id=com.sebnarware.avalanche&hl=en) | 10,000-50,000 | 684 | 4.7 | Free | Android |
 | [Powder Project](https://play.google.com/store/apps/details?id=com.powderproject.android&hl=en) | 1,000 - 5,000 | 12 | 4.2 | Free | Android |
 | [MySnowMaps](https://play.google.com/store/apps/details?id=it.geosolutions.android.snowmaps&hl=en) | Installs | 23 | 4.2 | Free | Android |

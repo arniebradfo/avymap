@@ -83,7 +83,7 @@ addEventListener('message', (message) => {
             const xy: [number, number] = [x, y];
 
             if (slideProbibilityGussian < 0.01) continue;
-            const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
+            const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2.5;
             const length = slideProbibilityGussian * maxLineLength;
             // if (length > maxLineLength / 50) {
             let x1 = x + length;
@@ -102,7 +102,8 @@ addEventListener('message', (message) => {
                 elevation: d[c(h, w, row, col)],
                 slope: currentSlopeAndAspect.slope,
                 aspect: currentSlopeAndAspect.aspect,
-                danger: slideProbibilityGussian,
+                slideProbibilityGussian: slideProbibilityGussian,
+                slideProbibilitySigmoid: slideProbibilitySigmoid,
             }
 
             featureCollection.features.push(feature);
