@@ -1,9 +1,31 @@
+import {
+    CoordinateReferenceSystem,
+    DirectGeometryObject,
+    Feature,
+    FeatureCollection,
+    GeoJsonObject,
+    GeometryCollection,
+    GeometryObject,
+    LineString,
+    LinkedCoordinateReferenceSystem,
+    MultiLineString,
+    MultiPoint,
+    MultiPolygon,
+    NamedCoordinateReferenceSystem,
+    Point,
+    Polygon,
+    Position
+} from 'geojson';
+
+
 addEventListener('message', (message) => {
-    
+
     // console.log(message);
 
-    let elevationpoints: [number, number][] = [];
-    let elevationlines: [[number, number], [number, number]][] = [];
+    let featureCollection: FeatureCollection<GeometryCollection> = {
+        type: 'FeatureCollection',
+        features: []
+    };
 
     // const avyStartAngle = 30;
     // const avyEndAngle = 50;
@@ -37,11 +59,11 @@ addEventListener('message', (message) => {
 
             const currentSlopeAndAspect = slopeAndAspect(
                 d[c(h, w, row - 1, col - 1)], d[c(h, w, row - 1, col)], d[c(h, w, row - 1, col + 1)],
-                d[c(h, w, row,     col - 1)], d[c(h, w, row,     col)], d[c(h, w, row,     col + 1)],
+                d[c(h, w, row, col - 1)], d[c(h, w, row, col)], d[c(h, w, row, col + 1)],
                 d[c(h, w, row + 1, col - 1)], d[c(h, w, row + 1, col)], d[c(h, w, row + 1, col + 1)],
                 xStepMeters, yStepMeters
             );
-            
+
             const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
             const slideProbibilityGussian = avalancheProbibilityGussian(currentSlope)
             const slideProbibilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
@@ -49,40 +71,41 @@ addEventListener('message', (message) => {
 
             const x = lngStep * col + (lngStep / 2) + bbox.east;
             const y = latStep * row + (latStep / 2) + bbox.south;
-            elevationpoints.push([x,y]);
-            const xy: [number, number] = [x,y];
+            const xy: [number, number] = [x, y];
 
             if (slideProbibilityGussian < 0.01) continue;
             const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2;
-            const length = slideProbibilityGussian * maxLineLength;                
-            if (length > maxLineLength / 50) {
-                let x1 = x + length;
-                const xy1 = rotatePoint([x1,y],xy,currentSlopeAndAspect.aspect);
-                elevationlines.push([xy,xy1]);
-            }
-
-            // let feature = {
-            //     type: 'Feature',
-            //     geometries: [{
-            //         type: 'Point',
-            //         coordinates: xy
-            //       }, {
-            //         type: 'LineString',
-            //         coordinates: [p1,xy]
-            //       }],
-            //     properties:{
-            //         elevation: 0,
-            //         danger: 0,
-            //         aspect: 0,
-            //     }
+            const length = slideProbibilityGussian * maxLineLength;
+            // if (length > maxLineLength / 50) {
+            let x1 = x + length;
+            const xy1 = rotatePoint([x1, y], xy, currentSlopeAndAspect.aspect);
             // }
 
+            let feature: Feature<GeometryCollection> = {
+                type: 'Feature',
+                geometry: {
+                    type: 'GeometryCollection',
+                    geometries: [{
+                        type: 'Point',
+                        coordinates: xy
+                    }, {
+                        type: 'LineString',
+                        coordinates: [xy, xy1]
+                    }],
+                },
+                properties: {
+                    elevation: 0,
+                    danger: 0,
+                    aspect: 0,
+                }
+            }
+
+            featureCollection.features.push(feature);
         }
     }
 
     postMessage({
-        elevationpoints: elevationpoints,
-        elevationlines: elevationlines
+        featureCollection: featureCollection
     }, undefined);
 
 
@@ -124,7 +147,7 @@ function avalancheProbibilitySigmoid(deg) {
 function avalancheProbibilityGussian(deg) {
     var power = 1.6;
     var steepness = 20;
-    return (height * Math.E) ** (-1 * (steepness * ((Math.abs(-1 + (1/center) * deg)) ** power)));
+    return (height * Math.E) ** (-1 * (steepness * ((Math.abs(-1 + (1 / center) * deg)) ** power)));
 }
 
 
@@ -146,7 +169,7 @@ function rotatePoint(
 
     let x1 = cos * x - sin * y;
     let y1 = sin * x + cos * y;
-    
+
     x1 += cx;
     y1 += cy
 
@@ -176,13 +199,13 @@ function slopeAndAspect(
     }
 
     let dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / 8;
-    let dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / 8;   
+    let dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / 8;
     dzdx /= xCellsize;
     dzdy /= yCellsize;
 
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
     let aspectRad = Math.atan2(dzdy * -1, dzdx);
-        
+
     // http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm
     const riseRun = Math.sqrt(Math.pow(dzdx, 2) + Math.pow(dzdy, 2))
     const slopeRad = Math.atan(riseRun);

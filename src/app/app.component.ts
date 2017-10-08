@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import * as mapboxgl from 'mapbox-gl';
-import * as SphericalMercator from 'sphericalmercator';
+import * as SphericalMercator from '@mapbox/sphericalmercator';
 
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
 
@@ -113,34 +113,26 @@ export class AppComponent implements OnInit {
 
 		worker.addEventListener('message', message => {
 			console.log(message);
-			const circleName = 'elevation-circles-'+this.layerCount
-			this.map.addSource(circleName, { 
+
+			const sourceName = 'elevation-'+this.layerCount;
+			const circleName = 'elevation-circles-'+this.layerCount;
+			const linesName = 'elevation-lines-'+this.layerCount;
+			this.map.addSource(sourceName, { 
 				type: 'geojson', 
-				data: {
-					"type": "MultiPoint",
-					"coordinates": message.data.elevationpoints
-				} 
+				data:  message.data.featureCollection
 			});
 			this.map.addLayer({
 				"id": circleName,
-				"source": circleName,
+				"source": sourceName,
 				"type": "circle",
 				"paint": {
 					"circle-radius": 1,
 					// "circle-opacity": 0.5
 				}
 			});
-			const linesName = 'elevation-lines-'+this.layerCount			
-			this.map.addSource(linesName, { 
-				type: 'geojson', 
-				data: {
-					"type": "MultiLineString",
-					"coordinates": message.data.elevationlines
-				} 
-			});
 			this.map.addLayer({
 				"id": linesName,
-				"source": linesName,
+				"source": sourceName,
 				"type": "line",
 				"layout":{
 					"line-cap": "round"
@@ -149,7 +141,7 @@ export class AppComponent implements OnInit {
 					"line-width": 1,
 					"line-opacity": 0.5,
 				}
-			});
+			});	
 			this.layerCount++;			
 			worker.terminate();
 		});

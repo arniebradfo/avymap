@@ -18,6 +18,10 @@ Data points need:
 - https://www.desmos.com/calculator/yh2cbmqaw4
 - ... based on https://utahavalanchecenter.org/blog-steepness
 
+## GeoJson
+- https://macwright.org/2015/03/23/geojson-second-bite.html
+- http://geojson.org/geojson-spec.html
+
 ## Offline Maps
 - [Run node.js on cordova?](https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/)
 - [Use node.js mbtiles generator to pull saved maps?](https://github.com/jawg/mbtiles-generator)
