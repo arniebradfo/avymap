@@ -69,6 +69,23 @@ export class AppComponent implements OnInit {
 				}
 			});
 
+			this.map.addLayer({
+				'id': 'avalanche-zones',
+				'type': 'fill',
+				'source': {
+					'type': 'geojson',
+					data: this.zoneDataTranslator.geoJson
+				},
+				// 'minzoom': 10,
+				// 'source-layer': 'terrain-rgb',
+				'paint': {
+					// 'fill-opacity ': 0.5,
+					'fill-color': 'rgba(0,0,0,0.2)',
+					'fill-outline-color': '#000000'
+
+				}
+			});
+
 		});
 
 		this.map.on('sourcedata', (e) => {
