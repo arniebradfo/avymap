@@ -1,6 +1,13 @@
 ## geoJSON sources
 [united states avy zones geojson](http://national-map.jhavalanche.org/lib/getZoneJsonWarnings.php?tz=America/Denver)
 [united states avy centers geojson](http://national-map.jhavalanche.org/lib/getCenterMarkers.php?tz=America/Denver)
+- [eastern sierra](http://localhost:4200/#8.33/37.6396/-118.701) can't find a map
+- [flagstaff](https://kachinapeaks.org/snowpack) 
+- [wallowas](https://www.wallowaavalanchecenter.org/map.php) hardcoded as vars (blue,elk,nwa,swa) in map.php
+- [juneau]()
+[alaska](https://alaskasnow.org/) trace these
+- 
+
 [canadian avalanche zones geojson](https://github.com/avalanche-canada/ac-mapbox/tree/master/sources/features)
 - [canadian features](https://www.avalanche.ca/api/features/metadata)
 - [canadian avalanche stations?](https://wx.avalanche.ca/stations/) test this come avy season

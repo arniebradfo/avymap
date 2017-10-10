@@ -64,28 +64,54 @@ export class AppComponent implements OnInit {
 				},
 				'minzoom': 10,
 				'source-layer': 'terrain-rgb',
+				'layout': {
+					'visibility': 'none'
+				},
 				'paint': {
 					'raster-opacity': 0.5
 				}
 			});
 
-			this.map.addLayer({
-				'id': 'avalanche-zones',
-				'type': 'fill',
-				'source': {
-					'type': 'geojson',
-					data: this.zoneDataTranslator.geoJson
-				},
-				// 'minzoom': 10,
-				// 'source-layer': 'terrain-rgb',
-				'paint': {
-					// 'fill-opacity ': 0.5,
-					'fill-color': 'rgba(0,0,0,0.2)',
-					'fill-outline-color': '#000000'
+			this.map.addSource('avalanche-zone-source', { 
+				type: 'geojson', 
+				data:  this.zoneDataTranslator.geoJson
+			});
 
+			this.map.addLayer({
+				'id': 'avalanche-zone-fill',
+				'type': 'fill',
+				'source': 'avalanche-zone-source',
+				'paint': {
+					'fill-color': 'rgba(0,0,0,0.2)',
+				}
+			});
+			
+			this.map.addLayer({
+				'id': 'avalanche-zone-line',
+				'type': 'line',
+				'source': 'avalanche-zone-source',
+				'paint': {
+					'line-color': 'rgba(0,0,0,1)',
+					'line-width': 1
 				}
 			});
 
+			this.map.addLayer({
+				'id': 'avalanche-zone-point',
+				'source': 'avalanche-zone-source',
+				'type': 'circle',
+				'paint': {
+					'circle-radius': 5,
+					'circle-opacity': 1
+				},
+				'filter': ['==', '$type', 'Point'],
+			});
+
+
+
+			this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
+			this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
+			
 		});
 
 		this.map.on('sourcedata', (e) => {
@@ -100,6 +126,14 @@ export class AppComponent implements OnInit {
 		// 	// not to kill the gl
 		// });
 
+	}
+
+	onZoneClick(e) {
+		console.log(e.features[0].properties.forecastUrl)
+		new mapboxgl.Popup()
+			.setLngLat(e.lngLat)
+			.setHTML(`<a href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
+			.addTo(this.map);
 	}
 
 	layerCount = 0;

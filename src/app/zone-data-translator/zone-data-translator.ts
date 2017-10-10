@@ -59,29 +59,36 @@ export class ZoneDataTranslator {
         });
 
         this.raw.unitedStatesZones['rows'].forEach(row => {
+            if (row.row.geojson.type === 'MultiPolygon') {
+                // United States MultiPoloygons are not set to the correct spec // `Merica!!!
+                // so we have to edit them...
+                let polygons = [];
+                row.row.geojson.coordinates[0].forEach(polygon => polygons.push([polygon]) );
+                row.row.geojson.coordinates = polygons;
+            }
             this.geoJson.features.push({
                 type: 'Feature',
                 geometry: row.row.geojson,
                 properties: {
-                    id: row.row.name.toLowerCase().replace(' ', '-'),
+                    id: row.row.name.toLowerCase().replace(' ', '-'), // this replaces one not all '-'
                     name: row.row.name,
                     forecastUrl: row.row.url
                 }
             });
         });
         
-        this.raw.unitedStatesZones['rows'].forEach(row => {
+        this.raw.unitedStatesCenters['rows'].forEach(row => {
             this.geoJson.features.push({
                 type: 'Feature',
                 geometry: {
                     type: 'Point',
                     coordinates: [
-                        row.rowlng,
+                        row.row.lng,
                         row.row.lat
                     ]
                 },
                 properties: {
-                    id: row.row.name.toLowerCase().replace(' ', '-'),
+                    id: row.row.name.toLowerCase().replace(' ', '-'), // this replaces one not all '-'
                     name: row.row.name,
                     forecastUrl: row.row.url
                 }
@@ -102,7 +109,6 @@ export class ZoneDataTranslator {
                     // forecastUrl: service.services[0].url
                 }
             });
-
         });
 
     }
