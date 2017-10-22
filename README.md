@@ -45,13 +45,25 @@ Expires 2019-01-17
 
 
 ## Monitization
-- Avy Maps Lite & Website: $Free
+1. MVP $Free
+    - Map 
+        - Ads
+        - toggle creating danger areas
+        - north button
+        - avy buliten zones + link
+        - attribution
+        - lag, lat
+    - Info
+        - guide to danger reading
+        - 
+2. Avy Maps Lite & Website: $Free
     - Ads
     - Just the Map
         - cross referenced with avalance area warnings
     - Weather
     - Avy Forcasts
-- Avy Maps Pro: $9.99
+3. Avy Maps Pro: $9.99
+    - warning
     - No Ads
     - Map Caching - buy x number of tiles
         - current location in map
