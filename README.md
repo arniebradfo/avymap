@@ -5,7 +5,6 @@ Data points need:
 - Elevation - [Mapbox](https://blog.mapbox.com/global-elevation-data-6689f1d0ba65)
 - Slope - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm)
 - Aspect - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm)
-- Fall line?
 
 ##### Examples
 - [Hillshade](https://jsfiddle.net/mapbox/55k5q9c0/?utm_source=website&utm_medium=embed&utm_campaign=55k5q9c0)
@@ -14,13 +13,14 @@ Data points need:
 - [Winter Wonderland](https://blog.mapbox.com/ski-maps-70f435febc15)
 - [Russian Ski Map](https://www.mapbox.com/gallery/#map-2)
 
-## Graphs
+## Avalanche Steepness Graphs
 - https://www.desmos.com/calculator/yh2cbmqaw4
 - ... based on https://utahavalanchecenter.org/blog-steepness
 
 ## GeoJson
-- https://macwright.org/2015/03/23/geojson-second-bite.html
-- http://geojson.org/geojson-spec.html
+- [More than you ever wanted to know about GeoJSON](https://macwright.org/2015/03/23/geojson-second-bite.html)
+- [obsolete geojson spec](http://geojson.org/geojson-spec.html)
+- [current geojson spec](https://tools.ietf.org/html/rfc7946)
 
 ## Offline Maps
 - [Run node.js on cordova?](https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/)
@@ -39,43 +39,87 @@ Data points need:
 - avalance safety info
 - change units
 
+## Domain Registration
 http://AvyMaps.com is owned by Leslie Doyle in Aspen, CO
 Registered 2014-01-17
 Expires 2019-01-17
 
+## Performance improvements
+- Use symbols and rotate? 
+    - instead of line and points feature
+    - cuts data by 1/3 to 1/3, could just be points with properties
+    - could be rendered as just points/circles at lower zoom
+    - symbols can't be colored, maybe use unicode character?
+        - 2190 and below have [arrows](https://unicode-table.com/en/#arrows)
+        - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⮞
+        - 2790 [dingbat arrows](https://unicode-table.com/en/#279C)
+        - [⧐](https://unicode-table.com/en/#29D0)
+- Prerender the earth's terrain data as a tileset
+    - much faster
+    - no need to render on the device
+    - much easier offline map options
+    - try to filter out useless data as much as possible
+        - filter based on latitude and altitude combo. [link?](http://go-11.blogspot.com/2011/12/altitude-latitude-snow-line-and-tree.html)
+        - just going to have to make a function and see how it does
+    - [TippeCanoe](https://github.com/mapbox/tippecanoe)
+    - examples:
+        - [bridges of america](http://jonahadkins.com/mapbox/cartography/qgis/2016/03/22/bridges-of-america.html)
 
-## Monitization
-1. MVP $Free
+## Mapbox tools
+- [Spherical Mercator](https://github.com/mapbox/sphericalmercator)
+- [Cheap Ruler](https://github.com/mapbox/cheap-ruler)
+
+## Product roadmap
+1. MVP website: $Free
     - Map 
         - Ads
-        - toggle creating danger areas
+        - toggle show slope/aspect danger
         - north button
-        - avy buliten zones + link
+        - avy bulletin zones + link
         - attribution
         - lag, lat
-    - Info
-        - guide to danger reading
-        - 
+    - Menu
+        - legend
+            - guide to danger reading
+        - about
+            - why avymaps exists
+            - why ads
+            - donate to your local avalance center
+        - resources
+            - danger warning!
+            - kbyg - 5 things
+            - books
+    - Demo Mockup of full version...
 2. Avy Maps Lite & Website: $Free
+    - Liability warning in app
     - Ads
     - Just the Map
-        - cross referenced with avalance area warnings
+        - current location in map
     - Weather
     - Avy Forcasts
+    - get the pro app version button
 3. Avy Maps Pro: $9.99
-    - warning
     - No Ads
-    - Map Caching - buy x number of tiles
+    - Map
         - current location in map
         - notifications if in AvyZone
+        - Trip tracking
+    - Offline Maps 
+        - buy x number of tiles
+        - save a map
     - Inclinometer
-    - trip tracking and reporting
-    - Avalanch info
+    - Trip tracking and reporting
+    - Avalanche observation
+        - record boundaries, crown, deposit
+        - photos, video, description, location name
+        - submit to local avalanche center
+    - Snowpack Evaluation Wizard
+    - Avalanche Training
         - training
         - snow crystal
         - snowpack wizard
 - get the backing of avalanche centers
-- 25% of iOS and 16% of Android app devs earn $5,000/month. [fueled.com](https://fueled.com/blog/much-money-can-earn-app/)
+- 25% of iOS and 16% of Android app devs earn $X>$5,000/month. [fueled.com](https://fueled.com/blog/much-money-can-earn-app/)
 - app stores charge about 30% of profit. [TechRepublic](http://www.techrepublic.com/blog/software-engineer/app-store-fees-percentages-and-payouts-what-developers-need-to-know/)
 
 ## Hybrid Apps
