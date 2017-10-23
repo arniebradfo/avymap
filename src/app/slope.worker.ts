@@ -102,6 +102,7 @@ addEventListener('message', (message) => {
                 elevation: d[c(h, w, row, col)],
                 slope: currentSlopeAndAspect.slope,
                 aspect: currentSlopeAndAspect.aspect,
+                aspectDeg: 360 - (currentSlopeAndAspect.aspect * (180 / Math.PI)),
                 slideProbibilityGussian: slideProbibilityGussian,
                 slideProbibilitySigmoid: slideProbibilitySigmoid,
             }

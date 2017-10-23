@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 	readonly zoom = 8;
 	readonly lat = -112;
 	readonly lng = 41;
-	createAvyDangerMap: boolean = false;
+	createAvyDangerMap: boolean = true; // turn rendering on or off
 
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
@@ -65,10 +65,10 @@ export class AppComponent implements OnInit {
 				'minzoom': 10,
 				'source-layer': 'terrain-rgb',
 				'layout': {
-					'visibility': 'none'
+					// 'visibility': 'none'
 				},
 				'paint': {
-					'raster-opacity': 0.5
+					'raster-opacity': 0.0
 				}
 			});
 
@@ -85,7 +85,6 @@ export class AppComponent implements OnInit {
 					'fill-color': 'rgba(0,0,0,0.2)',
 				}
 			});
-			
 			this.map.addLayer({
 				'id': 'avalanche-zone-line',
 				'type': 'line',
@@ -95,7 +94,6 @@ export class AppComponent implements OnInit {
 					'line-width': 1
 				}
 			});
-
 			this.map.addLayer({
 				'id': 'avalanche-zone-point',
 				'source': 'avalanche-zone-source',
@@ -106,8 +104,6 @@ export class AppComponent implements OnInit {
 				},
 				'filter': ['==', '$type', 'Point'],
 			});
-
-
 
 			this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 			this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
@@ -120,11 +116,6 @@ export class AppComponent implements OnInit {
 			if (e.tile && this.createAvyDangerMap)
 				this.generateTileInfo(e.tile);
 		});
-
-		// this.map.on('zoom', (e) => {
-		// 	this.elevationpoints = [];
-		// 	// not to kill the gl
-		// });
 
 	}
 
@@ -149,41 +140,64 @@ export class AppComponent implements OnInit {
 
 			const sourceName = 'elevation-'+this.layerCount;
 			const circleName = 'elevation-circles-'+this.layerCount;
+			const textName = 'elevation-text-'+this.layerCount;
 			const linesName = 'elevation-lines-'+this.layerCount;
 			this.map.addSource(sourceName, { 
 				type: 'geojson', 
 				data:  message.data.featureCollection
 			});
+			// this.map.addLayer({
+			// 	'id': circleName,
+			// 	'source': sourceName,
+			// 	'type': 'circle',
+			// 	'paint': {
+			// 		'circle-radius': 1,
+			// 		'circle-opacity': {
+			// 			'property': 'slideProbibilitySigmoid',
+			// 			'type': 'identity'
+			// 		}
+			// 	},
+			// 	'filter': ['==', '$type', 'Point'],
+			// });
+			// this.map.addLayer({
+			// 	'id': linesName,
+			// 	'source': sourceName,
+			// 	'type': 'line',
+			// 	'layout':{
+			// 		'line-cap': 'round'
+			// 	},
+			// 	'paint': {
+			// 		'line-width': 1,
+			// 		'line-opacity': {
+			// 			'property': 'slideProbibilityGussian',
+			// 			'type': 'identity'
+			// 		}
+			// 	},
+			// 	'filter': ['==', '$type', 'LineString'],
+			// });	
 			this.map.addLayer({
-				'id': circleName,
+				'id': textName,
 				'source': sourceName,
-				'type': 'circle',
+				'type': 'symbol',
+				'layout': {
+					'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
+					// 'text-font': 'consolas',
+					'text-rotate': {
+						'property': 'aspectDeg',
+						'type': 'identity'
+					},
+					'text-size': 6,
+					'text-padding': 0,
+					'text-allow-overlap': true
+				},
 				'paint': {
-					'circle-radius': 1,
-					'circle-opacity': {
+					'text-opacity': {
 						'property': 'slideProbibilitySigmoid',
 						'type': 'identity'
 					}
 				},
 				'filter': ['==', '$type', 'Point'],
 			});
-			this.map.addLayer({
-				'id': linesName,
-				'source': sourceName,
-				'type': 'line',
-				'layout':{
-					'line-cap': 'round'
-				},
-				'paint': {
-					'line-width': 1,
-					'line-opacity': {
-						'property': 'slideProbibilityGussian',
-						'type': 'identity'
-					}
-				},
-				'filter': ['==', '$type', 'LineString'],
-				
-			});	
 			this.layerCount++;			
 			worker.terminate();
 		});

@@ -51,7 +51,7 @@ Expires 2019-01-17
     - could be rendered as just points/circles at lower zoom
     - symbols can't be colored, maybe use unicode character?
         - 2190 and below have [arrows](https://unicode-table.com/en/#arrows)
-        - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⮞
+        - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ 
         - 2790 [dingbat arrows](https://unicode-table.com/en/#279C)
         - [⧐](https://unicode-table.com/en/#29D0)
 - Prerender the earth's terrain data as a tileset
