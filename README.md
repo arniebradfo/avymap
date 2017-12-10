@@ -9,7 +9,7 @@ Data points need:
 ##### Examples
 - [Hillshade](https://jsfiddle.net/mapbox/55k5q9c0/?utm_source=website&utm_medium=embed&utm_campaign=55k5q9c0)
 - [Global Warming](https://www.mapbox.com/bites/00307/)
-- [Swiss Ski Map Style](https://blog.mapbox.com/designing-the-swiss-ski-style-in-mapbox-studio-d6d25d1a2aa0)
+- [Swiss Ski Map Style](https://blog.mapbox.com/designing-the-swiss-ski-style-in-mapbox-studio-d6d25d1a2aa0)[live](https://api.mapbox.com/styles/v1/mslee/cij1zoclj002y8rkkdjl69psd.html?title=true&access_token=pk.eyJ1IjoibXNsZWUiLCJhIjoiclpiTWV5SSJ9.P_h8r37vD8jpIH1A6i1VRg#6.93/47.367/9.007)
 - [Winter Wonderland](https://blog.mapbox.com/ski-maps-70f435febc15)
 - [Russian Ski Map](https://www.mapbox.com/gallery/#map-2)
 
@@ -51,7 +51,7 @@ Expires 2019-01-17
     - could be rendered as just points/circles at lower zoom
     - symbols can't be colored, maybe use unicode character?
         - 2190 and below have [arrows](https://unicode-table.com/en/#arrows)
-        - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ 
+        - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ▽
         - 2790 [dingbat arrows](https://unicode-table.com/en/#279C)
         - [⧐](https://unicode-table.com/en/#29D0)
 - Prerender the earth's terrain data as a tileset

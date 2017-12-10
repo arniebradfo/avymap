@@ -146,58 +146,58 @@ export class AppComponent implements OnInit {
 				type: 'geojson', 
 				data:  message.data.featureCollection
 			});
-			// this.map.addLayer({
-			// 	'id': circleName,
-			// 	'source': sourceName,
-			// 	'type': 'circle',
-			// 	'paint': {
-			// 		'circle-radius': 1,
-			// 		'circle-opacity': {
-			// 			'property': 'slideProbibilitySigmoid',
-			// 			'type': 'identity'
-			// 		}
-			// 	},
-			// 	'filter': ['==', '$type', 'Point'],
-			// });
-			// this.map.addLayer({
-			// 	'id': linesName,
-			// 	'source': sourceName,
-			// 	'type': 'line',
-			// 	'layout':{
-			// 		'line-cap': 'round'
-			// 	},
-			// 	'paint': {
-			// 		'line-width': 1,
-			// 		'line-opacity': {
-			// 			'property': 'slideProbibilityGussian',
-			// 			'type': 'identity'
-			// 		}
-			// 	},
-			// 	'filter': ['==', '$type', 'LineString'],
-			// });	
 			this.map.addLayer({
-				'id': textName,
+				'id': circleName,
 				'source': sourceName,
-				'type': 'symbol',
-				'layout': {
-					'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
-					// 'text-font': 'consolas',
-					'text-rotate': {
-						'property': 'aspectDeg',
-						'type': 'identity'
-					},
-					'text-size': 6,
-					'text-padding': 0,
-					'text-allow-overlap': true
-				},
+				'type': 'circle',
 				'paint': {
-					'text-opacity': {
+					'circle-radius': 1,
+					'circle-opacity': {
 						'property': 'slideProbibilitySigmoid',
 						'type': 'identity'
 					}
 				},
 				'filter': ['==', '$type', 'Point'],
 			});
+			this.map.addLayer({
+				'id': linesName,
+				'source': sourceName,
+				'type': 'line',
+				'layout':{
+					'line-cap': 'round'
+				},
+				'paint': {
+					'line-width': 1,
+					'line-opacity': {
+						'property': 'slideProbibilityGussian',
+						'type': 'identity'
+					}
+				},
+				'filter': ['==', '$type', 'LineString'],
+			});	
+			// this.map.addLayer({
+			// 	'id': textName,
+			// 	'source': sourceName,
+			// 	'type': 'symbol',
+			// 	'layout': {
+			// 		'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
+			// 		// 'text-font': 'consolas',
+			// 		'text-rotate': {
+			// 			'property': 'aspectDeg',
+			// 			'type': 'identity'
+			// 		},
+			// 		'text-size': 6,
+			// 		'text-padding': 0,
+			// 		'text-allow-overlap': true
+			// 	},
+			// 	'paint': {
+			// 		'text-opacity': {
+			// 			'property': 'slideProbibilitySigmoid',
+			// 			'type': 'identity'
+			// 		}
+			// 	},
+			// 	'filter': ['==', '$type', 'Point'],
+			// });
 			this.layerCount++;			
 			worker.terminate();
 		});
