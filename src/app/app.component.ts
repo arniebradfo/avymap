@@ -5,6 +5,7 @@ import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator'
+import { FeatureCollection, GeoJsonObject, GeometryObject } from 'geojson';
 
 
 @Component({
@@ -112,6 +113,8 @@ export class AppComponent implements OnInit {
 			this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 			this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
 
+			this.addSlopeDanger();
+
 		});
 
 		this.map.on('sourcedata', (e) => {
@@ -132,7 +135,73 @@ export class AppComponent implements OnInit {
 			.addTo(this.map);
 	}
 
-	layerCount = 0;
+	slopeDangerSource = 'slope-danger-source';
+	slopeDangerData: FeatureCollection<GeometryObject> = {
+		type: "FeatureCollection",
+		features: []
+	}
+	addSlopeDanger() {
+		this.map.addSource(this.slopeDangerSource, {
+			type: 'geojson',
+			data:  this.slopeDangerData
+		});
+		this.map.addLayer({
+			'id': 'slope-danger-points',
+			'source': this.slopeDangerSource,
+			'type': 'circle',
+			minzoom: 15,
+			'paint': {
+				'circle-radius': 1,
+				'circle-opacity': {
+					'property': 'slideProbibilitySigmoid',
+					'type': 'identity'
+				}
+			},
+			'filter': ['==', '$type', 'Point'],
+		});
+		this.map.addLayer({
+			'id': 'slope-danger-lines',
+			'source': this.slopeDangerSource,
+			'type': 'line',
+			minzoom: 15,
+			'layout':{
+				'line-cap': 'round'
+			},
+			'paint': {
+				'line-width': 1,
+				'line-opacity': {
+					'property': 'slideProbibilityGussian',
+					'type': 'identity'
+				}
+			},
+			'filter': ['==', '$type', 'LineString'],
+		});
+		// this.map.addLayer({
+		// 	'id': 'slope-danger-symbol',
+		// 	'source': this.slopeDangerSource,
+		// 	'type': 'symbol',
+		// 	'layout': {
+		// 		'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
+		// 		// 'text-font': 'consolas',
+		// 		'text-rotate': {
+		// 			'property': 'aspectDeg',
+		// 			'type': 'identity'
+		// 		},
+		// 		'text-size': 6,
+		// 		'text-padding': 0,
+		// 		'text-allow-overlap': true
+		// 	},
+		// 	'paint': {
+		// 		'text-opacity': {
+		// 			'property': 'slideProbibilitySigmoid',
+		// 			'type': 'identity'
+		// 		}
+		// 	},
+		// 	'filter': ['==', '$type', 'Point'],
+		// });
+	}
+
+	// layerCount = 0;
 	onlyOnce: boolean = false;
 	generateTileInfo(tile) {
 
@@ -141,71 +210,12 @@ export class AppComponent implements OnInit {
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
-			// console.log(message);
+			// console.log(message.data.featureCollection.features);
+			this.slopeDangerData.features.push(...message.data.featureCollection.features);
+			// console.log(this.slopeDangerData);
 
-			const sourceName = 'elevation-'+this.layerCount;
-			const circleName = 'elevation-circles-'+this.layerCount;
-			const textName = 'elevation-text-'+this.layerCount;
-			const linesName = 'elevation-lines-'+this.layerCount;
-			this.map.addSource(sourceName, {
-				type: 'geojson',
-				data:  message.data.featureCollection,
-			});
-			this.map.addLayer({
-				'id': circleName,
-				'source': sourceName,
-				'type': 'circle',
-				minzoom: 15,
-				'paint': {
-					'circle-radius': 1,
-					'circle-opacity': {
-						'property': 'slideProbibilitySigmoid',
-						'type': 'identity'
-					}
-				},
-				'filter': ['==', '$type', 'Point'],
-			});
-			this.map.addLayer({
-				'id': linesName,
-				'source': sourceName,
-				'type': 'line',
-				minzoom: 15,
-				'layout':{
-					'line-cap': 'round'
-				},
-				'paint': {
-					'line-width': 1,
-					'line-opacity': {
-						'property': 'slideProbibilityGussian',
-						'type': 'identity'
-					}
-				},
-				'filter': ['==', '$type', 'LineString'],
-			});
-			// this.map.addLayer({
-			// 	'id': textName,
-			// 	'source': sourceName,
-			// 	'type': 'symbol',
-			// 	'layout': {
-			// 		'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
-			// 		// 'text-font': 'consolas',
-			// 		'text-rotate': {
-			// 			'property': 'aspectDeg',
-			// 			'type': 'identity'
-			// 		},
-			// 		'text-size': 6,
-			// 		'text-padding': 0,
-			// 		'text-allow-overlap': true
-			// 	},
-			// 	'paint': {
-			// 		'text-opacity': {
-			// 			'property': 'slideProbibilitySigmoid',
-			// 			'type': 'identity'
-			// 		}
-			// 	},
-			// 	'filter': ['==', '$type', 'Point'],
-			// });
-			this.layerCount++;
+			this.map.getSource(this.slopeDangerSource).setData(this.slopeDangerData);
+			// this.layerCount++;
 			worker.terminate();
 		});
 
