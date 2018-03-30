@@ -54,17 +54,17 @@ export class AppComponent implements OnInit {
 		this.map.on('load', () => {
 			this.map.showTileBoundaries = true; // for debug
 			this.addSlopeDanger();
-			this.addTerrainRgb();
+			// this.addTerrainRgb();
 			this.addAvalancheZones();
 		});
 
-		this.map.on('sourcedata', (e) => {
-			if (e.sourceId != 'terrain-rgb-dem')
-				return;
-			// console.log('sourcedata: ', e);
-			if (e.coord && this.createAvyDangerMap)
-				this.generateTileInfo(e.coord.canonical);
-		});
+		// this.map.on('sourcedata', (e) => {
+		// 	if (e.sourceId != 'terrain-rgb-dem')
+		// 		return;
+		// 	// console.log('sourcedata: ', e);
+		// 	if (e.coord && this.createAvyDangerMap)
+		// 		this.generateTileInfo(e.coord.canonical);
+		// });
 
 	}
 
