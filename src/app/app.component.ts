@@ -30,7 +30,7 @@ import { FeatureCollection, GeoJsonObject, GeometryObject } from 'geojson';
 })
 export class AppComponent implements OnInit {
 
-	map; //: mapboxgl.Map;
+	map: mapboxgl.Map;
 	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
 	readonly zoom = 8;
 	readonly lat = -112;
@@ -85,28 +85,28 @@ export class AppComponent implements OnInit {
 
 	addTerrainRgb(){
 
-		this.map.addSource('terrain-rgb-dem', {
-			"type": "raster-dem",
-			"url": "mapbox://mapbox.terrain-rgb"
-		});
+		// this.map.addSource('terrain-rgb-dem', {
+		// 	"type": "raster-dem",
+		// 	"url": "mapbox://mapbox.terrain-rgb"
+		// });
 
-		this.map.addLayer({
-			'id': 'terrain-rgb-layer',
-			'source': 'terrain-rgb-dem',
-			'type': 'hillshade',
-			// 'minzoom': 10,
-			// 'source-layer': 'terrain-rgb',
-			// 'layout': {
-			// 	// 'visibility': 'none'
-			// },
-			// 'paint': {
-			// 	'raster-opacity': 0.0
-			// }
-		});
+		// this.map.addLayer({
+		// 	'id': 'terrain-rgb-layer',
+		// 	'source': 'terrain-rgb-dem',
+		// 	'type': 'hillshade',
+		// 	// 'minzoom': 10,
+		// 	// 'source-layer': 'terrain-rgb',
+		// 	// 'layout': {
+		// 	// 	// 'visibility': 'none'
+		// 	// },
+		// 	// 'paint': {
+		// 	// 	'raster-opacity': 0.0
+		// 	// }
+		// });
 	}
 
 	slopeDangerSource = 'slope-danger-source';
-	slopeDangerData: FeatureCollection<GeometryObject> = {
+	slopeDangerData: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
 		type: "FeatureCollection",
 		features: []
 	}
@@ -260,7 +260,7 @@ export class AppComponent implements OnInit {
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
 			console.log(this.slopeDangerData);
 
-			this.map.getSource(this.slopeDangerSource).setData(this.slopeDangerData);
+			(<mapboxgl.GeoJSONSource>this.map.getSource(this.slopeDangerSource)).setData(this.slopeDangerData);
 			worker.terminate();
 		});
 

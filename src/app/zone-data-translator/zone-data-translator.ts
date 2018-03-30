@@ -14,7 +14,7 @@ import { GeoJsonObject, GeometryCollection, FeatureCollection, GeometryObject, F
 
 export class ZoneDataTranslator {
 
-    geoJson: FeatureCollection<GeometryObject> = {
+    geoJson: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
         type: 'FeatureCollection',
         features: []
     }
