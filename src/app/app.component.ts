@@ -20,7 +20,7 @@ import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator'
 })
 export class AppComponent implements OnInit {
 
-	map;
+	map; //: mapboxgl.Map;
 	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
 	readonly zoom = 8;
 	readonly lat = -112;
@@ -117,12 +117,9 @@ export class AppComponent implements OnInit {
 		this.map.on('sourcedata', (e) => {
 			if (e.sourceId != 'terrain-rgb-dem')
 				return;
-			console.log('sourcedata: ', e);
-			// this.map.on('render', (e2) => {
-			// 	console.log('render: ', e);
-			// });
-			// if (e.tile && this.createAvyDangerMap)
-			// 	this.generateTileInfo(e.tile);
+			// console.log('sourcedata: ', e);
+			if (e.coord && this.createAvyDangerMap)
+				this.generateTileInfo(e.coord.canonical);
 		});
 
 	}
@@ -139,7 +136,7 @@ export class AppComponent implements OnInit {
 	onlyOnce: boolean = false;
 	generateTileInfo(tile) {
 
-		if (tile.coord.z != 15) return;
+		if (tile.z != 15) return;
 
 		let worker = new Worker(workerPath);
 
@@ -152,12 +149,13 @@ export class AppComponent implements OnInit {
 			const linesName = 'elevation-lines-'+this.layerCount;
 			this.map.addSource(sourceName, {
 				type: 'geojson',
-				data:  message.data.featureCollection
+				data:  message.data.featureCollection,
 			});
 			this.map.addLayer({
 				'id': circleName,
 				'source': sourceName,
 				'type': 'circle',
+				minzoom: 15,
 				'paint': {
 					'circle-radius': 1,
 					'circle-opacity': {
@@ -171,6 +169,7 @@ export class AppComponent implements OnInit {
 				'id': linesName,
 				'source': sourceName,
 				'type': 'line',
+				minzoom: 15,
 				'layout':{
 					'line-cap': 'round'
 				},
@@ -211,7 +210,7 @@ export class AppComponent implements OnInit {
 		});
 
 		// get elevation data
-		const url = 'https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/' + tile.coord.z + '/' + tile.coord.x + '/' + tile.coord.y + '.pngraw?access_token=' + this.accessToken;
+		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
 
 		let terrainImg = new Image();
 
@@ -232,7 +231,7 @@ export class AppComponent implements OnInit {
 
 			// console.log(coord.z+'/'+coord.x+'/'+coord.y, bbox);
 			worker.postMessage({
-				bboxArray: this.sphericalMercator.bbox(tile.coord.x, tile.coord.y, tile.coord.z), // [w, s, e, n]
+				bboxArray: this.sphericalMercator.bbox(tile.x, tile.y, tile.z), // [w, s, e, n]
 				terrainImgData: terrainImgData,
 				terrainImg: {
 					height: terrainImg.height,
