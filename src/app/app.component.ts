@@ -42,9 +42,12 @@ export class AppComponent implements OnInit {
 		Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(this.accessToken);
 		// https://stackoverflow.com/a/44393954/5648839
 
+		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
+		const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
+
 		this.map = new mapboxgl.Map({
 			container: 'avymap',
-			style: 'mapbox://styles/mapbox/outdoors-v9',
+			style: avymap,
 			zoom: this.zoom,
 			center: [this.lat, this.lng],
 			hash: true
@@ -54,26 +57,27 @@ export class AppComponent implements OnInit {
 
 			this.map.showTileBoundaries = true; // for debug
 
-			this.map.addLayer({
-				'id': 'terrain-rgb',
-				'type': 'raster',
-				'source': {
-					'type': 'raster',
-					'url': 'mapbox://mapbox.terrain-rgb',
-					'tileSize': 256,
-				},
-				'minzoom': 10,
-				'source-layer': 'terrain-rgb',
-				'layout': {
-					// 'visibility': 'none'
-				},
-				'paint': {
-					'raster-opacity': 0.0
-				}
+			this.map.addSource('terrain-rgb-dem', {
+				"type": "raster-dem",
+				"url": "mapbox://mapbox.terrain-rgb"
 			});
 
-			this.map.addSource('avalanche-zone-source', { 
-				type: 'geojson', 
+			this.map.addLayer({
+				'id': 'terrain-rgb-layer',
+				'source': 'terrain-rgb-dem',
+				'type': 'hillshade',
+				// 'minzoom': 10,
+				// 'source-layer': 'terrain-rgb',
+				// 'layout': {
+				// 	// 'visibility': 'none'
+				// },
+				// 'paint': {
+				// 	'raster-opacity': 0.0
+				// }
+			});
+
+			this.map.addSource('avalanche-zone-source', {
+				type: 'geojson',
 				data:  this.zoneDataTranslator.geoJson
 			});
 
@@ -107,14 +111,18 @@ export class AppComponent implements OnInit {
 
 			this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 			this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
-			
+
 		});
 
 		this.map.on('sourcedata', (e) => {
-			if (e.sourceId != 'terrain-rgb') return;
-			// console.log('sourcedata: ', e);
-			if (e.tile && this.createAvyDangerMap)
-				this.generateTileInfo(e.tile);
+			if (e.sourceId != 'terrain-rgb-dem')
+				return;
+			console.log('sourcedata: ', e);
+			// this.map.on('render', (e2) => {
+			// 	console.log('render: ', e);
+			// });
+			// if (e.tile && this.createAvyDangerMap)
+			// 	this.generateTileInfo(e.tile);
 		});
 
 	}
@@ -142,8 +150,8 @@ export class AppComponent implements OnInit {
 			const circleName = 'elevation-circles-'+this.layerCount;
 			const textName = 'elevation-text-'+this.layerCount;
 			const linesName = 'elevation-lines-'+this.layerCount;
-			this.map.addSource(sourceName, { 
-				type: 'geojson', 
+			this.map.addSource(sourceName, {
+				type: 'geojson',
 				data:  message.data.featureCollection
 			});
 			this.map.addLayer({
@@ -174,7 +182,7 @@ export class AppComponent implements OnInit {
 					}
 				},
 				'filter': ['==', '$type', 'LineString'],
-			});	
+			});
 			// this.map.addLayer({
 			// 	'id': textName,
 			// 	'source': sourceName,
@@ -198,7 +206,7 @@ export class AppComponent implements OnInit {
 			// 	},
 			// 	'filter': ['==', '$type', 'Point'],
 			// });
-			this.layerCount++;			
+			this.layerCount++;
 			worker.terminate();
 		});
 

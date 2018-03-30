@@ -10,12 +10,12 @@ import * as europeRegions from './raw-map-data/europe-region.geo.json';
 import * as europeSubRegions from './raw-map-data/europe-subreg.geo.json';
 import * as europeFeatures from './raw-map-data/europe-features.json';
 import * as europeServices from './raw-map-data/europe-services-4.json';
-import { GeoJsonObject, GeometryCollection, FeatureCollection, GeometryObject } from 'geojson';
+import { GeoJsonObject, GeometryCollection, FeatureCollection, GeometryObject, Feature, Point } from 'geojson';
 
 export class ZoneDataTranslator {
 
     geoJson: FeatureCollection<GeometryObject> = {
-        type: 'FeatureCollection', 
+        type: 'FeatureCollection',
         features: []
     }
 
@@ -32,7 +32,7 @@ export class ZoneDataTranslator {
         europeFeatures: europeFeatures,
         europeServices: europeServices
     }
-    
+
     constructor(){
         console.log(this);
         this.constructGeoJson();
@@ -76,12 +76,12 @@ export class ZoneDataTranslator {
                 }
             });
         });
-        
+
         this.raw.unitedStatesCenters['rows'].forEach(row => {
-            this.geoJson.features.push({
+            this.geoJson.features.push(<Feature<Point>>{
                 type: 'Feature',
                 geometry: {
-                    type: 'Point',
+					type: 'Point',
                     coordinates: [
                         row.row.lng,
                         row.row.lat
@@ -98,7 +98,7 @@ export class ZoneDataTranslator {
         this.raw.europeSubRegions['features'].forEach(geometry => {
             let feature = this.raw.europeFeatures[geometry['db_id'] - 1]
             // let service = this.raw.europeServices.find(service => {
-                
+
             // })
             this.geoJson.features.push({
                 type: 'Feature',

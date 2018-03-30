@@ -1,5 +1,13 @@
 # Avymaps
 
+## new terrain links
+- https://www.mapbox.com/help/access-elevation-data/
+- https://blog.mapbox.com/realistic-terrain-with-custom-styling-ce1fe98518ab
+- https://www.mapbox.com/mapbox-gl-js/style-spec/#layers-hillshade
+- https://www.mapbox.com/mapbox-gl-js/style-spec#sources-raster-dem
+- https://www.mapbox.com/mapbox-gl-js/example/hillshade/
+
+
 ## Map
 Data points need:
 - Elevation - [Mapbox](https://blog.mapbox.com/global-elevation-data-6689f1d0ba65)

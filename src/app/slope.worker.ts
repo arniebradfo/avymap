@@ -1,17 +1,17 @@
 import {
-    CoordinateReferenceSystem,
-    DirectGeometryObject,
+    // CoordinateReferenceSystem,
+    // DirectGeometryObject,
     Feature,
     FeatureCollection,
     GeoJsonObject,
     GeometryCollection,
     GeometryObject,
     LineString,
-    LinkedCoordinateReferenceSystem,
+    // LinkedCoordinateReferenceSystem,
     MultiLineString,
     MultiPoint,
     MultiPolygon,
-    NamedCoordinateReferenceSystem,
+    // NamedCoordinateReferenceSystem,
     Point,
     Polygon,
     Position
@@ -139,7 +139,7 @@ var height = 1; // relative avalanche probility is returned as a value between 0
  * @see https://www.desmos.com/calculator/yh2cbmqaw4
 **/
 function avalancheProbibilitySigmoid(deg) {
-    // 
+    //
     deg -= center;
     const halfHeight = height / 2;
     var magic = 33;
