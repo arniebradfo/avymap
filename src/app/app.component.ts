@@ -244,7 +244,17 @@ export class AppComponent implements OnInit {
 	}
 
 	renderSlopeDanger() {
-		console.log('rendering slope danger!');
+		let bounds = this.map.getBounds();
+		let zoom = Math.floor(this.map.getZoom());
+		let center = this.map.getCenter();
+		console.log(bounds, zoom, center);
+		let sphericalMercator = new SphericalMercator();
+		console.log(sphericalMercator.xyz([
+			bounds._sw.lng, // W
+			bounds._sw.lat, // S
+			bounds._ne.lng, // E
+			bounds._ne.lat, // N
+		], Math.floor(zoom));
 		// if (e.coord && this.createAvyDangerMap)
 		// 	this.generateTileInfo(e.coord.canonical);
 	}
