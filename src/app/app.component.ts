@@ -54,17 +54,17 @@ export class AppComponent implements OnInit {
 		this.map.on('load', () => {
 			this.map.showTileBoundaries = true; // for debug
 			this.addSlopeDanger();
-			// this.addTerrainRgb();
+			this.addTerrainRgb();
 			this.addAvalancheZones();
 		});
 
-		// this.map.on('sourcedata', (e) => {
-		// 	if (e.sourceId != 'terrain-rgb-dem')
-		// 		return;
-		// 	// console.log('sourcedata: ', e);
-		// 	if (e.coord && this.createAvyDangerMap)
-		// 		this.generateTileInfo(e.coord.canonical);
-		// });
+		this.map.on('sourcedata', (e) => {
+			if (e.sourceId != 'terrain-rgb-dem')
+				return;
+			// console.log('sourcedata: ', e);
+			if (e.coord && this.createAvyDangerMap)
+				this.generateTileInfo(e.coord.canonical);
+		});
 
 	}
 
@@ -115,20 +115,20 @@ export class AppComponent implements OnInit {
 			type: 'geojson',
 			data:  this.slopeDangerData
 		});
-		this.map.addLayer({
-			'id': 'slope-danger-points',
-			'source': this.slopeDangerSource,
-			'type': 'circle',
-			minzoom: 15,
-			'paint': {
-				'circle-radius': 1,
-				'circle-opacity': {
-					'property': 'slideProbibilitySigmoid',
-					'type': 'identity'
-				}
-			},
-			'filter': ['==', '$type', 'Point'],
-		});
+		// this.map.addLayer({
+		// 	'id': 'slope-danger-points',
+		// 	'source': this.slopeDangerSource,
+		// 	'type': 'circle',
+		// 	minzoom: 15,
+		// 	'paint': {
+		// 		'circle-radius': 1,
+		// 		'circle-opacity': {
+		// 			'property': 'slideProbibilitySigmoid',
+		// 			'type': 'identity'
+		// 		}
+		// 	},
+		// 	'filter': ['==', '$type', 'Point'],
+		// });
 		// this.map.addLayer({
 		// 	'id': 'slope-danger-lines',
 		// 	'source': this.slopeDangerSource,
@@ -146,29 +146,30 @@ export class AppComponent implements OnInit {
 		// 	},
 		// 	'filter': ['==', '$type', 'LineString'],
 		// });
-		// this.map.addLayer({
-		// 	'id': 'slope-danger-symbol',
-		// 	'source': this.slopeDangerSource,
-		// 	'type': 'symbol',
-		// 	'layout': {
-		// 		'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
-		// 		// 'text-font': 'consolas',
-		// 		'text-rotate': {
-		// 			'property': 'aspectDeg',
-		// 			'type': 'identity'
-		// 		},
-		// 		'text-size': 6,
-		// 		'text-padding': 0,
-		// 		'text-allow-overlap': true
-		// 	},
-		// 	'paint': {
-		// 		'text-opacity': {
-		// 			'property': 'slideProbibilitySigmoid',
-		// 			'type': 'identity'
-		// 		}
-		// 	},
-		// 	'filter': ['==', '$type', 'Point'],
-		// });
+		this.map.addLayer({
+			'id': 'slope-danger-symbol',
+			'source': this.slopeDangerSource,
+			'type': 'symbol',
+			minzoom: 15,
+			'layout': {
+				'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
+				// 'text-font': 'consolas',
+				'text-rotate': {
+					'property': 'aspectDeg',
+					'type': 'identity'
+				},
+				'text-size': 6,
+				'text-padding': 0,
+				'text-allow-overlap': true
+			},
+			'paint': {
+				'text-opacity': {
+					'property': 'slideProbibilitySigmoid',
+					'type': 'identity'
+				}
+			},
+			'filter': ['==', '$type', 'Point'],
+		});
 	}
 
 	addAvalancheZones() {
@@ -206,7 +207,7 @@ export class AppComponent implements OnInit {
 
 		this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 		this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
-}
+	}
 
 	onZoneClick(e) {
 		console.log(e.features[0].properties.forecastUrl)
@@ -216,11 +217,10 @@ export class AppComponent implements OnInit {
 			.addTo(this.map);
 	}
 
-
-
 	renderSlopeDanger() {
 		console.log('rendering slope danger!');
-
+		// if (e.coord && this.createAvyDangerMap)
+		// 	this.generateTileInfo(e.coord.canonical);
 	}
 
 	generateTileInfo(tile) {
@@ -232,7 +232,7 @@ export class AppComponent implements OnInit {
 		worker.addEventListener('message', message => {
 			// console.log(message.data.featureCollection.features);
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
-			// console.log(this.slopeDangerData);
+			console.log(this.slopeDangerData);
 
 			this.map.getSource(this.slopeDangerSource).setData(this.slopeDangerData);
 			worker.terminate();
