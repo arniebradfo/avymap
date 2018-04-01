@@ -109,14 +109,52 @@ export class AppComponent implements OnInit {
 			type: 'geojson',
 			data:  this.slopeDangerData
 		});
+		this.map.addLayer({
+			'id': 'slope-danger-points',
+			'source': this.slopeDangerSource,
+			'type': 'circle',
+			'paint': {
+				'circle-radius': 1,
+				'circle-opacity': {
+					'property': 'slideProbibilitySigmoid',
+					'type': 'identity'
+				}
+			},
+			'filter': ['==', '$type', 'Point'],
+		});
+		this.map.addLayer({
+			'id': 'slope-danger-lines',
+			'source': this.slopeDangerSource,
+			'type': 'line',
+			'layout':{
+				'line-cap': 'round'
+			},
+			'paint': {
+				'line-width': 1,
+				'line-opacity': {
+					'property': 'slideProbibilityGussian',
+					'type': 'identity'
+				}
+			},
+			'filter': ['==', '$type', 'LineString'],
+		});
 		// this.map.addLayer({
-		// 	'id': 'slope-danger-points',
+		// 	'id': 'slope-danger-symbol',
 		// 	'source': this.slopeDangerSource,
-		// 	'type': 'circle',
-		// 	minzoom: 15,
+		// 	'type': 'symbol',
+		// 	'layout': {
+		// 		'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
+		// 		// 'text-font': 'consolas',
+		// 		'text-rotate': {
+		// 			'property': 'aspectDeg',
+		// 			'type': 'identity'
+		// 		},
+		// 		'text-size': 6,
+		// 		'text-padding': 0,
+		// 		'text-allow-overlap': true
+		// 	},
 		// 	'paint': {
-		// 		'circle-radius': 1,
-		// 		'circle-opacity': {
+		// 		'text-opacity': {
 		// 			'property': 'slideProbibilitySigmoid',
 		// 			'type': 'identity'
 		// 		}
@@ -124,51 +162,9 @@ export class AppComponent implements OnInit {
 		// 	'filter': ['==', '$type', 'Point'],
 		// });
 		// this.map.addLayer({
-		// 	'id': 'slope-danger-lines',
-		// 	'source': this.slopeDangerSource,
-		// 	'type': 'line',
-		// 	minzoom: 15,
-		// 	'layout':{
-		// 		'line-cap': 'round'
-		// 	},
-		// 	'paint': {
-		// 		'line-width': 1,
-		// 		'line-opacity': {
-		// 			'property': 'slideProbibilityGussian',
-		// 			'type': 'identity'
-		// 		}
-		// 	},
-		// 	'filter': ['==', '$type', 'LineString'],
-		// });
-		this.map.addLayer({
-			'id': 'slope-danger-symbol',
-			'source': this.slopeDangerSource,
-			'type': 'symbol',
-			minzoom: 15,
-			'layout': {
-				'text-field': '➞', // ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ⧐
-				// 'text-font': 'consolas',
-				'text-rotate': {
-					'property': 'aspectDeg',
-					'type': 'identity'
-				},
-				'text-size': 6,
-				'text-padding': 0,
-				'text-allow-overlap': true
-			},
-			'paint': {
-				'text-opacity': {
-					'property': 'slideProbibilitySigmoid',
-					'type': 'identity'
-				}
-			},
-			'filter': ['==', '$type', 'Point'],
-		});
-		// this.map.addLayer({
 		// 	id: 'slope-danger-heatmap',
 		// 	type: 'heatmap',
 		// 	source: this.slopeDangerSource,
-		// 	minzoom: 15,
         //     "heatmap-weight": [
         //         "interpolate",
         //         ["linear"],
@@ -248,16 +244,18 @@ export class AppComponent implements OnInit {
 	}
 
 	renderSlopeDanger() {
+
 		let bounds: any = this.map.getBounds();
-		let z = Math.floor(this.map.getZoom());
+		let z = Math.floor(this.map.getZoom()) - 1;
 		let center = this.map.getCenter();
 
-		let xyz = this.sphericalMercator.xyz([
+		let bbox = [
 			bounds._sw.lng, // W
 			bounds._sw.lat, // S
 			bounds._ne.lng, // E
 			bounds._ne.lat, // N
-		], z)
+		];
+		let xyz = this.sphericalMercator.xyz(bbox, z)
 
 		let tilesXyz: [number, number, number][] = [];
 		for (let x = xyz.minX; x <= xyz.maxX; x++) {
@@ -265,16 +263,13 @@ export class AppComponent implements OnInit {
 				tilesXyz.push([x,y,z]);
 			}
 		}
-
+		this.slopeDangerData.features = [];
 		console.log(bounds, z, center, xyz, tilesXyz);
 
-		tilesXyz.forEach(tileXyz => this.generateTileInfo({x:tileXyz[0],y:tileXyz[1],z:tileXyz[2]}));
-
-		// if (e.coord && this.createAvyDangerMap)
-		// 	this.generateTileInfo(e.coord.canonical);
+		tilesXyz.forEach(tileXyz => this.generateTileInfo({x:tileXyz[0],y:tileXyz[1],z:tileXyz[2]}, bbox));
 	}
 
-	generateTileInfo(tile:{x:number,y:number,z:number}) {
+	generateTileInfo(tile:{x:number,y:number,z:number}, boundaryBBox?:number[]) {
 
 		// if (tile.z != 15) return;
 
@@ -309,14 +304,14 @@ export class AppComponent implements OnInit {
 			var terrainImgData = context.getImageData(0, 0, terrainImg.width, terrainImg.height);
 			// console.dir(terrainImgData.data);
 
-			// console.log(coord.z+'/'+coord.x+'/'+coord.y, bbox);
 			worker.postMessage({
 				bboxArray: this.sphericalMercator.bbox(tile.x, tile.y, tile.z), // [w, s, e, n]
 				terrainImgData: terrainImgData,
 				terrainImg: {
 					height: terrainImg.height,
 					width: terrainImg.width
-				}
+				},
+				boundaryBBox: boundaryBBox // [w, s, e, n]
 			});
 
 		};
