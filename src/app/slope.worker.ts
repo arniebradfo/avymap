@@ -20,7 +20,7 @@ import {
 
 addEventListener('message', (message) => {
 
-    // console.log(message);
+    console.log(message);
 
     let featureCollection: FeatureCollection<GeometryCollection> = {
         type: 'FeatureCollection',

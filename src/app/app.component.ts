@@ -35,10 +35,15 @@ export class AppComponent implements OnInit {
 	readonly zoom = 8;
 	readonly lat = -112;
 	readonly lng = 41;
-	createAvyDangerMap: boolean = true; // turn rendering on or off
+	readonly createAvyDangerMap: boolean = true; // turn rendering on or off
 
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
+	readonly slopeDangerSource = 'slope-danger-source';
+	slopeDangerData: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
+		type: "FeatureCollection",
+		features: []
+	}
 
 	constructor(
 		private http: Http
@@ -58,13 +63,7 @@ export class AppComponent implements OnInit {
 			this.addAvalancheZones();
 		});
 
-		// this.map.on('sourcedata', (e) => {
-		// 	if (e.sourceId != 'terrain-rgb-dem')
-		// 		return;
-		// 	// console.log('sourcedata: ', e);
-		// 	if (e.coord && this.createAvyDangerMap)
-		// 		this.generateTileInfo(e.coord.canonical);
-		// });
+		// this.attachLoadSlopeDangerOnRgbLoad();
 
 	}
 
@@ -105,11 +104,6 @@ export class AppComponent implements OnInit {
 		// });
 	}
 
-	slopeDangerSource = 'slope-danger-source';
-	slopeDangerData: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
-		type: "FeatureCollection",
-		features: []
-	}
 	addSlopeDanger() {
 		this.map.addSource(this.slopeDangerSource, {
 			type: 'geojson',
@@ -243,25 +237,46 @@ export class AppComponent implements OnInit {
 			.addTo(this.map);
 	}
 
+	attachLoadSlopeDangerOnRgbLoad() {
+		this.map.on('sourcedata', (e) => {
+			if (e.sourceId != 'terrain-rgb-dem')
+				return;
+			// console.log('sourcedata: ', e);
+			if (e.coord && this.createAvyDangerMap)
+				this.generateTileInfo(e.coord.canonical);
+		});
+	}
+
 	renderSlopeDanger() {
-		let bounds = this.map.getBounds();
-		let zoom = Math.floor(this.map.getZoom());
+		let bounds: any = this.map.getBounds();
+		let z = Math.floor(this.map.getZoom());
 		let center = this.map.getCenter();
-		console.log(bounds, zoom, center);
-		let sphericalMercator = new SphericalMercator();
-		console.log(sphericalMercator.xyz([
+
+		let xyz = this.sphericalMercator.xyz([
 			bounds._sw.lng, // W
 			bounds._sw.lat, // S
 			bounds._ne.lng, // E
 			bounds._ne.lat, // N
-		], Math.floor(zoom));
+		], z)
+
+		let tilesXyz: [number, number, number][] = [];
+		for (let x = xyz.minX; x <= xyz.maxX; x++) {
+			for (let y = xyz.minY; y <= xyz.maxY; y++) {
+				tilesXyz.push([x,y,z]);
+			}
+		}
+
+		console.log(bounds, z, center, xyz, tilesXyz);
+
+		tilesXyz.forEach(tileXyz => this.generateTileInfo({x:tileXyz[0],y:tileXyz[1],z:tileXyz[2]}));
+
 		// if (e.coord && this.createAvyDangerMap)
 		// 	this.generateTileInfo(e.coord.canonical);
 	}
 
-	generateTileInfo(tile) {
+	generateTileInfo(tile:{x:number,y:number,z:number}) {
 
-		if (tile.z != 15) return;
+		// if (tile.z != 15) return;
 
 		let worker = new Worker(workerPath);
 
