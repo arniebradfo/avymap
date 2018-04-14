@@ -8,15 +8,6 @@ import * as SphericalMercator from '@mapbox/sphericalmercator';
 
 class App extends React.Component {
 
-	public render() {
-		return (
-			<div className="App">
-				<div id="avymap" />
-				<button onClick={this.renderSlopeDanger} >Render Slope Danger!</button>
-			</div>
-		);
-	}
-
 	map: mapboxgl.Map;
 	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
 	readonly zoom = 8;
@@ -28,7 +19,7 @@ class App extends React.Component {
 	zoneDataTranslator: ZoneDataTranslator;
 	readonly slopeDangerSource = 'slope-danger-source';
 	slopeDangerData: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
-		type: "FeatureCollection",
+		type: 'FeatureCollection',
 		features: []
 	}
 
@@ -37,6 +28,15 @@ class App extends React.Component {
 		this.sphericalMercator = new SphericalMercator();
 		this.zoneDataTranslator = new ZoneDataTranslator();
 		this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
+	}
+
+		public render() {
+		return (
+			<div className="App">
+				<div id="avymap" />
+				<button onClick={this.renderSlopeDanger} >Render Slope Danger!</button>
+			</div>
+		);
 	}
 
 	componentDidMount() {
@@ -57,7 +57,7 @@ class App extends React.Component {
 	startMap() {
 
 		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
-		const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
+		// const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
 
 		(mapboxgl as any).accessToken = this.accessToken;
 		this.map = new mapboxgl.Map({
@@ -212,7 +212,8 @@ class App extends React.Component {
 		this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
 	}
 
-	onZoneClick(e) {
+	onZoneClick(e: any) {
+		console.log(e)
 		console.log(e.features[0].properties.forecastUrl)
 		new mapboxgl.Popup()
 			.setLngLat(e.lngLat)
@@ -221,7 +222,7 @@ class App extends React.Component {
 	}
 
 	attachLoadSlopeDangerOnRgbLoad() {
-		this.map.on('sourcedata', (e) => {
+		this.map.on('sourcedata', (e: any) => {
 			if (e.sourceId != 'terrain-rgb-dem')
 				return;
 			// console.log('sourcedata: ', e);
@@ -284,7 +285,7 @@ class App extends React.Component {
 			canvas.height = terrainImg.height;
 
 			// Draw Image Tile
-			var context = canvas.getContext('2d');
+			var context = canvas.getContext('2d')!;
 			context.drawImage(terrainImg, 0, 0);
 
 			// Get Image Data
