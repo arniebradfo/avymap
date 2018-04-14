@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
 	<div className="App">
 		<div id="avymap"/>
-		<button>Render Slope Danger!</button>
+		<button onClick={this.renderSlopeDanger} >Render Slope Danger!</button>
 	</div>
     );
   }
@@ -37,6 +37,7 @@ class App extends React.Component {
 	  super(props)
 	  this.sphericalMercator = new SphericalMercator();
 	  this.zoneDataTranslator = new ZoneDataTranslator();
+	  this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
   }
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class App extends React.Component {
 		  this.addSlopeDanger();
 		  // this.addTerrainRgb();
 		  this.addAvalancheZones();
-		  this.renderSlopeDanger();
+		//   this.renderSlopeDanger();
 	  });
 
 	  // this.attachLoadSlopeDangerOnRgbLoad();
@@ -92,8 +93,6 @@ class App extends React.Component {
   }
 
   addSlopeDanger() {
-	  console.log('add slope danger');
-
 	  this.map.addSource(this.slopeDangerSource, {
 		  type: 'geojson',
 		  data:  this.slopeDangerData
