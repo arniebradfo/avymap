@@ -4,6 +4,8 @@ import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator'
 import { FeatureCollection } from 'geojson';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as mapboxgl from 'mapbox-gl';
+import workerPath from './slope.worker';
+
 
 class App extends React.Component {
 
@@ -49,7 +51,7 @@ class App extends React.Component {
 	  });
 
 	  // this.attachLoadSlopeDangerOnRgbLoad();
-
+	  this.renderSlopeDanger();
   }
 
   startMap(){
@@ -256,52 +258,52 @@ class App extends React.Component {
 
   generateTileInfo(tile:{x:number,y:number,z:number}, boundaryBBox?:number[]) {
 
-	//   // if (tile.z != 15) return;
+	  // if (tile.z != 15) return;
 
-	//   let worker = new Worker(workerPath);
+	  let worker = new Worker(workerPath);
 
-	//   worker.addEventListener('message', message => {
-	// 	  // console.log(message.data.featureCollection.features);
-	// 	  this.slopeDangerData.features.push(...message.data.featureCollection.features);
-	// 	  console.log(this.slopeDangerData);
+	  worker.addEventListener('message', message => {
+		  // console.log(message.data.featureCollection.features);
+		  this.slopeDangerData.features.push(...message.data.featureCollection.features);
+		  console.log(this.slopeDangerData);
 
-	// 	  (this.map.getSource(this.slopeDangerSource)as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
-	// 	  worker.terminate();
-	//   });
+		  (this.map.getSource(this.slopeDangerSource)as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
+		  worker.terminate();
+	  });
 
-	//   // get elevation data
-	//   const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
+	  // get elevation data
+	  const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
 
-	//   let terrainImg = new Image();
+	  let terrainImg = new Image();
 
-	//   terrainImg.onload = (e) => {
-	// 	  // console.dir(terrainImg);
+	  terrainImg.onload = (e) => {
+		  // console.dir(terrainImg);
 
-	// 	  var canvas: HTMLCanvasElement = document.createElement('canvas');
-	// 	  canvas.width = terrainImg.width;
-	// 	  canvas.height = terrainImg.height;
+		  var canvas: HTMLCanvasElement = document.createElement('canvas');
+		  canvas.width = terrainImg.width;
+		  canvas.height = terrainImg.height;
 
-	// 	  // Draw Image Tile
-	// 	  var context = canvas.getContext('2d');
-	// 	  context.drawImage(terrainImg, 0, 0);
+		  // Draw Image Tile
+		  var context = canvas.getContext('2d');
+		  context.drawImage(terrainImg, 0, 0);
 
-	// 	  // Get Image Data
-	// 	  var terrainImgData = context.getImageData(0, 0, terrainImg.width, terrainImg.height);
-	// 	  // console.dir(terrainImgData.data);
+		  // Get Image Data
+		  var terrainImgData = context.getImageData(0, 0, terrainImg.width, terrainImg.height);
+		  // console.dir(terrainImgData.data);
 
-	// 	  worker.postMessage({
-	// 		  bboxArray: this.sphericalMercator.bbox(tile.x, tile.y, tile.z), // [w, s, e, n]
-	// 		  terrainImgData: terrainImgData,
-	// 		  terrainImg: {
-	// 			  height: terrainImg.height,
-	// 			  width: terrainImg.width
-	// 		  },
-	// 		  boundaryBBox: boundaryBBox // [w, s, e, n]
-	// 	  });
+		  worker.postMessage({
+			  bboxArray: this.sphericalMercator.bbox(tile.x, tile.y, tile.z), // [w, s, e, n]
+			  terrainImgData: terrainImgData,
+			  terrainImg: {
+				  height: terrainImg.height,
+				  width: terrainImg.width
+			  },
+			  boundaryBBox: boundaryBBox // [w, s, e, n]
+		  });
 
-	//   };
-	//   terrainImg.crossOrigin = 'Anonymous';
-	//   terrainImg.src = url;
+	  };
+	  terrainImg.crossOrigin = 'Anonymous';
+	  terrainImg.src = url;
   }
 
 
