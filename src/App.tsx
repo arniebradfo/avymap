@@ -48,10 +48,10 @@ class App extends React.Component {
 		  this.addSlopeDanger();
 		  // this.addTerrainRgb();
 		  this.addAvalancheZones();
+		  this.renderSlopeDanger();
 	  });
 
 	  // this.attachLoadSlopeDangerOnRgbLoad();
-	  this.renderSlopeDanger();
   }
 
   startMap(){
@@ -92,6 +92,8 @@ class App extends React.Component {
   }
 
   addSlopeDanger() {
+	  console.log('add slope danger');
+
 	  this.map.addSource(this.slopeDangerSource, {
 		  type: 'geojson',
 		  data:  this.slopeDangerData
