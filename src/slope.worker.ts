@@ -1,28 +1,11 @@
-import {
-	// CoordinateReferenceSystem,
-	// DirectGeometryObject,
-	Feature,
-	FeatureCollection,
-	GeoJsonObject,
-	GeometryCollection,
-	GeometryObject,
-	LineString,
-	// LinkedCoordinateReferenceSystem,
-	MultiLineString,
-	MultiPoint,
-	MultiPolygon,
-	// NamedCoordinateReferenceSystem,
-	Point,
-	Polygon,
-	Position
-} from 'geojson';
+import { FeatureCollection, GeometryCollection, Feature } from 'geojson';
 
 
 addEventListener('message', (message) => {
 
 	// console.log(message);
 
-	let featureCollection: FeatureCollection<GeometryCollection> = {
+	const featureCollection: FeatureCollection<GeometryCollection> = {
 		type: 'FeatureCollection',
 		features: []
 	};
@@ -38,7 +21,7 @@ addEventListener('message', (message) => {
 	}
 	const terrainImgData = message.data.terrainImgData;
 	const terrainImg = message.data.terrainImg;
-	const coord = message.data.coord;
+	// const coord = message.data.coord;
 	const boundaryBBox = message.data.boundaryBBox;
 
 	let elevationArray = decodeImgDataToElevationArray(terrainImgData.data, terrainImgData.height, terrainImgData.width);
@@ -119,7 +102,7 @@ addEventListener('message', (message) => {
 
 	postMessage({
 		featureCollection: featureCollection
-	}, undefined);
+	}, '');
 
 
 });
