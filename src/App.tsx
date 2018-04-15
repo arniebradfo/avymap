@@ -6,6 +6,7 @@ import * as mapboxgl from 'mapbox-gl';
 // @ts-ignore
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
+import { COLORS } from './colors';
 
 
 class App extends React.Component {
@@ -25,6 +26,13 @@ class App extends React.Component {
 		features: []
 	}
 
+	readonly goodBadColorStops = [
+		[0, COLORS.green],
+		[0.33, COLORS.yellow],
+		[0.66, COLORS.orange],
+		[1, COLORS.red]
+	];
+
 	constructor(props: any) {
 		super(props)
 		this.sphericalMercator = new SphericalMercator();
@@ -32,7 +40,7 @@ class App extends React.Component {
 		this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
 	}
 
-		public render() {
+	public render() {
 		return (
 			<div className="App">
 				<div id="avymap" />
@@ -103,10 +111,14 @@ class App extends React.Component {
 			'source': this.slopeDangerSource,
 			'type': 'circle',
 			'paint': {
-				'circle-radius': 1,
+				'circle-radius': 1.5,
 				'circle-opacity': {
 					'property': 'slideProbibilitySigmoid',
 					'type': 'identity'
+				},
+				'circle-color': {
+					'property': 'slideProbibilitySigmoid',
+					'stops': this.goodBadColorStops
 				}
 			},
 			'filter': ['==', '$type', 'Point'],
@@ -123,6 +135,10 @@ class App extends React.Component {
 				'line-opacity': {
 					'property': 'slideProbibilityGussian',
 					'type': 'identity'
+				},
+				'line-color': {
+					'property': 'slideProbibilitySigmoid',
+					'stops': this.goodBadColorStops
 				}
 			},
 			'filter': ['==', '$type', 'LineString'],
