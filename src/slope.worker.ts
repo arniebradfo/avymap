@@ -1,10 +1,15 @@
-// import { FeatureCollection, GeometryCollection, Feature } from 'geojson';
+import { FeatureCollection, GeometryCollection, Feature } from 'geojson';
 
+// webworker shit
+// https://github.com/facebook/create-react-app/issues/1277/#issuecomment-292708809\
+// https://github.com/zlepper/typescript-webworker
 
-addEventListener('message', (message) => {
+const worker: Worker = self as any;
+
+worker.addEventListener('message', (message) => {
 	// console.log(message);
 
-	const featureCollection = {
+	const featureCollection: FeatureCollection<GeometryCollection> = {
 		type: 'FeatureCollection',
 		features: []
 	};
@@ -42,12 +47,12 @@ addEventListener('message', (message) => {
 
 			const x = lngStep * col + (lngStep / 2) + bbox.east;
 			const y = latStep * row + (latStep / 2) + bbox.south;
-			const xy = [x, y];
+			const xy: [number, number] = [x, y];
 
 			if (boundaryBBox && (!inRange(x, boundaryBBox[0], boundaryBBox[2]) || !inRange(y, boundaryBBox[1], boundaryBBox[3])))
 				continue;
 
-			let feature = {
+			let feature: Feature<GeometryCollection> = {
 				type: 'Feature',
 				geometry: {
 					type: 'GeometryCollection',
@@ -99,14 +104,17 @@ addEventListener('message', (message) => {
 		}
 	}
 
-	postMessage({
+	// console.log(worker);
+
+	worker.postMessage({
 		featureCollection: featureCollection
 	});
 
 
 });
+// }
 
-function decodeImgDataToElevationArray(data, height, width) {
+function decodeImgDataToElevationArray(data: number[], height: number, width: number) {
 	var dataArray = new Float32Array(height * width);
 	for (var i = 0; i < data.length / 4; i++) {
 		dataArray[i] = decodeRgbToElevation(data[i * 4], data[i * 4 + 1], data[i * 4 + 2]);
@@ -151,7 +159,11 @@ function inRange(x, a, b) {
 }
 
 
-function rotatePoint(point, center, rad) {
+function rotatePoint(
+	point: [number, number],
+	center: [number, number],
+	rad: number
+): [number, number] {
 	let x = point[0];
 	let y = point[1];
 	let cx = center[0];
@@ -174,22 +186,22 @@ function rotatePoint(point, center, rad) {
 
 
 
-function decodeRgbToElevation(r, g, b) {
+function decodeRgbToElevation(r: number, g: number, b: number): number {
 	return -10000 + ((r * 256 * 256 + g * 256 + b) * 0.1)
 }
 
-function getGridCellIndexOfArray(height, width, row, col) {
+function getGridCellIndexOfArray(height: number, width: number, row: number, col: number): number {
 	// row and col are 0 indexed
 	if (row > height || row < 0 || col >= width || col < 0) return NaN;
 	return width * row + col;
 }
 
 function slopeAndAspect(
-	a, b, c,
-	d, e, f,
-	g, h, i,
-	xCellsize, yCellsize
-) {
+	a: number, b: number, c: number,
+	d: number, e: number, f: number,
+	g: number, h: number, i: number,
+	xCellsize: number, yCellsize: number
+): { slope: number, aspect: number } {
 	for (var index = 0; index < arguments.length; index++) {
 		if (isNaN(arguments[index])) return { slope: 0, aspect: 0 };
 	}
@@ -211,7 +223,7 @@ function slopeAndAspect(
 	return { slope: slopeRad, aspect: aspectRad };
 }
 
-function distanceLatLng(latlng1, latlng2) {
+function distanceLatLng(latlng1: [number, number], latlng2: [number, number]): number {
 	// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
 	// Haversine Formula: https://en.wikipedia.org/wiki/Haversine_formula
 
@@ -229,4 +241,3 @@ function distanceLatLng(latlng1, latlng2) {
 	var d = R * c; // Distance in km
 	return d * 1000; // Distance in meters
 }
-

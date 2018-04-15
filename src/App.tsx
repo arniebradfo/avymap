@@ -5,6 +5,8 @@ import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 // @ts-ignore
 import * as SphericalMercator from '@mapbox/sphericalmercator';
+import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
+
 
 class App extends React.Component {
 
@@ -261,7 +263,7 @@ class App extends React.Component {
 
 		// if (tile.z != 15) return;
 
-		let worker = new Worker('slope.worker.js');
+		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
 			// console.log(message.data.featureCollection.features);
