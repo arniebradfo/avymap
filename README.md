@@ -11,6 +11,7 @@
 ## Map
 Data points need:
 - Elevation - [Mapbox](https://blog.mapbox.com/global-elevation-data-6689f1d0ba65)
+- Elevation - [Access elevation data from Mapbox Terrain `contour` source layer](https://www.mapbox.com/help/access-elevation-data/#request-data-1)
 - Slope - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm)
 - Aspect - [ArcGIS](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm)
 
