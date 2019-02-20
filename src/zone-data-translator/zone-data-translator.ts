@@ -14,7 +14,7 @@ import { FeatureCollection, Feature, Point, Polygon, MultiPolygon } from 'geojso
 
 export class ZoneDataTranslator {
 
-	geoJson: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
+	geoJson: FeatureCollection = {
 		type: 'FeatureCollection',
 		features: []
 	}

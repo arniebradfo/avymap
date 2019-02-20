@@ -22,7 +22,7 @@ class App extends React.Component {
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
 	readonly slopeDangerSource = 'slope-danger-source';
-	slopeDangerData: FeatureCollection<mapbox.GeoJSONGeometry> = {
+	slopeDangerData: FeatureCollection = {
 		type: 'FeatureCollection',
 		features: []
 	}
