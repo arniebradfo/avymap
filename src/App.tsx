@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
