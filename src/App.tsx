@@ -3,7 +3,7 @@ import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
-import * as mapbox from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl';
 // @ts-ignore
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
@@ -12,7 +12,7 @@ import { COLORS } from './colors';
 
 class App extends React.Component {
 
-	map: mapbox.Map;
+	map: mapboxgl.Map;
 	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
 	readonly zoom = 8;
 	readonly lat = -112;
@@ -70,14 +70,16 @@ class App extends React.Component {
 		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
 		// const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
 
-		(mapbox as any).accessToken = this.accessToken;
-		this.map = new mapbox.Map({
+		(mapboxgl as any).accessToken = this.accessToken;
+		this.map = new mapboxgl.Map({
 			container: 'avymap',
 			style: avymap,
 			zoom: this.zoom,
 			center: [this.lat, this.lng],
-			hash: true
+			hash: true,
+			attributionControl: false
 		});
+		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'bottom-left');
 	}
 
 	addTerrainRgb() {
@@ -114,11 +116,11 @@ class App extends React.Component {
 			'paint': {
 				'circle-radius': 1.5,
 				'circle-opacity': {
-					'property': 'slideProbibilitySigmoid',
+					'property': 'slideProbabilitySigmoid',
 					'type': 'identity'
 				},
 				'circle-color': {
-					'property': 'slideProbibilitySigmoid',
+					'property': 'slideProbabilitySigmoid',
 					'stops': this.goodBadColorStops
 				}
 			},
@@ -134,11 +136,11 @@ class App extends React.Component {
 			'paint': {
 				'line-width': 1,
 				'line-opacity': {
-					'property': 'slideProbibilityGussian',
+					'property': 'slideProbabilityGaussian',
 					'type': 'identity'
 				},
 				'line-color': {
-					'property': 'slideProbibilitySigmoid',
+					'property': 'slideProbabilitySigmoid',
 					'stops': this.goodBadColorStops
 				}
 			},
@@ -161,7 +163,7 @@ class App extends React.Component {
 		// 	},
 		// 	'paint': {
 		// 		'text-opacity': {
-		// 			'property': 'slideProbibilitySigmoid',
+		// 			'property': 'slideProbabilitySigmoid',
 		// 			'type': 'identity'
 		// 		}
 		// 	},
@@ -174,7 +176,7 @@ class App extends React.Component {
 		//     "heatmap-weight": [
 		//         "interpolate",
 		//         ["linear"],
-		//         ["get", "slideProbibilitySigmoid"],
+		//         ["get", "slideProbabilitySigmoid"],
 		//         0, 0,
 		//         1, 1
 		// 	],
@@ -234,7 +236,7 @@ class App extends React.Component {
 	onZoneClick(e: any) {
 		console.log(e)
 		console.log(e.features[0].properties.forecastUrl)
-		new mapbox.Popup()
+		new mapboxgl.Popup()
 			.setLngLat(e.lngLat)
 			.setHTML(`<a href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
 			.addTo(this.map);
@@ -287,7 +289,7 @@ class App extends React.Component {
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
 			console.log(this.slopeDangerData);
 
-			(this.map.getSource(this.slopeDangerSource) as mapbox.GeoJSONSource).setData(this.slopeDangerData);
+			(this.map.getSource(this.slopeDangerSource) as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
 			worker.terminate();
 		});
 

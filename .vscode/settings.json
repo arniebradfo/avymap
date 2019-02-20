@@ -11,5 +11,11 @@
         "src/test.ts": true,
         "**/*.spec.ts": true,
         "src/favicon.ico": true
-    }
+	},
+	"cSpell.words": [
+		"avymap",
+		"hillshade",
+		"minzoom",
+		"sphericalmercator"
+	]
 }

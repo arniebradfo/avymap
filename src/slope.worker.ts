@@ -69,15 +69,15 @@ worker.addEventListener('message', (message) => {
 			);
 
 			const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
-			const slideProbibilityGussian = avalancheProbibilityGussian(currentSlope)
-			const slideProbibilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
-			if (slideProbibilityGussian < 0.01 && slideProbibilitySigmoid < 0.1)
+			const slideProbabilityGaussian = avalancheProbibilityGussian(currentSlope)
+			const slideProbabilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
+			if (slideProbabilityGaussian < 0.01 && slideProbabilitySigmoid < 0.1)
 				continue;
 
-			if (slideProbibilityGussian < 0.01)
+			if (slideProbabilityGaussian < 0.01)
 				continue;
 			const maxLineLength = (Math.abs(latStep) + Math.abs(lngStep)) / 2.5;
-			const length = slideProbibilityGussian * maxLineLength;
+			const length = slideProbabilityGaussian * maxLineLength;
 			// if (length > maxLineLength / 50) {
 			let x1 = x + length;
 			const xy1 = rotatePoint([x1, y], xy, currentSlopeAndAspect.aspect);
@@ -96,8 +96,8 @@ worker.addEventListener('message', (message) => {
 				slope: currentSlopeAndAspect.slope,
 				aspect: currentSlopeAndAspect.aspect,
 				aspectDeg: 360 - (currentSlopeAndAspect.aspect * (180 / Math.PI)),
-				slideProbibilityGussian: slideProbibilityGussian,
-				slideProbibilitySigmoid: slideProbibilitySigmoid,
+				slideProbabilityGaussian: slideProbabilityGaussian,
+				slideProbabilitySigmoid: slideProbabilitySigmoid,
 			}
 
 			featureCollection.features.push(feature);
