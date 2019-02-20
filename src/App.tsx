@@ -3,7 +3,7 @@ import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
-import * as mapboxgl from 'mapbox-gl';
+import * as mapbox from 'mapbox-gl';
 // @ts-ignore
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
@@ -12,7 +12,7 @@ import { COLORS } from './colors';
 
 class App extends React.Component {
 
-	map: mapboxgl.Map;
+	map: mapbox.Map;
 	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
 	readonly zoom = 8;
 	readonly lat = -112;
@@ -22,7 +22,7 @@ class App extends React.Component {
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
 	readonly slopeDangerSource = 'slope-danger-source';
-	slopeDangerData: FeatureCollection<mapboxgl.GeoJSONGeometry> = {
+	slopeDangerData: FeatureCollection<mapbox.GeoJSONGeometry> = {
 		type: 'FeatureCollection',
 		features: []
 	}
@@ -70,8 +70,8 @@ class App extends React.Component {
 		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
 		// const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
 
-		(mapboxgl as any).accessToken = this.accessToken;
-		this.map = new mapboxgl.Map({
+		(mapbox as any).accessToken = this.accessToken;
+		this.map = new mapbox.Map({
 			container: 'avymap',
 			style: avymap,
 			zoom: this.zoom,
@@ -234,7 +234,7 @@ class App extends React.Component {
 	onZoneClick(e: any) {
 		console.log(e)
 		console.log(e.features[0].properties.forecastUrl)
-		new mapboxgl.Popup()
+		new mapbox.Popup()
 			.setLngLat(e.lngLat)
 			.setHTML(`<a href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
 			.addTo(this.map);
@@ -287,7 +287,7 @@ class App extends React.Component {
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
 			console.log(this.slopeDangerData);
 
-			(this.map.getSource(this.slopeDangerSource) as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
+			(this.map.getSource(this.slopeDangerSource) as mapbox.GeoJSONSource).setData(this.slopeDangerData);
 			worker.terminate();
 		});
 
