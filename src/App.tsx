@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import logo from './AvyMap-Logo.svg';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
@@ -12,8 +13,11 @@ import { COLORS } from './colors';
 
 class App extends React.Component {
 
+	readonly PRODUCTION: false;
+
 	map: mapboxgl.Map;
-	readonly accessToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2o2OGp4ZnA1MGdkdDJycjB4bzZ3eDVkNiJ9.m3RBvaKuPHz1w-yjSz2LpA';
+	readonly publicToken  = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ3ZDE3MWFraTN5bDlvYmJ6eHluMiJ9.aYoOUgdMeagdX5t0W6v_6g';
+	readonly privateToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ2eGg4MG11ZzN5cW52M2poeXAydCJ9.Rzu0YVDCCS5aituuEybWeQ';
 	readonly zoom = 8;
 	readonly lat = -112;
 	readonly lng = 41;
@@ -59,6 +63,7 @@ class App extends React.Component {
 	public render() {
 		return (
 			<div className="App">
+				<img className="logo" src={logo} height="31" width="64" />
 				<div id="avymap" />
 				<div className="toolbar">
 					<div className="advertisement">AD</div>
@@ -82,16 +87,13 @@ class App extends React.Component {
 		);
 	}
 
-	componentWillMount() {
-		document.title = 'AvyMap : Alpha'
-	}
-
 	componentDidMount() {
 
 		this.startMap();
 
 		this.map.on('load', () => {
-			// this.map.showTileBoundaries = true; // for debug
+			if (!this.PRODUCTION)
+				this.map.showTileBoundaries = true; // for debug
 			this.addSlopeDanger();
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
@@ -106,7 +108,7 @@ class App extends React.Component {
 		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
 		// const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
 
-		(mapboxgl as any).accessToken = this.accessToken;
+		(mapboxgl as any).accessToken = this.PRODUCTION ? this.publicToken : this.privateToken;
 		this.map = new mapboxgl.Map({
 			container: 'avymap',
 			style: avymap,
@@ -380,7 +382,7 @@ class App extends React.Component {
 		});
 
 		// get elevation data
-		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
+		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.publicToken}`;
 
 		let terrainImg = new Image();
 
