@@ -67,12 +67,16 @@ class App extends React.Component {
 						<a
 							className="avy-zone__link"
 							href={this.state.zone.link}
-							target={this.state.zone.link === '' ? '' : '_blank'}
-							>
+							target={this.state.zone.link === '' ? '' : '_blank'}>
 							Read Report
 						</a>
 					</div>
-					<button disabled={!this.state.buttonEnabled} className="slope-button" onClick={this.renderSlopeDanger}>Slope Danger</button>
+					<button
+						className="slope-button"
+						disabled={!this.state.buttonEnabled}
+						onClick={this.renderSlopeDanger}>
+						{this.state.buttonEnabled ? 'Analyze Slope Danger' : 'Zoom Closer To Enable'}
+					</button>
 				</div>
 			</div>
 		);

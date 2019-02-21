@@ -34,8 +34,13 @@
 .avy-zone__link{}
 
 .slope-button{
-	flex: 0 1 auto;
+	flex: 0 1 150px;
 	margin: 2px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
 	/* position: fixed;
 	top: 0;
 	left: 0; */
