@@ -13,7 +13,7 @@ import { COLORS } from './colors';
 
 class App extends React.Component {
 
-	readonly PRODUCTION: false;
+	readonly PRODUCTION: boolean = false;
 
 	map: mapboxgl.Map;
 	readonly publicToken  = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ3ZDE3MWFraTN5bDlvYmJ6eHluMiJ9.aYoOUgdMeagdX5t0W6v_6g';
@@ -92,8 +92,7 @@ class App extends React.Component {
 		this.startMap();
 
 		this.map.on('load', () => {
-			if (!this.PRODUCTION)
-				this.map.showTileBoundaries = true; // for debug
+			this.map.showTileBoundaries = !this.PRODUCTION; // for debug
 			this.addSlopeDanger();
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
