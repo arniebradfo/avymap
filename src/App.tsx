@@ -184,6 +184,19 @@ class App extends React.Component {
 			},
 			'filter': ['==', '$type', 'LineString'],
 		});
+		this.map.addLayer({
+			'id': 'slope-danger-bounding-box',
+			'source': this.slopeDangerSource,
+			'type': 'line',
+			'layout': {
+				'line-cap': 'round'
+			},
+			'paint': {
+				'line-width': 2,
+				'line-color': 'rgba(0,0,0,0.5)'
+			},
+			'filter': ['==', '$type', 'Polygon'],
+		});
 		// this.map.addLayer({
 		// 	'id': 'slope-danger-symbol',
 		// 	'source': this.slopeDangerSource,
@@ -360,10 +373,30 @@ class App extends React.Component {
 				tilesXyz.push([x, y, z]);
 			}
 		}
-		this.slopeDangerData.features = [];
+		this.slopeDangerData.features = [{
+			'type': 'Feature',
+			'geometry': {
+				'type': 'GeometryCollection',
+				'geometries':[{
+					'type': 'Polygon',
+					'coordinates': [
+					  [
+						[bbox[0], bbox[1]],
+						[bbox[2], bbox[1]],
+						[bbox[2], bbox[3]],
+						[bbox[0], bbox[3]],
+						[bbox[0], bbox[1]]
+					  ]
+					]
+				}]
+			},
+			'properties':{}
+		  }];
 		console.log(bounds, z, center, xyz, tilesXyz);
 
 		tilesXyz.forEach(tileXyz => this.generateTileInfo({ x: tileXyz[0], y: tileXyz[1], z: tileXyz[2] }, bbox));
+
+
 	}
 
 	generateTileInfo(tile: { x: number, y: number, z: number }, boundaryBBox?: number[]) {
@@ -373,7 +406,7 @@ class App extends React.Component {
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
-			// console.log(message.data.featureCollection.features);
+			console.log(message.data.featureCollection.features);
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
 			console.log(this.slopeDangerData);
 
