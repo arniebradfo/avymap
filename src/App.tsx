@@ -82,6 +82,10 @@ class App extends React.Component {
 		);
 	}
 
+	componentWillMount() {
+		document.title = 'AvyMap : Alpha'
+	}
+
 	componentDidMount() {
 
 		this.startMap();
