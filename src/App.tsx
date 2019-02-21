@@ -21,6 +21,13 @@ class App extends React.Component {
 
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
+	state: {
+		zone?: {
+			title: string,
+			link: string
+		},
+		buttonEnabled?: boolean
+	};
 	readonly slopeDangerSource = 'slope-danger-source';
 	slopeDangerData: FeatureCollection = {
 		type: 'FeatureCollection',
@@ -39,13 +46,34 @@ class App extends React.Component {
 		this.sphericalMercator = new SphericalMercator();
 		this.zoneDataTranslator = new ZoneDataTranslator();
 		this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
+		this.state = {
+			zone: {
+				title: 'Click A Zone',
+				link: ''
+			},
+			buttonEnabled: false
+		};
+
 	}
 
 	public render() {
 		return (
 			<div className="App">
 				<div id="avymap" />
-				<button onClick={this.renderSlopeDanger} >Render Slope Danger!</button>
+				<div className="toolbar">
+					<div className="advertisement">AD</div>
+					<div className="avy-zone">
+						<h3 className="avy-zone__title">{this.state.zone.title}</h3>
+						<a
+							className="avy-zone__link"
+							href={this.state.zone.link}
+							target={this.state.zone.link === '' ? '' : '_blank'}
+							>
+							Read Report
+						</a>
+					</div>
+					<button disabled={!this.state.buttonEnabled} className="slope-button" onClick={this.renderSlopeDanger}>Slope Danger</button>
+				</div>
 			</div>
 		);
 	}
@@ -55,7 +83,7 @@ class App extends React.Component {
 		this.startMap();
 
 		this.map.on('load', () => {
-			this.map.showTileBoundaries = true; // for debug
+			// this.map.showTileBoundaries = true; // for debug
 			this.addSlopeDanger();
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
@@ -79,7 +107,7 @@ class App extends React.Component {
 			hash: true,
 			attributionControl: false
 		});
-		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'bottom-left');
+		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'bottom-right');
 	}
 
 	addTerrainRgb() {
@@ -206,7 +234,12 @@ class App extends React.Component {
 			'type': 'fill',
 			'source': 'avalanche-zone-source',
 			'paint': {
-				'fill-color': 'rgba(0,0,0,0.2)',
+				'fill-color': {
+					'stops': [
+						[7, 'rgba(0,0,0,0.2)'],
+						[12, 'rgba(0,0,0,0)']
+					]
+				}
 			}
 		});
 		this.map.addLayer({
@@ -231,15 +264,60 @@ class App extends React.Component {
 
 		this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 		this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
+		this.map.on('moveend', this.onMapMoveEnd.bind(this));
+		this.map.on('zoom', this.enableButton.bind(this));
+	}
+
+	enableButton(e: any){
+		const zoom = this.map.getZoom();
+		// console.log('zoom: '+zoom);
+		this.setState({
+			buttonEnabled: (zoom > 13)
+		})
+
+	}
+
+	onMapMoveEnd() {
+
+		// this should select the current avy zone if there is only one from the layer being shown
+
+		// const bounds = this.map.getBounds()
+		// console.log(bounds);
+
+		// const bBox: [mapboxgl.PointLike,mapboxgl.PointLike] = [[bounds.ne[0],bounds.ne[1]],[bounds.sw[0],bounds.sw[1]]];
+		// const features = this.map.queryRenderedFeatures(bBox , {layers:['airport']});
+
+		// console.log(features);
+
+
+		// if (features) {
+			// var uniqueFeatures = getUniqueFeatures(features, "iata_code");
+			// // Populate features for the listing overlay.
+			// renderListings(uniqueFeatures);
+
+			// // Clear the input container
+			// filterEl.value = '';
+
+			// // Store the current features in sn `airports` variable to
+			// // later use for filtering on `keyup`.
+			// airports = uniqueFeatures;
+		// }
+
 	}
 
 	onZoneClick(e: any) {
 		console.log(e)
-		console.log(e.features[0].properties.forecastUrl)
-		new mapboxgl.Popup()
-			.setLngLat(e.lngLat)
-			.setHTML(`<a href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
-			.addTo(this.map);
+		console.log(e.features[0])
+		this.setState({zone:{
+			title: e.features[0].properties.name,
+			link: e.features[0].properties.forecastUrl
+		}})
+
+		// adds a popup to the map
+		// new mapboxgl.Popup()
+		// 	.setLngLat(e.lngLat)
+		// 	.setHTML(`<a style="margin:24px;" href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
+		// 	.addTo(this.map);
 	}
 
 	attachLoadSlopeDangerOnRgbLoad() {

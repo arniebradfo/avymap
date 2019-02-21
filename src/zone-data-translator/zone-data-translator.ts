@@ -78,7 +78,7 @@ export class ZoneDataTranslator {
 				properties: {
 					id: row.row.name.toLowerCase().replace(' ', '-'), // this replaces one not all '-'
 					name: row.row.name,
-					forecastUrl: row.row.url
+					forecastUrl: row.row.url || row.row.zone_url
 				}
 			});
 		});
