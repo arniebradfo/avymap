@@ -146,23 +146,7 @@ class App extends React.Component {
 			type: 'geojson',
 			data: this.slopeDangerData
 		});
-		this.map.addLayer({
-			'id': 'slope-danger-points',
-			'source': this.slopeDangerSource,
-			'type': 'circle',
-			'paint': {
-				'circle-radius': 1.5,
-				'circle-opacity': {
-					'property': 'slideProbabilitySigmoid',
-					'type': 'identity'
-				},
-				'circle-color': {
-					'property': 'slideProbabilitySigmoid',
-					'stops': this.goodBadColorStops
-				}
-			},
-			'filter': ['==', '$type', 'Point'],
-		});
+
 		this.map.addLayer({
 			'id': 'slope-danger-lines',
 			'source': this.slopeDangerSource,
@@ -174,15 +158,51 @@ class App extends React.Component {
 				'line-width': 1,
 				'line-opacity': {
 					'property': 'slideProbabilityGaussian',
-					'type': 'identity'
+					'stops': [
+						[0, .2],
+						[.5, 1],
+					]
 				},
 				'line-color': {
-					'property': 'slideProbabilitySigmoid',
-					'stops': this.goodBadColorStops
+					'property': 'slideProbabilityGaussian',
+					'stops': [
+						[0, COLORS.green],
+						[0.33, COLORS.yellow],
+						[0.66, COLORS.orange],
+						[1, COLORS.red]
+					]
 				}
 			},
 			'filter': ['==', '$type', 'LineString'],
 		});
+
+		this.map.addLayer({
+			'id': 'slope-danger-points',
+			'source': this.slopeDangerSource,
+			'type': 'circle',
+			'paint': {
+				'circle-radius': 1.5,
+				'circle-opacity': {
+					'property': 'slideProbabilitySigmoid',
+					'stops': [
+						[0, .2],
+						[.5, 1],
+					]
+				},
+				'circle-color': {
+					'property': 'slideProbabilitySigmoid',
+					'stops': [
+						[0, COLORS.green],
+						[0.2, COLORS.yellow],
+						[0.4, COLORS.orange],
+						[0.6, COLORS.red],
+						[1, COLORS.black]
+					]
+				}
+			},
+			'filter': ['==', '$type', 'Point'],
+		});
+
 		this.map.addLayer({
 			'id': 'slope-danger-bounding-box',
 			'source': this.slopeDangerSource,

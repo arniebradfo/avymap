@@ -17,7 +17,7 @@ worker.addEventListener('message', (message) => {
 	// const avyStartAngle = 30;
 	// const avyEndAngle = 50;
 
-	const bbox = {
+	const bBox = {
 		west: message.data.bboxArray[0],
 		south: message.data.bboxArray[1],
 		east: message.data.bboxArray[2],
@@ -30,12 +30,12 @@ worker.addEventListener('message', (message) => {
 
 	let elevationArray = decodeImgDataToElevationArray(terrainImgData.data, terrainImgData.height, terrainImgData.width);
 
-	let lngStep = (bbox.west - bbox.east) / terrainImg.width;
-	let latStep = (bbox.north - bbox.south) / terrainImg.height;
+	let lngStep = (bBox.west - bBox.east) / terrainImg.width;
+	let latStep = (bBox.north - bBox.south) / terrainImg.height;
 
 	// console.log(lngStep, latStep)
-	let xStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.north, bbox.east]) + distanceLatLng([bbox.south, bbox.west], [bbox.south, bbox.east])) / 2 / terrainImg.width;
-	let yStepMeters = (distanceLatLng([bbox.north, bbox.west], [bbox.south, bbox.west]) + distanceLatLng([bbox.north, bbox.east], [bbox.south, bbox.east])) / 2 / terrainImg.height;
+	let xStepMeters = (distanceLatLng([bBox.north, bBox.west], [bBox.north, bBox.east]) + distanceLatLng([bBox.south, bBox.west], [bBox.south, bBox.east])) / 2 / terrainImg.width;
+	let yStepMeters = (distanceLatLng([bBox.north, bBox.west], [bBox.south, bBox.west]) + distanceLatLng([bBox.north, bBox.east], [bBox.south, bBox.east])) / 2 / terrainImg.height;
 	// console.log(lngStep, latStep, xStepMeters, yStepMeters);
 
 	let h = terrainImg.height;
@@ -45,8 +45,8 @@ worker.addEventListener('message', (message) => {
 	for (var row = 0; row < terrainImg.height; row++) {
 		for (var col = 0; col < terrainImg.width; col++) {
 
-			const x = lngStep * col + (lngStep / 2) + bbox.east;
-			const y = latStep * row + (latStep / 2) + bbox.south;
+			const x = lngStep * col + (lngStep / 2) + bBox.east;
+			const y = latStep * row + (latStep / 2) + bBox.south;
 			const xy: [number, number] = [x, y];
 
 			if (boundaryBBox && (!inRange(x, boundaryBBox[0], boundaryBBox[2]) || !inRange(y, boundaryBBox[1], boundaryBBox[3])))
@@ -69,8 +69,8 @@ worker.addEventListener('message', (message) => {
 			);
 
 			const currentSlope = currentSlopeAndAspect.slope * (180 / Math.PI)
-			const slideProbabilityGaussian = avalancheProbibilityGussian(currentSlope)
-			const slideProbabilitySigmoid = avalancheProbibilitySigmoid(currentSlope)
+			const slideProbabilityGaussian = avalancheProbabilityGaussian(currentSlope)
+			const slideProbabilitySigmoid = avalancheProbabilitySigmoid(currentSlope)
 			if (slideProbabilityGaussian < 0.01 && slideProbabilitySigmoid < 0.1)
 				continue;
 
@@ -125,15 +125,16 @@ function decodeImgDataToElevationArray(data: number[], height: number, width: nu
 
 // DANGER FUNCTIONS //
 // given a slope in deg, how likely is an avalanche trigger?
-var center = 39; // highest avalanche probility is at 39°
-var height = 1; // relative avalanche probility is returned as a value between 0 & 1
+var center = 39; // highest avalanche probability is at 39°
+var height = 1; // relative avalanche probability is returned as a value between 0 & 1
 /**
  * @description an s-curve theory of avy danger increasing with steepness
  * @param deg slope steepness in degrees
- * @returns relative probibility of a slide as a number between 0 and 1
+ * @returns relative probability of a slide as a number between 0 and 1
  * @see https://www.desmos.com/calculator/yh2cbmqaw4
+ * @see https://utahavalanchecenter.org/blog/15617
 **/
-function avalancheProbibilitySigmoid(deg) {
+function avalancheProbabilitySigmoid(deg) {
 	//
 	deg -= center;
 	const halfHeight = height / 2;
@@ -141,12 +142,13 @@ function avalancheProbibilitySigmoid(deg) {
 	return deg * halfHeight / Math.sqrt(magic + deg ** 2) + halfHeight
 }
 /**
- * @description a bell-curve theory of avalance probibiliy, with slopes > 39° decreasing in danger
+ * @description a bell-curve theory of avalanche probability, with slopes > 39° decreasing in danger
  * @param deg slope steepness in degrees
- * @returns relative probibility of a slide as a number between 0 & 1
+ * @returns relative probability of a slide as a number between 0 & 1
  * @see https://www.desmos.com/calculator/yh2cbmqaw4
+ * @see https://utahavalanchecenter.org/blog/15617
 **/
-function avalancheProbibilityGussian(deg) {
+function avalancheProbabilityGaussian(deg) {
 	var power = 1.6;
 	var steepness = 20;
 	return (height * Math.E) ** (-1 * (steepness * ((Math.abs(-1 + (1 / center) * deg)) ** power)));
@@ -200,7 +202,7 @@ function slopeAndAspect(
 	a: number, b: number, c: number,
 	d: number, e: number, f: number,
 	g: number, h: number, i: number,
-	xCellsize: number, yCellsize: number
+	xCellSize: number, yCellSize: number
 ): { slope: number, aspect: number } {
 	for (var index = 0; index < arguments.length; index++) {
 		if (isNaN(arguments[index])) return { slope: 0, aspect: 0 };
@@ -208,8 +210,8 @@ function slopeAndAspect(
 
 	let dzdx = ((c + f * 2 + i) - (a + d * 2 + g)) / 8;
 	let dzdy = ((g + h * 2 + i) - (a + b * 2 + c)) / 8;
-	dzdx /= xCellsize;
-	dzdy /= yCellsize;
+	dzdx /= xCellSize;
+	dzdy /= yCellSize;
 
 	// http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm
 	let aspectRad = Math.atan2(dzdy * -1, dzdx);
