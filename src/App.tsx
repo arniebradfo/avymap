@@ -5,7 +5,6 @@ import logo from './AvyMap-Logo.svg';
 import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
-// @ts-ignore
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
 import { COLORS } from './colors';
@@ -38,13 +37,6 @@ class App extends React.Component {
 		features: []
 	}
 
-	readonly goodBadColorStops = [
-		[0, COLORS.green],
-		[0.33, COLORS.yellow],
-		[0.66, COLORS.orange],
-		[1, COLORS.red]
-	];
-
 	constructor(props: any) {
 		super(props)
 		this.sphericalMercator = new SphericalMercator();
@@ -57,7 +49,6 @@ class App extends React.Component {
 			},
 			buttonEnabled: false
 		};
-
 	}
 
 	public render() {
@@ -117,6 +108,7 @@ class App extends React.Component {
 			attributionControl: false
 		});
 		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'bottom-right');
+		this.enableButton();
 	}
 
 	addTerrainRgb() {
@@ -310,18 +302,17 @@ class App extends React.Component {
 		this.map.on('zoom', this.enableButton.bind(this));
 	}
 
-	enableButton(e: any){
+	enableButton(e?: any){
 		const zoom = this.map.getZoom();
 		// console.log('zoom: '+zoom);
 		this.setState({
 			buttonEnabled: (zoom > 13)
 		})
-
 	}
 
 	onMapMoveEnd() {
 
-		// this should select the current avy zone if there is only one from the layer being shown
+		// TODO: this should select the current avy zone if there is only one from the layer being shown
 
 		// const bounds = this.map.getBounds()
 		// console.log(bounds);
@@ -425,7 +416,7 @@ class App extends React.Component {
 		let worker = new Worker(workerPath);
 
 		worker.addEventListener('message', message => {
-			console.log(message.data.featureCollection.features);
+			// console.log(message.data.featureCollection.features);
 			this.slopeDangerData.features.push(...message.data.featureCollection.features);
 			console.log(this.slopeDangerData);
 
