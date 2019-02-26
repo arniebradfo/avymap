@@ -12,7 +12,7 @@ import { COLORS } from './colors';
 
 class App extends React.Component {
 
-	readonly PRODUCTION: boolean = false;
+	readonly PRODUCTION: boolean = true;
 
 	map: mapboxgl.Map;
 	readonly publicToken  = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ3ZDE3MWFraTN5bDlvYmJ6eHluMiJ9.aYoOUgdMeagdX5t0W6v_6g';
