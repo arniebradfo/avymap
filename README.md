@@ -173,3 +173,7 @@ Expires 2019-01-17
 
 
 Continued use of GPS running in the background can dramatically decrease battery life...
+
+## Web App Manifest
+- [Generator](https://app-manifest.firebaseapp.com/)
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest)
