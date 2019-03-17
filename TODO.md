@@ -1,4 +1,7 @@
 # TODOs:
-- webworkerify
-    - use surface api
-    - fill all coordinates on panning
+- reformat folder structure
+- add component for menu
+- share css with var();
+
+# Typed css and scss
+https://gist.github.com/Hotell/01035a3ec202245d6b97937444140877
