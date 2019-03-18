@@ -9,7 +9,6 @@ import bradfordDigitalLogo from '../assets/bradford-digital-ogo-32x60.svg';
 import menuIcon from '../assets/icons/icon_Menu.svg';
 import xIcon from '../assets/icons/icon_X.svg';
 
-
 class Nav extends React.Component {
 
 	state: {
@@ -21,8 +20,6 @@ class Nav extends React.Component {
 	constructor(props: any) {
 		super(props)
 	}
-
-
 
 	public render() {
 		return (

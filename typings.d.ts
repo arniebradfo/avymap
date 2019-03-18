@@ -17,8 +17,8 @@ declare module "*.json" {
 }
 
 // https://github.com/smooth-code/svgr/issues/38
-interface SvgComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
-declare module '*.svg' {
-    const value: SvgComponent;
-    export default value;
-}
+// interface SvgComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
+// declare module '*.svg' {
+//     const value: SvgComponent;
+//     export default value;
+// }

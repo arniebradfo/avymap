@@ -1,15 +1,8 @@
 # TODOs:
 - share css with var()s;
 - layout css?
-	- nav functionality
-	- nav content
-- media queries
+	- media queries
 - color palate
-- assets
-	- menu icon
-	- arrow icon
-	- close icon
-	- avymap icon
 - typography styles
 	- fonts
 	- headers
