@@ -1,4 +1,7 @@
 import * as React from 'react';
+import './App.css';
+import Nav from '../Nav/Nav';
+import AvyMap from '../AvyMap/AvyMap';
 
 class App extends React.Component {
 
@@ -8,7 +11,10 @@ class App extends React.Component {
 
 	public render() {
 		return (
-			<div className="App"></div>
+			<div className="app">
+				<Nav></Nav>
+				<AvyMap></AvyMap>
+			</div>
 		);
 	}
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Map.css';
+import './AvyMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import logo from '../../assets/AvyMap-Logo.svg';
 import { ZoneDataTranslator } from '../../services/zone-data-translator/zone-data-translator';
@@ -9,7 +9,7 @@ import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!../../slope.worker';
 
 
-class Map extends React.Component {
+class AvyMap extends React.Component {
 
 	readonly PRODUCTION: boolean = false;
 
@@ -60,7 +60,7 @@ class Map extends React.Component {
 
 	public render() {
 		return (
-			<div className="Map">
+			<div className="avymap">
 				<img className="logo" src={logo} height="31" width="64" />
 				<div id="avymap" />
 				<div className="toolbar">
@@ -468,4 +468,4 @@ class Map extends React.Component {
 
 }
 
-export default Map;
+export default AvyMap;
