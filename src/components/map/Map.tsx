@@ -1,16 +1,16 @@
 import * as React from 'react';
-import './App.css';
+import './Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import logo from './AvyMap-Logo.svg';
-import { ZoneDataTranslator } from './zone-data-translator/zone-data-translator';
+import logo from '../../assets/AvyMap-Logo.svg';
+import { ZoneDataTranslator } from '../../services/zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
-import * as workerPath from 'file-loader?name=[name].js!./slope.worker';
+import * as workerPath from 'file-loader?name=[name].js!../../slope.worker';
 import { COLORS } from './colors';
 
 
-class App extends React.Component {
+class Map extends React.Component {
 
 	readonly PRODUCTION: boolean = false;
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
 	public render() {
 		return (
-			<div className="App">
+			<div className="Map">
 				<img className="logo" src={logo} height="31" width="64" />
 				<div id="avymap" />
 				<div className="toolbar">
@@ -462,4 +462,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default Map;
