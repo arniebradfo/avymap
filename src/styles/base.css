@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,500&subset=latin-ext');
+
 html, body, #root{
     display: block;
     height: 100%;
@@ -7,3 +9,139 @@ html, body, #root{
     padding: 0;
 }
 
+html, :root{
+
+	/* VARS */
+	--fgStrong_Color:  rgba(0,0,0,0.75);
+	--fgPrimary_Color: rgba(0,0,0,0.6);
+	--fgWeak_Color:    rgba(0,0,0,0.4);
+	--fgEmphasis_Color:rgba(0,40,95,0.6);
+	--fgOverlay_Color: rgba(0,0,0,0.2);
+
+	--bgStrong_Color:  #FFFFFF;
+	--bgPrimary_Color: #F0F8FA;
+	--bgOverlayStrong_Gradient: linear-gradient( rgba(255,255,255,0.4), rgba(255,255,255,0.7), rgba(255,255,255,1) );
+
+	--accentMutedLight_Color: #A6B7CD;
+	--accentMuted_Color:      #657EA2;
+	--accentMutedDark_Color:  #466084;
+
+	--accentEmphasis_Color:         #0368FF;
+	--accentEmphasisBright_Color:   #40CCFF;
+
+	/* https://avalanche.org/avalanche-encyclopedia/danger-scale/ */
+	--infoNone_Color:         #E6E6E6;
+	--infoLow_Color:          #81E000;
+	--infoModerate_Color:     #E6DE00;
+	--infoConsiderable_Color: #FFA700;
+	--infoHigh_Color:         #FF0000;
+	--infoExtreme_Color:      #000000;
+
+	--fontPrimary_Family:
+		Kanit,
+		system-ui,
+		/* macOS 10.11-10.12 */ -apple-system,
+		/* Windows 6+ */ Segoe UI,
+		/* Android 4+ */ Roboto,
+		/* Ubuntu 10.10+ */ Ubuntu,
+		/* Gnome 3+ */ Cantarell,
+		/* KDE Plasma 5+ */ Noto Sans,
+		/* fallback */ sans-serif,
+		/* macOS emoji */ "Apple Color Emoji",
+		/* Windows emoji */ "Segoe UI Emoji",
+		/* Windows emoji */ "Segoe UI Symbol",
+		/* Linux emoji */ "Noto Color Emoji"; /* 2 */
+	--fontMeta_Family: Consolas, Menlo, Monaco, monospace, sans-serif;
+	--fontBold_Weight: 500;
+	--fontRegular_Weight: 400;
+
+	--border_Radius: 4px;
+
+	/* ROOT SETTINGS */
+	color: var(--fgPrimary_Color);
+	font-family: var(--fontPrimary_Family);
+
+
+}
+
+* {
+	background-clip: border-box;
+	/* https://devhints.io/css-antialias */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body{
+
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-weight: var(--fontBold_Weight);
+}
+
+button, .button{
+	border-radius: var(--border_Radius);
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+
+	display: flex;
+	align-content:   center;
+	align-items:     center;
+	justify-content: center;
+
+	border: 2px solid var(--fgOverlay_Color);
+
+	background-color: var(--accentEmphasisBright_Color);
+	/* background-color: transparent; */
+	background-image: linear-gradient(var(--accentEmphasisBright_Color), var(--accentEmphasis_Color));
+
+	/* background-image: linear-gradient(rgba(255,255,255,0.3), transparent, var(--accentEmphasis_Color)); */
+	background-size: 110% 140%;
+	background-position: 50% 90%;
+
+	box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px, rgba(0, 0, 0, 0.05) 0px 0.5px 1px;
+	transform: translate3d(0px, 0px, 0px);
+
+	transition: transform border-color background-position background-color;
+	transition-timing-function: linear;
+	transition-duration: 300ms;
+
+
+
+}
+button:hover, .button:hover{
+	background-position: 50% 0%;
+	transition-duration: 200ms;
+	box-shadow: rgba(0, 0, 0, 0.22) 0px 12px 24px, rgba(0, 0, 0, 0.18) 0px 4px 11px;
+	transform: translate3d(0px, -1px, 0px);
+
+	/* color: white; */
+}
+button:active, .button:active{
+	background-position: 50% -100%;
+	transition-duration: 100ms;
+	border-color: var(--fgWeak_Color);
+	transform: translate3d(0px, 1px, 0px);
+	/* color: rgba(0,0,0,0.5); */
+}
+button:disabled, .button:disabled{
+	background-color: gray;
+	/* color: rgba(0,0,0,0.5); */
+	cursor: default;
+	background-image: linear-gradient(var(--fgOverlay_Color), var(--fgWeak_Color));
+	background-position: 50% 50%;
+	box-shadow: rgba(0, 0, 0, 0.0) 0px 0px 0px, rgba(0, 0, 0, 0.0) 0px 0px 0px;
+	transform: translate3d(0px, 0px, 0px);
+}
+
+.button--round{
+	height: 40px;
+	width:  40px;
+	border-radius: 999px;
+}
+
+a[href='']{
+	color: gray;
+	cursor: default;
+}

@@ -35,7 +35,7 @@
 
 .slope-button{
 	flex: 0 1 150px;
-	margin: 2px;
+	margin: 8px;
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -51,40 +51,6 @@
 	display: block;
 	height: 100%;
 	width: 100%;
-}
-
-button{
-	background-color: cadetblue;
-	color: white;
-	transition: 200ms ease;
-	transition-property: color background-color;
-
-	font-family: Consolas, monospace;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 16px;
-	padding: 16px;
-	border: 0;
-	outline: 0;
-	cursor: pointer;
-}
-button:hover{
-	background-color: steelblue;
-	color: white;
-}
-button:active{
-	background-color: cyan;
-	color: rgba(0,0,0,0.5);
-}
-button:disabled{
-	background-color: gray;
-	color: rgba(0,0,0,0.5);
-	cursor: default;
-}
-
-a[href='']{
-	color: gray;
-	cursor: default;
 }
 
 

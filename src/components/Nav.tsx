@@ -25,7 +25,7 @@ class Nav extends React.Component {
 		return (
 			<header className="nav">
 				<button
-					className="nav__button"
+					className="nav__button button--round"
 					onClick={this.openMenu.bind(this)}
 					>
 					<img alt="Menu" src={menuIcon} className="icon"/>
