@@ -1,0 +1,431 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="267" height="48" viewBox="0 0 267 48">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-AvyMap-Map-Slope-Legend);
+      }
+
+      .cls-2 {
+        fill: rgba(0,0,0,0.6);
+      }
+
+      .cls-3 {
+        fill: #487e00;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        font-size: 12px;
+        font-family: Consolas, monospace, sans-serif;
+      }
+
+      .cls-4 {
+        fill: #898400;
+      }
+
+      .cls-5 {
+        fill: #ba7a00;
+      }
+
+      .cls-6 {
+        fill: #a50000;
+      }
+
+      .cls-46, .cls-7 {
+        fill: red;
+      }
+
+      .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-10 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-11 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-12, .cls-13, .cls-35 {
+        fill: #81e000;
+      }
+
+      .cls-13 {
+        opacity: 0.796;
+      }
+
+      .cls-14 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27, .cls-28, .cls-29, .cls-30, .cls-31, .cls-32, .cls-33, .cls-34, .cls-64 {
+        fill: none;
+      }
+
+      .cls-15 {
+        stroke: #707070;
+        opacity: 0;
+      }
+
+      .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27, .cls-28, .cls-29, .cls-30, .cls-31, .cls-32, .cls-33 {
+        stroke-linecap: round;
+      }
+
+      .cls-16 {
+        stroke: #ff6e00;
+      }
+
+      .cls-17 {
+        stroke: #ff4700;
+      }
+
+      .cls-18 {
+        stroke: #ff1c00;
+      }
+
+      .cls-19 {
+        stroke: red;
+      }
+
+      .cls-20 {
+        stroke: #ff3900;
+      }
+
+      .cls-21 {
+        stroke: #f60;
+      }
+
+      .cls-22 {
+        stroke: #ff9400;
+      }
+
+      .cls-23 {
+        stroke: #fbb000;
+        opacity: 0.9;
+      }
+
+      .cls-24 {
+        stroke: #f8b600;
+        opacity: 0.75;
+      }
+
+      .cls-25 {
+        stroke: #fea700;
+        opacity: 0.85;
+      }
+
+      .cls-26 {
+        stroke: #f4c000;
+      }
+
+      .cls-26, .cls-38 {
+        opacity: 0.8;
+      }
+
+      .cls-27 {
+        stroke: #ecd000;
+        opacity: 0.7;
+      }
+
+      .cls-28 {
+        stroke: #ebd500;
+      }
+
+      .cls-28, .cls-32 {
+        opacity: 0.5;
+      }
+
+      .cls-29 {
+        stroke: #d8de00;
+      }
+
+      .cls-29, .cls-33, .cls-36 {
+        opacity: 0.4;
+      }
+
+      .cls-30 {
+        stroke: #f1c700;
+      }
+
+      .cls-30, .cls-31, .cls-37 {
+        opacity: 0.6;
+      }
+
+      .cls-31 {
+        stroke: #e5de00;
+      }
+
+      .cls-32 {
+        stroke: #ccdf00;
+      }
+
+      .cls-33 {
+        stroke: #b2df00;
+      }
+
+      .cls-34 {
+        stroke: #fff;
+        opacity: 0.698;
+      }
+
+      .cls-35 {
+        opacity: 0.3;
+      }
+
+      .cls-36 {
+        fill: #a7df00;
+      }
+
+      .cls-37 {
+        fill: #c1de00;
+      }
+
+      .cls-38 {
+        fill: #d8de00;
+      }
+
+      .cls-39 {
+        fill: #ebd500;
+      }
+
+      .cls-40 {
+        fill: #f1c700;
+      }
+
+      .cls-41 {
+        fill: #f8b600;
+      }
+
+      .cls-42 {
+        fill: #fea700;
+      }
+
+      .cls-43 {
+        fill: #ff6e00;
+      }
+
+      .cls-44 {
+        fill: #ff4700;
+      }
+
+      .cls-45 {
+        fill: #ff1c00;
+      }
+
+      .cls-47 {
+        fill: #f20000;
+      }
+
+      .cls-48 {
+        fill: #d00;
+      }
+
+      .cls-49 {
+        fill: #d10000;
+      }
+
+      .cls-50 {
+        fill: #c10000;
+      }
+
+      .cls-51 {
+        fill: #b10000;
+      }
+
+      .cls-52 {
+        fill: #a20000;
+      }
+
+      .cls-53 {
+        fill: #930000;
+      }
+
+      .cls-54 {
+        fill: #830000;
+      }
+
+      .cls-55 {
+        fill: #740000;
+      }
+
+      .cls-56 {
+        fill: #650000;
+      }
+
+      .cls-57 {
+        fill: #570000;
+      }
+
+      .cls-58 {
+        fill: #490000;
+      }
+
+      .cls-59 {
+        fill: #390000;
+      }
+
+      .cls-60 {
+        fill: #2a0000;
+      }
+
+      .cls-61 {
+        fill: #1b0000;
+      }
+
+      .cls-62 {
+        fill: #0b0000;
+      }
+
+      .cls-63 {
+        stroke: none;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="1" y1="1" x2="2.349" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#81e000"/>
+      <stop offset="0.355" stop-color="#e6de00"/>
+      <stop offset="0.675" stop-color="#ffa700"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="1" y1="0" x2="2.349" y2="1" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="1.022" y1="0.5" x2="0" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+    <clipPath id="clip-AvyMap-Map-Slope-Legend">
+      <rect width="267" height="48"/>
+    </clipPath>
+  </defs>
+  <g id="AvyMap-Map-Slope-Legend" class="cls-1">
+    <rect class="cls-9" width="267" height="48"/>
+    <g id="Symbol_4_10" data-name="Symbol 4 – 10" transform="translate(-40 -72)">
+      <g id="Group_432" data-name="Group 432" transform="translate(-25 -324)">
+        <g id="Group_431" data-name="Group 431">
+          <rect id="Rectangle_327" data-name="Rectangle 327" class="cls-2" width="256" height="1" transform="translate(66 411.998)"/>
+          <rect id="Rectangle_295" data-name="Rectangle 295" class="cls-2" width="1" height="4" transform="translate(66 407)"/>
+          <rect id="Rectangle_326" data-name="Rectangle 326" class="cls-2" width="1" height="2" transform="translate(98 409)"/>
+          <rect id="Rectangle_295-2" data-name="Rectangle 295" class="cls-2" width="1" height="4" transform="translate(130 407)"/>
+          <rect id="Rectangle_326-2" data-name="Rectangle 326" class="cls-2" width="1" height="2" transform="translate(162 409)"/>
+          <rect id="Rectangle_336" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(73 410)"/>
+          <rect id="Rectangle_336-2" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(79 410)"/>
+          <rect id="Rectangle_336-3" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(85 410)"/>
+          <rect id="Rectangle_336-4" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(91 410)"/>
+          <rect id="Rectangle_336-5" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(105 410)"/>
+          <rect id="Rectangle_336-6" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(111 410)"/>
+          <rect id="Rectangle_336-7" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(117 410)"/>
+          <rect id="Rectangle_336-8" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(123 410)"/>
+          <rect id="Rectangle_336-9" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(137 410)"/>
+          <rect id="Rectangle_336-10" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(143 410)"/>
+          <rect id="Rectangle_336-11" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(149 410)"/>
+          <rect id="Rectangle_336-12" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(155 410)"/>
+          <rect id="Rectangle_336-13" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(169 410)"/>
+          <rect id="Rectangle_336-14" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(175 410)"/>
+          <rect id="Rectangle_336-15" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(181 410)"/>
+          <rect id="Rectangle_336-16" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(187 410)"/>
+          <rect id="Rectangle_336-17" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(201 410)"/>
+          <rect id="Rectangle_336-18" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(207 410)"/>
+          <rect id="Rectangle_336-19" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(213 410)"/>
+          <rect id="Rectangle_336-20" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(219 410)"/>
+          <rect id="Rectangle_336-21" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(233 410)"/>
+          <rect id="Rectangle_336-22" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(239 410)"/>
+          <rect id="Rectangle_336-23" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(245 410)"/>
+          <rect id="Rectangle_336-24" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(251 410)"/>
+          <rect id="Rectangle_336-25" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(265 410)"/>
+          <rect id="Rectangle_336-26" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(271 410)"/>
+          <rect id="Rectangle_336-27" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(277 410)"/>
+          <rect id="Rectangle_336-28" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(283 410)"/>
+          <rect id="Rectangle_336-29" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(297 410)"/>
+          <rect id="Rectangle_336-30" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(303 410)"/>
+          <rect id="Rectangle_336-31" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(309 410)"/>
+          <rect id="Rectangle_336-32" data-name="Rectangle 336" class="cls-2" width="1" height="1" transform="translate(315 410)"/>
+          <rect id="Rectangle_295-3" data-name="Rectangle 295" class="cls-2" width="1" height="4" transform="translate(194 407)"/>
+          <rect id="Rectangle_326-3" data-name="Rectangle 326" class="cls-2" width="1" height="2" transform="translate(226 409)"/>
+          <rect id="Rectangle_295-4" data-name="Rectangle 295" class="cls-2" width="1" height="4" transform="translate(258 407)"/>
+          <rect id="Rectangle_326-4" data-name="Rectangle 326" class="cls-2" width="1" height="2" transform="translate(290 409)"/>
+          <rect id="Rectangle_295-5" data-name="Rectangle 295" class="cls-2" width="1" height="4" transform="translate(321 407)"/>
+        </g>
+        <g id="Group_421" data-name="Group 421" transform="translate(16 142.998)">
+          <text id="_20_" data-name="20°" class="cls-3" transform="translate(59 262.002)"><tspan x="-9.896" y="0">20°</tspan></text>
+          <text id="_30_" data-name="30°" class="cls-4" transform="translate(116 262.002)"><tspan x="-9.896" y="0">30°</tspan></text>
+          <text id="_34_" data-name="34°" class="cls-5" transform="translate(142 262.002)"><tspan x="-9.896" y="0">34°</tspan></text>
+          <text id="_45_" data-name="45°" class="cls-6" transform="translate(213 262.002)"><tspan x="-9.896" y="0">45°</tspan></text>
+          <text id="_39_" data-name="39°" class="cls-7" transform="translate(174 262.002)"><tspan x="-9.896" y="0">39°</tspan></text>
+          <text id="_50_" data-name="50°" class="cls-8" transform="translate(245 262.002)"><tspan x="-9.896" y="0">50°</tspan></text>
+          <text id="_60_" data-name="60°" class="cls-8" transform="translate(306 262.002)"><tspan x="-9.896" y="0">60°</tspan></text>
+        </g>
+      </g>
+      <g id="Group_419" data-name="Group 419" transform="translate(-9 41.998)">
+        <rect id="Rectangle_355" data-name="Rectangle 355" class="cls-9" width="258" height="7" transform="translate(49 49)"/>
+        <rect id="Rectangle_352" data-name="Rectangle 352" class="cls-10" width="5" height="89" transform="translate(171 50) rotate(90)"/>
+        <rect id="Rectangle_356" data-name="Rectangle 356" class="cls-11" width="2" height="102" transform="translate(274 50) rotate(90)"/>
+        <rect id="Rectangle_354" data-name="Rectangle 354" class="cls-12" width="5" height="31" transform="translate(81 50) rotate(90)"/>
+        <rect id="Rectangle_357" data-name="Rectangle 357" class="cls-13" width="2" height="31" transform="translate(306 50) rotate(90)"/>
+        <rect id="Rectangle_353" data-name="Rectangle 353" class="cls-14" width="134" height="2" transform="translate(172 53)"/>
+      </g>
+      <g id="Group_418" data-name="Group 418" transform="translate(-9 41.998)">
+        <path id="Path_161" data-name="Path 161" class="cls-15" d="M-168.066-9688h23c76.476,0,71.578,16.058,97.5,16.058,31.45,0,26.484-16.058,118.5-16.058h15" transform="translate(219.066 9750.004)"/>
+        <path id="Path_166" data-name="Path 166" class="cls-16" d="M1665-10561v11.407" transform="translate(-1515.5 10622.501)"/>
+        <path id="Path_167" data-name="Path 167" class="cls-17" d="M1665-10561v14.432" transform="translate(-1507.5 10622.501)"/>
+        <path id="Path_168" data-name="Path 168" class="cls-18" d="M1665-10561v16.057" transform="translate(-1499.5 10622.501)"/>
+        <path id="Path_169" data-name="Path 169" class="cls-19" d="M1665-10561v16.557" transform="translate(-1491.5 10622.501)"/>
+        <path id="Path_170" data-name="Path 170" class="cls-20" d="M1665-10561v15.785" transform="translate(-1483.5 10622.501)"/>
+        <path id="Path_171" data-name="Path 171" class="cls-21" d="M1665-10561v14.191" transform="translate(-1475.5 10622.501)"/>
+        <path id="Path_172" data-name="Path 172" class="cls-22" d="M1665-10561v11.783" transform="translate(-1467.5 10622.501)"/>
+        <path id="Path_173" data-name="Path 173" class="cls-23" d="M1665-10561v9.223" transform="translate(-1459.5 10622.501)"/>
+        <path id="Path_164" data-name="Path 164" class="cls-24" d="M1665-10561v5.89" transform="translate(-1531.5 10622.501)"/>
+        <path id="Path_165" data-name="Path 165" class="cls-25" d="M1665-10561v8.527" transform="translate(-1523.5 10622.501)"/>
+        <path id="Path_174" data-name="Path 174" class="cls-26" d="M1665-10561v6.893" transform="translate(-1451.5 10622.501)"/>
+        <path id="Path_175" data-name="Path 175" class="cls-27" d="M1665-10561v5.318" transform="translate(-1443.5 10622.501)"/>
+        <path id="Path_162" data-name="Path 162" class="cls-28" d="M1665-10561v2.944" transform="translate(-1547.5 10622.501)"/>
+        <path id="Path_179" data-name="Path 179" class="cls-29" d="M1665-10561v1.931" transform="translate(-1555.5 10622.501)"/>
+        <path id="Path_163" data-name="Path 163" class="cls-30" d="M1665-10561v4.264" transform="translate(-1539.5 10622.501)"/>
+        <path id="Path_176" data-name="Path 176" class="cls-31" d="M1665-10561v3.943" transform="translate(-1435.5 10622.501)"/>
+        <path id="Path_177" data-name="Path 177" class="cls-32" d="M1665-10561v2.909" transform="translate(-1427.5 10622.501)"/>
+        <path id="Path_178" data-name="Path 178" class="cls-33" d="M1665-10561v2.246" transform="translate(-1419.5 10622.501)"/>
+        <g id="Ellipse_79" data-name="Ellipse 79" class="cls-34" transform="translate(52 60)">
+          <circle class="cls-63" cx="1.5" cy="1.5" r="1.5"/>
+          <circle class="cls-64" cx="1.5" cy="1.5" r="1"/>
+        </g>
+        <g id="Ellipse_79-2" data-name="Ellipse 79" class="cls-34" transform="translate(60 60)">
+          <circle class="cls-63" cx="1.5" cy="1.5" r="1.5"/>
+          <circle class="cls-64" cx="1.5" cy="1.5" r="1"/>
+        </g>
+        <g id="Ellipse_79-3" data-name="Ellipse 79" class="cls-34" transform="translate(68 60)">
+          <circle class="cls-63" cx="1.5" cy="1.5" r="1.5"/>
+          <circle class="cls-64" cx="1.5" cy="1.5" r="1"/>
+        </g>
+        <g id="Ellipse_79-4" data-name="Ellipse 79" class="cls-34" transform="translate(76 60)">
+          <circle class="cls-63" cx="1.5" cy="1.5" r="1.5"/>
+          <circle class="cls-64" cx="1.5" cy="1.5" r="1"/>
+        </g>
+        <circle id="Ellipse_79-5" data-name="Ellipse 79" class="cls-35" cx="1.5" cy="1.5" r="1.5" transform="translate(84 60)"/>
+        <circle id="Ellipse_79-6" data-name="Ellipse 79" class="cls-36" cx="1.5" cy="1.5" r="1.5" transform="translate(92 60)"/>
+        <circle id="Ellipse_79-7" data-name="Ellipse 79" class="cls-37" cx="1.5" cy="1.5" r="1.5" transform="translate(100 60)"/>
+        <circle id="Ellipse_79-8" data-name="Ellipse 79" class="cls-38" cx="1.5" cy="1.5" r="1.5" transform="translate(108 60)"/>
+        <circle id="Ellipse_79-9" data-name="Ellipse 79" class="cls-39" cx="1.5" cy="1.5" r="1.5" transform="translate(116 60)"/>
+        <circle id="Ellipse_79-10" data-name="Ellipse 79" class="cls-40" cx="1.5" cy="1.5" r="1.5" transform="translate(124 60)"/>
+        <circle id="Ellipse_79-11" data-name="Ellipse 79" class="cls-41" cx="1.5" cy="1.5" r="1.5" transform="translate(132 60)"/>
+        <circle id="Ellipse_79-12" data-name="Ellipse 79" class="cls-42" cx="1.5" cy="1.5" r="1.5" transform="translate(140 60)"/>
+        <circle id="Ellipse_79-13" data-name="Ellipse 79" class="cls-43" cx="1.5" cy="1.5" r="1.5" transform="translate(148 60)"/>
+        <circle id="Ellipse_79-14" data-name="Ellipse 79" class="cls-44" cx="1.5" cy="1.5" r="1.5" transform="translate(156 60)"/>
+        <circle id="Ellipse_79-15" data-name="Ellipse 79" class="cls-45" cx="1.5" cy="1.5" r="1.5" transform="translate(164 60)"/>
+        <circle id="Ellipse_79-16" data-name="Ellipse 79" class="cls-46" cx="1.5" cy="1.5" r="1.5" transform="translate(172 60)"/>
+        <circle id="Ellipse_79-17" data-name="Ellipse 79" class="cls-47" cx="1.5" cy="1.5" r="1.5" transform="translate(180 60)"/>
+        <circle id="Ellipse_79-18" data-name="Ellipse 79" class="cls-48" cx="1.5" cy="1.5" r="1.5" transform="translate(188 60)"/>
+        <circle id="Ellipse_79-19" data-name="Ellipse 79" class="cls-49" cx="1.5" cy="1.5" r="1.5" transform="translate(196 60)"/>
+        <circle id="Ellipse_79-20" data-name="Ellipse 79" class="cls-50" cx="1.5" cy="1.5" r="1.5" transform="translate(204 60)"/>
+        <circle id="Ellipse_79-21" data-name="Ellipse 79" class="cls-51" cx="1.5" cy="1.5" r="1.5" transform="translate(212 60)"/>
+        <circle id="Ellipse_79-22" data-name="Ellipse 79" class="cls-52" cx="1.5" cy="1.5" r="1.5" transform="translate(220 60)"/>
+        <circle id="Ellipse_79-23" data-name="Ellipse 79" class="cls-53" cx="1.5" cy="1.5" r="1.5" transform="translate(228 60)"/>
+        <circle id="Ellipse_79-24" data-name="Ellipse 79" class="cls-54" cx="1.5" cy="1.5" r="1.5" transform="translate(236 60)"/>
+        <circle id="Ellipse_79-25" data-name="Ellipse 79" class="cls-55" cx="1.5" cy="1.5" r="1.5" transform="translate(244 60)"/>
+        <circle id="Ellipse_79-26" data-name="Ellipse 79" class="cls-56" cx="1.5" cy="1.5" r="1.5" transform="translate(252 60)"/>
+        <circle id="Ellipse_79-27" data-name="Ellipse 79" class="cls-57" cx="1.5" cy="1.5" r="1.5" transform="translate(260 60)"/>
+        <circle id="Ellipse_79-28" data-name="Ellipse 79" class="cls-58" cx="1.5" cy="1.5" r="1.5" transform="translate(268 60)"/>
+        <circle id="Ellipse_79-29" data-name="Ellipse 79" class="cls-59" cx="1.5" cy="1.5" r="1.5" transform="translate(276 60)"/>
+        <circle id="Ellipse_79-30" data-name="Ellipse 79" class="cls-60" cx="1.5" cy="1.5" r="1.5" transform="translate(284 60)"/>
+        <circle id="Ellipse_79-31" data-name="Ellipse 79" class="cls-61" cx="1.5" cy="1.5" r="1.5" transform="translate(292 60)"/>
+        <circle id="Ellipse_79-32" data-name="Ellipse 79" class="cls-62" cx="1.5" cy="1.5" r="1.5" transform="translate(300 60)"/>
+      </g>
+    </g>
+  </g>
+</svg>

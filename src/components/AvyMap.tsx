@@ -6,6 +6,7 @@ import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!../services/slope.worker';
+import dangerIcon from '../assets/icon_SlopeDanger.svg';
 
 
 class AvyMap extends React.Component {
@@ -75,8 +76,9 @@ class AvyMap extends React.Component {
 					<button
 						className="slope-button"
 						disabled={!this.state.buttonEnabled}
-						onClick={this.renderSlopeDanger}>
-						{this.state.buttonEnabled ? 'Analyze Slope Danger' : 'Zoom Closer To Enable'}
+						onClick={this.renderSlopeDanger}
+						>
+						<img alt="Analyze Slope Danger" src={dangerIcon} height="32" width="32"/>
 					</button>
 				</div>
 			</div>
