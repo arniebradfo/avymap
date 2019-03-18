@@ -7,7 +7,6 @@ import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!../../slope.worker';
-import { COLORS } from './colors';
 
 
 class Map extends React.Component {
@@ -21,6 +20,14 @@ class Map extends React.Component {
 	readonly lat = -112;
 	readonly lng = 41;
 	readonly createAvyDangerMap: boolean = true; // turn rendering on or off
+
+	readonly colors = {
+		black:  '#000000',
+		red:    '#DD4F00',
+		orange: '#FFB600',
+		yellow: '#FFE600',
+		green:  '#84E000'
+	};
 
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
@@ -158,10 +165,10 @@ class Map extends React.Component {
 				'line-color': {
 					'property': 'slideProbabilityGaussian',
 					'stops': [
-						[0, COLORS.green],
-						[0.33, COLORS.yellow],
-						[0.66, COLORS.orange],
-						[1, COLORS.red]
+						[0, this.colors.green],
+						[0.33, this.colors.yellow],
+						[0.66, this.colors.orange],
+						[1, this.colors.red]
 					]
 				}
 			},
@@ -184,11 +191,11 @@ class Map extends React.Component {
 				'circle-color': {
 					'property': 'slideProbabilitySigmoid',
 					'stops': [
-						[0, COLORS.green],
-						[0.2, COLORS.yellow],
-						[0.4, COLORS.orange],
-						[0.6, COLORS.red],
-						[1, COLORS.black]
+						[0, this.colors.green],
+						[0.2, this.colors.yellow],
+						[0.4, this.colors.orange],
+						[0.6, this.colors.red],
+						[1, this.colors.black]
 					]
 				}
 			},
@@ -458,7 +465,6 @@ class Map extends React.Component {
 		terrainImg.crossOrigin = 'Anonymous';
 		terrainImg.src = url;
 	}
-
 
 }
 

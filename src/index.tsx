@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Map from './components/map/Map';
+import Map from './components/Map/Map';
 import './styles/base.css';
 import registerServiceWorker from './registerServiceWorker';
 
