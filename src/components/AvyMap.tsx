@@ -1,12 +1,12 @@
 import * as React from 'react';
 import './AvyMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import logo from '../../assets/AvyMap-Logo.svg';
-import { ZoneDataTranslator } from '../../services/zone-data-translator/zone-data-translator';
+import logo from '../assets/AvyMap-Logo.svg';
+import { ZoneDataTranslator } from '../services/zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
-import * as workerPath from 'file-loader?name=[name].js!../../slope.worker';
+import * as workerPath from 'file-loader?name=[name].js!../reorslope.worker';
 
 
 class AvyMap extends React.Component {

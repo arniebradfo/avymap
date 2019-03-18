@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
-import Nav from '../Nav/Nav';
-import AvyMap from '../AvyMap/AvyMap';
+import Nav from './Nav';
+import AvyMap from './AvyMap';
 
 class App extends React.Component {
 
