@@ -6,7 +6,10 @@ import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
 import * as SphericalMercator from '@mapbox/sphericalmercator';
 import * as workerPath from 'file-loader?name=[name].js!../services/slope.worker';
+
+// ASSETS
 import dangerIcon from '../assets/icon_SlopeDanger.svg';
+import pointerRightIcon from '../assets/icons/icon_Pointer_Right.svg';
 
 
 class AvyMap extends React.Component {
@@ -71,6 +74,7 @@ class AvyMap extends React.Component {
 							href={this.state.zone.link}
 							target={this.state.zone.link === '' ? '' : '_blank'}>
 							Read Report
+							<img alt="Menu" src={pointerRightIcon} className="icon"/>
 						</a>
 					</div>
 					<button

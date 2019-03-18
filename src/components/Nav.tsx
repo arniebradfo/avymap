@@ -1,9 +1,13 @@
 import * as React from 'react';
 import './Nav.css';
+
+// ASSETS
 import logo from '../assets/AvyMap-Logo.svg';
 import legend from '../assets/AvyMap-Map-Slope-Legend.svg';
 import angleGraph from '../assets/AvyMap-Percentage-of-Avalanches-by-Slope-Angle.svg';
 import bradfordDigitalLogo from '../assets/bradford-digital-ogo-32x60.svg';
+import menuIcon from '../assets/icons/icon_Menu.svg';
+import xIcon from '../assets/icons/icon_X.svg';
 
 
 class Nav extends React.Component {
@@ -18,6 +22,8 @@ class Nav extends React.Component {
 		super(props)
 	}
 
+
+
 	public render() {
 		return (
 			<header className="nav">
@@ -25,7 +31,7 @@ class Nav extends React.Component {
 					className="nav__button"
 					onClick={this.openMenu.bind(this)}
 					>
-					NAV
+					<img alt="Menu" src={menuIcon} className="icon"/>
 				</button>
 				<nav className={'nav__menu ' + (this.state.isOpen ? 'open' : 'closed') }>
 
@@ -33,7 +39,7 @@ class Nav extends React.Component {
 						className="nav-button"
 						onClick={this.closeMenu.bind(this)}
 						>
-						Close
+						<img alt="Close" src={xIcon} className="icon"/>
 					</button>
 
 					<h1><img

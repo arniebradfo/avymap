@@ -15,3 +15,10 @@ declare module "*.json" {
   const value: any;
   export default value;
 }
+
+// https://github.com/smooth-code/svgr/issues/38
+interface SvgComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
+declare module '*.svg' {
+    const value: SvgComponent;
+    export default value;
+}
