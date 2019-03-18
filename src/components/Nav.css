@@ -1,4 +1,61 @@
+.header{
+
+}
+
 .nav{
+
+}
+
+.nav__button{
 	position: absolute;
+	top:0; left:0;
+	z-index: 9;
+}
+
+.nav__menu{
+	position: absolute;
+	top:0; left:0; bottom: 0;
+	width: 320px;
+	max-width: 100%;
+	z-index: 10;
+
+	display: flex;
+	flex-direction: column;
+
+	transition-property: opacity transform;
+	transition-duration: 200ms;
+
+	background-color: white;
+	border: 0 solid black;
+	border-right-width: 1px;
+}
+
+.nav__menu.open{
+	transition-timing-function: ease-out;
+	transform: translate3d(0,0,0);
+}
+
+.nav__menu.closed{
+	transition-timing-function: ease-in;
+	transform: translate3d(-100%,0,0);
+}
+
+
+.avy-info{
+	flex: 1 1 auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	border: 0 solid black;
+	border-top-width:    1px;
+	border-bottom-width: 1px;
+}
+
+.logo{
+	/* position: fixed;
+	top:  0;
+	left: 0;
 	z-index: 1;
+	pointer-events: none;
+	margin: 12px; */
 }

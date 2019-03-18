@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './AvyMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import logo from '../assets/AvyMap-Logo.svg';
 import { ZoneDataTranslator } from '../services/zone-data-translator/zone-data-translator';
 import { FeatureCollection } from 'geojson';
 import * as mapboxgl from 'mapbox-gl';
@@ -61,7 +60,6 @@ class AvyMap extends React.Component {
 	public render() {
 		return (
 			<div className="avymap">
-				<img className="logo" src={logo} height="31" width="64" />
 				<div id="avymap" />
 				<div className="toolbar">
 					<div className="advertisement">AD</div>
