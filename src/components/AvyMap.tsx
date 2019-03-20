@@ -70,11 +70,11 @@ class AvyMap extends React.Component {
 					<div className="avy-zone">
 						<h3 className="avy-zone__title">{this.state.zone.title}</h3>
 						<a
-							className="avy-zone__link"
+							className="avy-zone__link button button--muted"
 							href={this.state.zone.link}
 							target={this.state.zone.link === '' ? '' : '_blank'}>
-							Read Report
-							<img alt="Menu" src={pointerRightIcon} className="icon"/>
+							<span className="meta-offset">Read Report</span>
+							<img alt="Menu" src={pointerRightIcon} className="avy-zone__link-icon"/>
 						</a>
 					</div>
 					<button
@@ -82,7 +82,8 @@ class AvyMap extends React.Component {
 						disabled={!this.state.buttonEnabled}
 						onClick={this.renderSlopeDanger}
 						>
-						<img alt="Analyze Slope Danger" src={dangerIcon} height="32" width="32"/>
+						<img className="slope-button__icon" alt="Analyze Slope Danger" src={dangerIcon} height="32" width="32"/>
+						<span className="slope-button__label">Analyze Slope</span>
 					</button>
 				</div>
 			</div>

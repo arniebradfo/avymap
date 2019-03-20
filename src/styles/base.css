@@ -17,6 +17,7 @@ html, :root{
 	--fgWeak_Color:    rgba(0,0,0,0.4);
 	--fgEmphasis_Color:rgba(0,40,95,0.6);
 	--fgOverlay_Color: rgba(0,0,0,0.2);
+	--fgInvert_Color: White;
 
 	--bgStrong_Color:  #FFFFFF;
 	--bgPrimary_Color: #F0F8FA;
@@ -52,6 +53,7 @@ html, :root{
 		/* Windows emoji */ "Segoe UI Symbol",
 		/* Linux emoji */ "Noto Color Emoji"; /* 2 */
 	--fontMeta_Family: Consolas, Menlo, Monaco, monospace, sans-serif;
+	--fontMeta_Size: 12px;
 	--fontBold_Weight: 500;
 	--fontRegular_Weight: 400;
 
@@ -69,6 +71,10 @@ html, :root{
 	/* https://devhints.io/css-antialias */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.meta-offset{
+	margin-bottom: -2px;
 }
 
 body{
@@ -90,24 +96,26 @@ button, .button{
 	align-items:     center;
 	justify-content: center;
 
-	border: 2px solid var(--fgOverlay_Color);
+	padding: 4px 16px;
 
-	background-color: var(--accentEmphasisBright_Color);
-	/* background-color: transparent; */
-	background-image: linear-gradient(var(--accentEmphasisBright_Color), var(--accentEmphasis_Color));
-
-	/* background-image: linear-gradient(rgba(255,255,255,0.3), transparent, var(--accentEmphasis_Color)); */
-	background-size: 110% 140%;
-	background-position: 50% 90%;
+	transition-property: box-shadow, transform, border-color, background-position, background-color;
 
 	box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px, rgba(0, 0, 0, 0.05) 0px 0.5px 1px;
 	transform: translate3d(0px, 0px, 0px);
-
-	transition: transform border-color background-position background-color;
 	transition-timing-function: linear;
 	transition-duration: 300ms;
 
 
+	/* EMPHASIS STYLES */
+	border: 2px solid var(--fgOverlay_Color);
+	color: var(--fgInvert_Color);
+	text-transform: uppercase;
+	font-weight: var(--fontBold_Weight);
+
+	background-color: var(--accentEmphasisBright_Color);
+	background-image: linear-gradient(var(--accentEmphasisBright_Color), var(--accentEmphasis_Color));
+	background-size: 110% 140%;
+	background-position: 50% 90%;
 
 }
 button:hover, .button:hover{
@@ -115,33 +123,68 @@ button:hover, .button:hover{
 	transition-duration: 200ms;
 	box-shadow: rgba(0, 0, 0, 0.22) 0px 12px 24px, rgba(0, 0, 0, 0.18) 0px 4px 11px;
 	transform: translate3d(0px, -1px, 0px);
-
-	/* color: white; */
 }
 button:active, .button:active{
 	background-position: 50% -100%;
 	transition-duration: 100ms;
 	border-color: var(--fgWeak_Color);
 	transform: translate3d(0px, 1px, 0px);
-	/* color: rgba(0,0,0,0.5); */
 }
 button:disabled, .button:disabled{
 	background-color: gray;
-	/* color: rgba(0,0,0,0.5); */
 	cursor: default;
 	background-image: linear-gradient(var(--fgOverlay_Color), var(--fgWeak_Color));
 	background-position: 50% 50%;
-	box-shadow: rgba(0, 0, 0, 0.0) 0px 0px 0px, rgba(0, 0, 0, 0.0) 0px 0px 0px;
+	box-shadow: rgba(0, 0, 0, .3) 0px 3px 8px, rgba(0, 0, 0, 0.4) 0px 0.5px;
 	transform: translate3d(0px, 0px, 0px);
 }
+
+
+.button--emphasis{}
+
+.button--overlay{
+	border: 1px solid var(--accentMuted_Color);
+	background-color: transparent;
+	background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.7));
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px, rgba(0, 0, 0, 0.1) 0px 0.5px 1px;
+}
+.button--overlay:hover{
+	background-color: rgba(255,255,255,0.4);
+}
+
+
+.button--muted{
+	border: 1px solid transparent;
+	padding: 8px;
+	background-color: var(--accentMutedLight_Color);
+	background-image: none;
+	box-shadow: rgba(0, 0, 0, 0) 0px 4px 10px, rgba(0, 0, 0, 0) 0px 0.5px 1px;
+	font-family: var(--fontMeta_Family);
+	color: var(--fgStrong_Color);
+	font-weight: bold;
+	text-decoration: none;
+	font-size: var(--fontMeta_Size);
+}
+.button--muted:hover{
+	background-color: var(--bgStrong_Color);
+	border-color: var(--accentMutedLight_Color);
+}
+.button--muted:active{
+	background-color: var(--accentMutedDark_Color);
+	color: var(--fgInvert_Color);
+	/* border-color: var(--fgInvert_Color); */
+}
+
+
+.button--transparent{
+	background: none;
+	border: 1px solid transparent;
+	box-shadow: rgba(0, 0, 0, 0) 0px 4px 10px, rgba(0, 0, 0, 0) 0px 0.5px 1px;
+}
+
 
 .button--round{
 	height: 40px;
 	width:  40px;
 	border-radius: 999px;
-}
-
-a[href='']{
-	color: gray;
-	cursor: default;
 }

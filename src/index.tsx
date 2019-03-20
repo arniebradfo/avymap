@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './components/App';
-import './styles/base.css';
+
+// CSS //
 import 'sanitize.css';
+import './styles/base.css';
 
 import registerServiceWorker from './registerServiceWorker';
 

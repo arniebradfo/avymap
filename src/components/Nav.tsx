@@ -25,7 +25,7 @@ class Nav extends React.Component {
 		return (
 			<header className="nav">
 				<button
-					className="nav__button button--round"
+					className="nav__button button--round button--overlay"
 					onClick={this.openMenu.bind(this)}
 					>
 					<img alt="Menu" src={menuIcon} className="icon"/>
@@ -33,7 +33,7 @@ class Nav extends React.Component {
 				<nav className={'nav__menu ' + (this.state.isOpen ? 'open' : 'closed') }>
 
 					<button
-						className="nav-button"
+						className="nav__close-button button--round button--transparent"
 						onClick={this.closeMenu.bind(this)}
 						>
 						<img alt="Close" src={xIcon} className="icon"/>
