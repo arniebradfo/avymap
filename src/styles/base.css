@@ -77,6 +77,14 @@ html, :root{
 	margin-bottom: -2px;
 }
 
+.meta-text{
+	font-size: 1rem;
+	/* line-height: 0.7; */
+	font-family: var(--fontMeta_Family);
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
 body{
 }
 

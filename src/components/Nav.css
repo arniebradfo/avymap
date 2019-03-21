@@ -58,6 +58,12 @@
 	border-bottom-width: 1px;
 }
 
+.avy-info__horizontal-rule{
+	border: 0;
+	border: 0 solid black;
+	border-bottom-width: 1px;
+}
+
 
 .logo{
 	/* margin: 36px 0 16px; */
@@ -70,8 +76,13 @@
 }
 
 
-.menu__footer{}
+.menu__footer{
+	font-family: var(--fontMeta_Family);
+	font-size: 0.8em;
+	padding-top:    0;
+	padding-bottom: 0;
+}
 .footer__logo{
-	float: left;
 	margin-right: 8px;
+	float: right;
 }

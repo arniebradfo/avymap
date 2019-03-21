@@ -55,14 +55,14 @@ class Nav extends React.Component {
 
 						<section className="menu__column">
 
-							<h2>Map Slope Legend</h2>
+							<h2 className="avy-info__title meta-text">Map Slope Legend</h2>
 							<img alt="Slope angle color representation legend" src={legend}/>
 
 						</section>
 						<hr className="avy-info__horizontal-rule"/>
 						<section className="menu__column">
 
-							<h2>Percentage of Avalanches by Slope Angle</h2>
+							<h2 className="avy-info__title meta-text">Percentage of Avalanches <br/>by Slope Angle</h2>
 							<img alt="Graph of avalanche percentage by slope angle" src={angleGraph}/>
 							<p>
 								76% of human triggered avalanches occur on slopes that are 34°–45°,
@@ -80,7 +80,7 @@ class Nav extends React.Component {
 							<img className="footer__logo" alt="bradford.digital logo" src={bradfordDigitalLogo} height="30" width="16"/>
 							AvyMaps v 0.2.0 - Alpha
 							<br/>
-							&copy; {new Date().getFullYear()}
+							&copy; {new Date().getFullYear()}&nbsp;
 							<a href="https://bradford.digital">bradford.digital</a>
 						</p>
 					</footer>
