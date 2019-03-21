@@ -78,11 +78,12 @@ html, :root{
 }
 
 body{
-
 }
 
 h1,h2,h3,h4,h5,h6{
 	font-weight: var(--fontBold_Weight);
+	color: var(--fgStrong_Color);
+
 }
 
 button, .button{
@@ -155,7 +156,7 @@ button:disabled, .button:disabled{
 
 .button--muted{
 	border: 1px solid transparent;
-	padding: 8px;
+	padding: 4px 8px;
 	background-color: var(--accentMutedLight_Color);
 	background-image: none;
 	box-shadow: rgba(0, 0, 0, 0) 0px 4px 10px, rgba(0, 0, 0, 0) 0px 0.5px 1px;

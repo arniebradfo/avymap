@@ -68,7 +68,7 @@ class AvyMap extends React.Component {
 				<div className="toolbar">
 					<div className="advertisement">AD</div>
 					<div className="avy-zone">
-						<h3 className="avy-zone__title">{this.state.zone.title}</h3>
+						<h3 className="avy-zone__title">{this.state.zone.title || 'Error'}</h3>
 						<a
 							className="avy-zone__link button button--muted"
 							href={this.state.zone.link}

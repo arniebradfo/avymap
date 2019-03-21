@@ -1,10 +1,5 @@
-.header{
 
-}
-
-.nav{
-
-}
+.nav{}
 
 .nav__button{
 	position: absolute;
@@ -22,7 +17,7 @@
 .nav__menu{
 	position: absolute;
 	top:0; left:0; bottom: 0;
-	width: 320px;
+	width: 340px;
 	max-width: 100%;
 	z-index: 10;
 
@@ -48,6 +43,11 @@
 }
 
 
+.menu__column{
+	padding: 24px;
+}
+
+
 .avy-info{
 	flex: 1 1 auto;
 	overflow-y: auto;
@@ -58,11 +58,20 @@
 	border-bottom-width: 1px;
 }
 
+
 .logo{
-	/* position: fixed;
-	top:  0;
-	left: 0;
-	z-index: 1;
-	pointer-events: none;
-	margin: 12px; */
+	/* margin: 36px 0 16px; */
+	margin: 0;
+}
+.logo__img{
+	/* width must be multiples of 32px */
+	width: 128px;
+	height: auto;
+}
+
+
+.menu__footer{}
+.footer__logo{
+	float: left;
+	margin-right: 8px;
 }

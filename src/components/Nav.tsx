@@ -23,58 +23,70 @@ class Nav extends React.Component {
 
 	public render() {
 		return (
-			<header className="nav">
+			<article className="nav">
 				<button
 					className="nav__button button--round button--overlay"
 					onClick={this.openMenu.bind(this)}
 					>
 					<img alt="Menu" src={menuIcon} className="icon"/>
 				</button>
-				<nav className={'nav__menu ' + (this.state.isOpen ? 'open' : 'closed') }>
+				<div className={'nav__menu ' + (this.state.isOpen ? 'open' : 'closed') }>
 
-					<button
-						className="nav__close-button button--round button--transparent"
-						onClick={this.closeMenu.bind(this)}
-						>
-						<img alt="Close" src={xIcon} className="icon"/>
-					</button>
+					<header className="menu__header menu__column">
 
-					<h1><img
-						className="logo"
-						alt="AvyMap"
-						src={logo}
-						height="31"
-						width="64"
-					/></h1>
+						<button
+							className="nav__close-button button--round button--transparent"
+							onClick={this.closeMenu.bind(this)}
+							>
+							<img alt="Close" src={xIcon} className="icon"/>
+						</button>
+
+						<h1 className="logo" ><img
+							className="logo__img"
+							alt="AvyMap"
+							src={logo}
+							height="31"
+							width="64"
+						/></h1>
+
+					</header>
 
 					<section className="avy-info">
 
-						<h2>Map Slope Legend</h2>
-						<img alt="Slope angle color representation legend" src={legend}/>
+						<section className="menu__column">
 
-						<hr/>
+							<h2>Map Slope Legend</h2>
+							<img alt="Slope angle color representation legend" src={legend}/>
 
-						<h2>Percentage of Avalanches by Slope Angle</h2>
-						<img alt="Graph of avalanche percentage by slope angle" src={angleGraph}/>
-						<p>
-							76% of human triggered avalanches occur on slopes that are 34°–45°,
-							and 96% occur between slopes that are 30°–50°.
-							Peak activity (8%) occurs at slopes of 39°.
-						</p>
+						</section>
+						<hr className="avy-info__horizontal-rule"/>
+						<section className="menu__column">
+
+							<h2>Percentage of Avalanches by Slope Angle</h2>
+							<img alt="Graph of avalanche percentage by slope angle" src={angleGraph}/>
+							<p>
+								76% of human triggered avalanches occur on slopes that are 34°–45°,
+								and 96% occur between slopes that are 30°–50°.
+								Peak activity (8%) occurs at slopes of 39°.
+							</p>
+
+						</section>
 
 					</section>
 
+					<footer className="menu__footer menu__column">
 
-					<p>
-						<img alt="bradford.digital logo" src={bradfordDigitalLogo} height="30" width="16"/>
-						AvyMaps v X.X.X - Alpha
-						<br/>
-						&copy; {new Date().getFullYear()}
-						<a href="https://bradford.digital">bradford.digital</a>
-					</p>
+						<p>
+							<img className="footer__logo" alt="bradford.digital logo" src={bradfordDigitalLogo} height="30" width="16"/>
+							AvyMaps v 0.2.0 - Alpha
+							<br/>
+							&copy; {new Date().getFullYear()}
+							<a href="https://bradford.digital">bradford.digital</a>
+						</p>
+					</footer>
 
-				</nav>
-			</header>
+				</div>
+			</article>
 		);
 	}
 
