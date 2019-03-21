@@ -27,9 +27,22 @@
 	transition-property: opacity transform;
 	transition-duration: 200ms;
 
-	background-color: white;
-	border: 0 solid black;
+	background-color: var(--bgOverlay_Color);
+	border: 0 solid var(--accentMutedLight_Color);
 	border-right-width: 1px;
+}
+
+.nav__menu::after{
+	content: '';
+	position: absolute;
+	top:0; left:100%; bottom: 0;
+	width: 12px;
+	background-image: linear-gradient(to right, var(--accentMutedDark_Color), transparent);
+	opacity: 0.5;
+	transition: opacity 200ms ease;
+}
+.nav__menu.closed::after{
+	opacity: 0;
 }
 
 .nav__menu.open{
@@ -53,14 +66,14 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 
-	border: 0 solid black;
+	border: 0 solid var(--accentMutedLight_Color);
 	border-top-width:    1px;
 	border-bottom-width: 1px;
 }
 
 .avy-info__horizontal-rule{
 	border: 0;
-	border: 0 solid black;
+	border: 0 solid var(--accentMutedLight_Color);
 	border-bottom-width: 1px;
 }
 
@@ -85,4 +98,8 @@
 .footer__logo{
 	margin-right: 8px;
 	float: right;
+}
+
+.menu__header, .menu__footer{
+	background-color: var(--bgPrimary_Color);
 }

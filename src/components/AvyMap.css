@@ -4,11 +4,33 @@
 	display: grid;
 	grid-template-rows: auto min-content;
 }
+#avymap{
+	/* margin-bottom: -40px; */
+	display: block;
+	height: 100%;
+	width: 100%;
+}
 
 .toolbar{
-	border-top: 1px solid rgba(0,0,0,0.2);
+	border-top: 1px solid var(--accentMutedLight_Color);
 	display: flex;
+	position: relative;
+	background-image: linear-gradient(to top, var(--bgPrimary_Color) 60%, transparent);
 }
+.toolbar::after{
+	content: '';
+	position: absolute;
+	bottom:100%; left: 0; right: 0;
+	height: 12px;
+	background-image: linear-gradient(to top, var(--accentMutedDark_Color), transparent);
+	opacity: 0.5;
+	transition: opacity 200ms ease;
+}
+.toolbar.closed::after{
+	opacity: 0;
+}
+
+
 .advertisement{
 	flex: 1 1 auto;
 	background-color:rgba(0,0,0,0.1);
@@ -52,12 +74,6 @@
 .slope-button__icon{}
 .slope-button__label{
 	margin-left: 12px;
-}
-
-#avymap{
-	display: block;
-	height: 100%;
-	width: 100%;
 }
 
 

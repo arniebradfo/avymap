@@ -14,7 +14,7 @@
         font-family: Consolas, monospace, sans-serif;
       }
 
-      .cls-22, .cls-4 {
+      .cls-4 {
         fill: #fff;
       }
 
@@ -85,7 +85,6 @@
     </clipPath>
   </defs>
   <g id="AvyMap-Percentage-of-Avalanches-by-Slope-Angle" class="cls-1">
-    <rect class="cls-22" width="289" height="249"/>
     <g id="Symbol_3_10" data-name="Symbol 3 – 10" transform="translate(-40 -192)">
       <g id="Group_427" data-name="Group 427" transform="translate(-25 175.998)">
         <g id="Group_423" data-name="Group 423" transform="translate(16)">

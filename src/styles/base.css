@@ -20,12 +20,14 @@ html, :root{
 	--fgInvert_Color: White;
 
 	--bgStrong_Color:  #FFFFFF;
-	--bgPrimary_Color: #F0F8FA;
-	--bgOverlayStrong_Gradient: linear-gradient( rgba(255,255,255,0.4), rgba(255,255,255,0.7), rgba(255,255,255,1) );
+	--bgPrimary_Color: rgba(240, 248, 250, 1);
+	--bgOverlay_Color: rgba(240, 248, 250, 0.9);
+
 
 	--accentMutedLight_Color: #A6B7CD;
 	--accentMuted_Color:      #657EA2;
 	--accentMutedDark_Color:  #466084;
+
 
 	--accentEmphasis_Color:         #0368FF;
 	--accentEmphasisBright_Color:   #40CCFF;
@@ -62,6 +64,7 @@ html, :root{
 	/* ROOT SETTINGS */
 	color: var(--fgPrimary_Color);
 	font-family: var(--fontPrimary_Family);
+	background-color: var(--bgPrimary_Color);
 
 
 }

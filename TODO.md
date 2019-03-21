@@ -13,6 +13,7 @@
 	- button primary
 	- button secondary
 	- link 
+- zoom closer text
 - change zone based on position
 - hook up more report zones
 - ads
