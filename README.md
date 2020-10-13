@@ -1,4 +1,6 @@
-# Avymaps
+# Avymap
+
+Avymap is a progressive web app that visualizes avalanche danger by slope angle. It also contains a geo-referenced data set of avalanche reports.
 
 ## new terrain links
 - https://www.mapbox.com/help/access-elevation-data/
@@ -42,16 +44,12 @@ Data points need:
 
 ## Other Features
 - [Surface API](https://blog.mapbox.com/introducing-the-surface-api-d123ed4943c2) for line analysis
-- acclerometer based inclinometer
+- accelerometer based inclinometer
 - record route
-- notify when in avalance conditions
-- avalance safety info
+- notify when in avalanche conditions
+- avalanche safety info
 - change units
-
-## Domain Registration
-http://AvyMaps.com is owned by Leslie Doyle in Aspen, CO
-Registered 2014-01-17
-Expires 2019-01-17
+- 
 
 ## Performance improvements
 - Use symbols and rotate? 
@@ -63,7 +61,7 @@ Expires 2019-01-17
         - ⊸ ⇁ → ➡ ➞ ➜ ➔ ⫯ ⭢ ▽
         - 2790 [dingbat arrows](https://unicode-table.com/en/#279C)
         - [⧐](https://unicode-table.com/en/#29D0)
-- Prerender the earth's terrain data as a tileset
+- Pre-render the earth's terrain data as a tile set
     - much faster
     - no need to render on the device
     - much easier offline map options
@@ -78,7 +76,7 @@ Expires 2019-01-17
 - [Spherical Mercator](https://github.com/mapbox/sphericalmercator)
 - [Cheap Ruler](https://github.com/mapbox/cheap-ruler)
 
-## Product roadmap
+## Product Road Map
 1. MVP website: $Free
     - Map 
         - Ads
@@ -91,9 +89,9 @@ Expires 2019-01-17
         - legend
             - guide to danger reading
         - about
-            - why avymaps exists
+            - why avymap exists
             - why ads
-            - donate to your local avalance center
+            - donate to your local avalanche center
         - resources
             - danger warning!
             - kbyg - 5 things
@@ -105,7 +103,7 @@ Expires 2019-01-17
     - Just the Map
         - current location in map
     - Weather
-    - Avy Forcasts
+    - Avy Forecasts
     - get the pro app version button
 3. Avy Maps Pro: $9.99
     - No Ads
@@ -138,33 +136,33 @@ Expires 2019-01-17
 ## Other Apps
 
 ### Skiing/Snowboarding
-| App| Installs | Reviews | Stars | Price | Platform |
-|-|:-:|:-:|:-:|:-:|-:|
-| [Avalanche Canada](https://play.google.com/store/apps/details?id=com.idearebel.avalanchereports&hl=en) | 10,000-50,000 | 130 | 4.3 | Free | Android |
-| [Avalanche Forecasts](https://play.google.com/store/apps/details?id=com.sebnarware.avalanche&hl=en) | 10,000-50,000 | 684 | 4.7 | Free | Android |
-| [Powder Project](https://play.google.com/store/apps/details?id=com.powderproject.android&hl=en) | 1,000 - 5,000 | 12 | 4.2 | Free | Android |
-| [MySnowMaps](https://play.google.com/store/apps/details?id=it.geosolutions.android.snowmaps&hl=en) | Installs | 23 | 4.2 | Free | Android |
-| [OnTheSnow](https://play.google.com/store/apps/details?id=com.skireport&hl=en) | 1,000,000 - 5,000,000
- | 30,096 | 4.3 | Free | Android |
-| [Ski Tracks](https://play.google.com/store/apps/details?id=com.corecoders.skitracks&hl=en) | 100,000 - 500,000 | 4,570 | 4.4 | $0.99 | Android |
-| [Ski Pursuit](https://play.google.com/store/apps/details?id=com.rossignol.android&hl=en) | 100,000 - 500,000 | 1,916 | 3.8 | Free | Android |
-| [bergfex/Ski](https://play.google.com/store/apps/details?id=com.bergfex.mobile.android&hl=en) | 50,000 - 100,000 | 3,303 | 4.5 | $2.99 | Android |
-| [SNOCRU](https://play.google.com/store/apps/details?id=com.phonegap.snocru&hl=en) | 50,000 - 100,000 |  416  | 3.7 | Free | Android |
-| [Mobile Avalanche Safety Tools](https://play.google.com/store/apps/details?id=com.ullrlabs.mobileavalanchesafetytools&hl=en) | 100 - 500 | 7 | 3.7 | $9.99 | Android |
-| [White Risk](https://itunes.apple.com/us/app/white-risk-slf-avalanche-app/id339374432?mt=8) | x | 15 | 3 | Free | iOS |
-| [Avalanche Lab](https://itunes.apple.com/us/app/avalanche-lab/id477838698?mt=8) | x | 29 | 5 | Free +$14.99 | iOS |
-| [Mammut Safety](https://play.google.com/store/apps/details?id=de.threespin.mammutsafetyapp&hl=en) | 10,000 - 50,000 | 355 | 4.3 | Free | Android |
-| []() | Installs | Reviews | Stars | Free | Android |
+| App                                                                                                                          |       Installs        | Reviews |  Stars  |    Price     | Platform |
+| ---------------------------------------------------------------------------------------------------------------------------- | :-------------------: | :-----: | :-----: | :----------: | -------: |
+| [Avalanche Canada](https://play.google.com/store/apps/details?id=com.idearebel.avalanchereports&hl=en)                       |     10,000-50,000     |   130   |   4.3   |     Free     |  Android |
+| [Avalanche Forecasts](https://play.google.com/store/apps/details?id=com.sebnarware.avalanche&hl=en)                          |     10,000-50,000     |   684   |   4.7   |     Free     |  Android |
+| [Powder Project](https://play.google.com/store/apps/details?id=com.powderproject.android&hl=en)                              |     1,000 - 5,000     |   12    |   4.2   |     Free     |  Android |
+| [MySnowMaps](https://play.google.com/store/apps/details?id=it.geosolutions.android.snowmaps&hl=en)                           |       Installs        |   23    |   4.2   |     Free     |  Android |
+| [OnTheSnow](https://play.google.com/store/apps/details?id=com.skireport&hl=en)                                               | 1,000,000 - 5,000,000 |
+| 30,096                                                                                                                       |          4.3          |  Free   | Android |
+| [Ski Tracks](https://play.google.com/store/apps/details?id=com.corecoders.skitracks&hl=en)                                   |   100,000 - 500,000   |  4,570  |   4.4   |    $0.99     |  Android |
+| [Ski Pursuit](https://play.google.com/store/apps/details?id=com.rossignol.android&hl=en)                                     |   100,000 - 500,000   |  1,916  |   3.8   |     Free     |  Android |
+| [bergfex/Ski](https://play.google.com/store/apps/details?id=com.bergfex.mobile.android&hl=en)                                |   50,000 - 100,000    |  3,303  |   4.5   |    $2.99     |  Android |
+| [SNOCRU](https://play.google.com/store/apps/details?id=com.phonegap.snocru&hl=en)                                            |   50,000 - 100,000    |   416   |   3.7   |     Free     |  Android |
+| [Mobile Avalanche Safety Tools](https://play.google.com/store/apps/details?id=com.ullrlabs.mobileavalanchesafetytools&hl=en) |       100 - 500       |    7    |   3.7   |    $9.99     |  Android |
+| [White Risk](https://itunes.apple.com/us/app/white-risk-slf-avalanche-app/id339374432?mt=8)                                  |           x           |   15    |    3    |     Free     |      iOS |
+| [Avalanche Lab](https://itunes.apple.com/us/app/avalanche-lab/id477838698?mt=8)                                              |           x           |   29    |    5    | Free +$14.99 |      iOS |
+| [Mammut Safety](https://play.google.com/store/apps/details?id=de.threespin.mammutsafetyapp&hl=en)                            |    10,000 - 50,000    |   355   |   4.3   |     Free     |  Android |
+| []()                                                                                                                         |       Installs        | Reviews |  Stars  |     Free     |  Android |
 
 
 ### Hiking
-| App| Installs | Reviews | Stars | Price | Platform |
-|-|:-:|:-:|:-:|:-:|-:|
-| [AlpineQuest GPS Hiking (Lite)](https://play.google.com/store/apps/details?id=psyberia.alpinequest.free&hl=en) | 500,000 - 1,000,000 | 5,165 | 4.3 | Free | Android |
-| [AlpineQuest GPS Hiking](https://play.google.com/store/apps/details?id=psyberia.alpinequest.full&hl=en) | 10,000-50,000 | 2,818 | 4.6 | $9.99 | Android |
-| [MTN HUB](https://play.google.com/store/apps/details?id=com.avatech.mountainhub.prod&hl=en) | 1,000 - 5,000 | 16 | 4.4 | Free +$2.99-$249.99 | Android |
-| [MTN HUB](https://play.google.com/store/apps/details?id=com.avatech.mountainhub.prod&hl=en) | x | 13 | 4.5 | Free? | iOS |
-| []() | Installs | Reviews | Stars | Free | Android |
+| App                                                                                                            |      Installs       | Reviews | Stars |        Price        | Platform |
+| -------------------------------------------------------------------------------------------------------------- | :-----------------: | :-----: | :---: | :-----------------: | -------: |
+| [AlpineQuest GPS Hiking (Lite)](https://play.google.com/store/apps/details?id=psyberia.alpinequest.free&hl=en) | 500,000 - 1,000,000 |  5,165  |  4.3  |        Free         |  Android |
+| [AlpineQuest GPS Hiking](https://play.google.com/store/apps/details?id=psyberia.alpinequest.full&hl=en)        |    10,000-50,000    |  2,818  |  4.6  |        $9.99        |  Android |
+| [MTN HUB](https://play.google.com/store/apps/details?id=com.avatech.mountainhub.prod&hl=en)                    |    1,000 - 5,000    |   16    |  4.4  | Free +$2.99-$249.99 |  Android |
+| [MTN HUB](https://play.google.com/store/apps/details?id=com.avatech.mountainhub.prod&hl=en)                    |          x          |   13    |  4.5  |        Free?        |      iOS |
+| []()                                                                                                           |      Installs       | Reviews | Stars |        Free         |  Android |
 
 
 ## Competition
