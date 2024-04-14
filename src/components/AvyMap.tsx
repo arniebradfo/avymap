@@ -95,7 +95,7 @@ class AvyMap extends React.Component {
 		this.startMap();
 
 		this.map.on('load', () => {
-			this.map.showTileBoundaries = !this.PRODUCTION; // for debug
+			// this.map.showTileBoundaries = !this.PRODUCTION; // for debug
 			this.addSlopeDanger();
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
