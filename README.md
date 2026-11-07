@@ -11,7 +11,7 @@ Requires Node 24 (`.nvmrc`).
 
 ## Deployment
 Pushes to `master` build and deploy to GitHub Pages via `.github/workflows/deploy.yml`.
-The token comes from the `MAPBOX_TOKEN` repository secret. `public/CNAME` sets the custom domain (`www.avymap.com`).
+The token comes from the `MAPBOX_TOKEN` repository secret. The site is served at https://arniebradfo.github.io/avymap/ (`base` in `vite.config.ts`).
 
 ## new terrain links
 - https://www.mapbox.com/help/access-elevation-data/
