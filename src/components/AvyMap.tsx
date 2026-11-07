@@ -35,8 +35,10 @@ class AvyMap extends React.Component {
 			title: string,
 			link: string
 		},
-		buttonEnabled?: boolean
+		buttonEnabled?: boolean,
+		is3d?: boolean
 	};
+	readonly minAnalyzeZoom = 13;
 	readonly slopeDangerSource = 'slope-danger-source';
 	slopeDangerData: FeatureCollection = {
 		type: 'FeatureCollection',
@@ -48,19 +50,30 @@ class AvyMap extends React.Component {
 		this.sphericalMercator = new SphericalMercator();
 		this.zoneDataTranslator = new ZoneDataTranslator();
 		this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
+		this.toggle3d = this.toggle3d.bind(this);
 		this.state = {
 			zone: {
 				title: 'Click A Zone',
 				link: ''
 			},
-			buttonEnabled: false
+			buttonEnabled: false,
+			is3d: false
 		};
 	}
 
 	public render() {
 		return (
 			<div className="avymap">
-				<div id="avymap" />
+				<div className="avymap__map">
+					<div id="avymap" />
+					<button
+						className="view-toggle button--round button--overlay meta-text"
+						onClick={this.toggle3d}
+						aria-pressed={this.state.is3d}
+						title={this.state.is3d ? 'Switch to 2D' : 'Switch to 3D'}>
+						{this.state.is3d ? '2D' : '3D'}
+					</button>
+				</div>
 				<div className="toolbar">
 					<div className="advertisement">AD</div>
 					<div className="avy-zone">
@@ -73,14 +86,23 @@ class AvyMap extends React.Component {
 							<img alt="Menu" src={pointerRightIcon} className="avy-zone__link-icon"/>
 						</a>
 					</div>
-					<button
-						className="slope-button"
-						disabled={!this.state.buttonEnabled}
-						onClick={this.renderSlopeDanger}
-						>
-						<img className="slope-button__icon" alt="Analyze Slope Danger" src={dangerIcon} height="32" width="32"/>
-						<span className="slope-button__label">Analyze Slope</span>
-					</button>
+					<div className="slope-control">
+						<button
+							className="slope-button"
+							disabled={!this.state.buttonEnabled}
+							onClick={this.renderSlopeDanger}
+							aria-describedby="slope-hint"
+							>
+							<img className="slope-button__icon" alt="Analyze Slope Danger" src={dangerIcon} height="32" width="32"/>
+							<span className="slope-button__label">Analyze Slope</span>
+						</button>
+						<span
+							id="slope-hint"
+							className={'slope-control__hint meta-text' + (this.state.buttonEnabled ? ' hidden' : '')}
+							aria-live="polite">
+							Zoom in more
+						</span>
+					</div>
 				</div>
 			</div>
 		);
@@ -92,6 +114,7 @@ class AvyMap extends React.Component {
 
 		this.map.on('load', () => {
 			// this.map.showTileBoundaries = !this.PRODUCTION; // for debug
+			this.addTerrain3d();
 			this.addSlopeDanger();
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
@@ -113,10 +136,32 @@ class AvyMap extends React.Component {
 			zoom: this.zoom,
 			center: [this.lat, this.lng],
 			hash: true,
-			attributionControl: false
+			attributionControl: false,
+			logoPosition: 'top-right'
 		});
-		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'bottom-right');
+		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'top-right');
+		this.map.addControl(new mapboxgl.NavigationControl({ showZoom: false, visualizePitch: true }), 'bottom-right');
+		this.map.on('pitchend', () => this.setState({ is3d: this.map.getPitch() > 0 }));
 		this.enableButton();
+	}
+
+	// 3D terrain (Mapbox GL v3). Terrain tiles are billed as part of the map load,
+	// so this stays inside the free tier along with the base map.
+	addTerrain3d() {
+		this.map.addSource('mapbox-dem', {
+			type: 'raster-dem',
+			url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+			tileSize: 512,
+			maxzoom: 14
+		});
+		this.map.setTerrain({ source: 'mapbox-dem', exaggeration: 1 });
+		this.map.setFog({});
+		this.setState({ is3d: this.map.getPitch() > 0 });
+	}
+
+	toggle3d() {
+		const is3d = this.map.getPitch() > 0;
+		this.map.easeTo({ pitch: is3d ? 0 : 60, bearing: is3d ? 0 : this.map.getBearing() });
 	}
 
 	addTerrainRgb() {
@@ -314,7 +359,7 @@ class AvyMap extends React.Component {
 		const zoom = this.map.getZoom();
 		// console.log('zoom: '+zoom);
 		this.setState({
-			buttonEnabled: (zoom > 13)
+			buttonEnabled: (zoom > this.minAnalyzeZoom)
 		})
 	}
 
@@ -383,6 +428,10 @@ class AvyMap extends React.Component {
 			bounds._ne.lng, // E
 			bounds._ne.lat, // N
 		];
+		// When tilted in 3D the visible bounds run out to the horizon, so only
+		// analyze the area a top-down view would show around the center.
+		if (this.map.getPitch() > 0)
+			bbox = this.intersectBBox(bbox, this.topDownBBox());
 		let xyz = this.sphericalMercator.xyz(bbox, z)
 
 		let tilesXyz: [number, number, number][] = [];
@@ -410,61 +459,163 @@ class AvyMap extends React.Component {
 			},
 			'properties':{}
 		  }];
+		this.updateSlopeDangerSource();
 		console.log(bounds, z, center, xyz, tilesXyz);
+
+		// drop any work still queued from a previous click
+		this.renderGeneration++;
+		this.workerQueue.length = 0;
 
 		tilesXyz.forEach(tileXyz => this.generateTileInfo({ x: tileXyz[0], y: tileXyz[1], z: tileXyz[2] }, bbox));
 
 
 	}
 
-	generateTileInfo(tile: { x: number, y: number, z: number }, boundaryBBox?: number[]) {
+	/** [w, s, e, n] of the map footprint at the current zoom as if seen from straight above */
+	topDownBBox(): [number, number, number, number] {
+		const canvas = this.map.getCanvas();
+		const metersPerPixel = 40075016.686 / (512 * 2 ** this.map.getZoom());
+		const c = this.sphericalMercator.forward(this.map.getCenter().toArray() as [number, number]);
+		const halfW = canvas.clientWidth / 2 * metersPerPixel;
+		const halfH = canvas.clientHeight / 2 * metersPerPixel;
+		const sw = this.sphericalMercator.inverse([c[0] - halfW, c[1] - halfH]);
+		const ne = this.sphericalMercator.inverse([c[0] + halfW, c[1] + halfH]);
+		return [sw[0], sw[1], ne[0], ne[1]];
+	}
 
-		// if (tile.z != 15) return;
+	intersectBBox(a: number[], b: number[]): [number, number, number, number] {
+		return [Math.max(a[0], b[0]), Math.max(a[1], b[1]), Math.min(a[2], b[2]), Math.min(a[3], b[3])];
+	}
 
-		let worker = new Worker(new URL('../services/slope.worker.ts', import.meta.url), { type: 'module' });
+	// SLOPE DANGER RENDERING PIPELINE //
 
+	// A small pool of reusable workers instead of one new worker per tile.
+	readonly workerCount = Math.min(navigator.hardwareConcurrency || 4, 8);
+	workers: Worker[] = [];
+	idleWorkers: Worker[] = [];
+	workerQueue: { generation: number, message: any, transfer: Transferable[] }[] = [];
+	workerJobs = new Map<Worker, number>(); // worker -> generation of the job it's running
+	renderGeneration = 0;
+
+	getIdleWorker(): Worker | undefined {
+		if (this.idleWorkers.length) return this.idleWorkers.pop();
+		if (this.workers.length >= this.workerCount) return undefined;
+
+		const worker = new Worker(new URL('../services/slope.worker.ts', import.meta.url), { type: 'module' });
 		worker.addEventListener('message', message => {
-			// console.log(message.data.featureCollection.features);
-			this.slopeDangerData.features.push(...message.data.featureCollection.features);
-			console.log(this.slopeDangerData);
-
-			(this.map.getSource(this.slopeDangerSource) as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
-			worker.terminate();
+			if (this.workerJobs.get(worker) === this.renderGeneration) {
+				this.slopeDangerData.features.push(...message.data.featureCollection.features);
+				this.updateSlopeDangerSource();
+			}
+			this.workerJobs.delete(worker);
+			this.idleWorkers.push(worker);
+			this.runWorkerQueue();
 		});
+		this.workers.push(worker);
+		return worker;
+	}
 
-		// get elevation data
-		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
+	runWorkerQueue() {
+		while (this.workerQueue.length) {
+			const worker = this.getIdleWorker();
+			if (!worker) return;
+			const job = this.workerQueue.shift()!;
+			this.workerJobs.set(worker, job.generation);
+			worker.postMessage(job.message, job.transfer);
+		}
+	}
 
-		let terrainImg = new Image();
+	// setData re-sends every feature to mapbox, so do it at most once per frame
+	// rather than once per finished tile.
+	sourceUpdatePending = false;
+	updateSlopeDangerSource() {
+		if (this.sourceUpdatePending) return;
+		this.sourceUpdatePending = true;
+		requestAnimationFrame(() => {
+			this.sourceUpdatePending = false;
+			(this.map.getSource(this.slopeDangerSource) as mapboxgl.GeoJSONSource).setData(this.slopeDangerData);
+		});
+	}
 
-		terrainImg.onload = (e) => {
-			// console.dir(terrainImg);
+	// Terrain tiles are shared between neighbors, so each one is only fetched once.
+	terrainTileCache = new Map<string, Promise<HTMLImageElement | null>>();
+	loadTerrainTile(x: number, y: number, z: number): Promise<HTMLImageElement | null> {
+		const n = 2 ** z;
+		if (y < 0 || y >= n) return Promise.resolve(null);
+		x = ((x % n) + n) % n; // wrap around the antimeridian
+		const key = `${z}/${x}/${y}`;
+		if (!this.terrainTileCache.has(key)) {
+			if (this.terrainTileCache.size > 256) this.terrainTileCache.clear();
+			this.terrainTileCache.set(key, new Promise(resolve => {
+				const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${z}/${x}/${y}.pngraw?access_token=${this.accessToken}`;
+				const terrainImg = new Image();
+				terrainImg.crossOrigin = 'Anonymous';
+				terrainImg.onload = () => resolve(terrainImg);
+				terrainImg.onerror = () => { this.terrainTileCache.delete(key); resolve(null); };
+				terrainImg.src = url;
+			}));
+		}
+		return this.terrainTileCache.get(key)!;
+	}
 
-			var canvas: HTMLCanvasElement = document.createElement('canvas');
-			canvas.width = terrainImg.width;
-			canvas.height = terrainImg.height;
+	async generateTileInfo(tile: { x: number, y: number, z: number }, boundaryBBox?: number[]) {
 
-			// Draw Image Tile
-			var context = canvas.getContext('2d')!;
-			context.drawImage(terrainImg, 0, 0);
+		const generation = this.renderGeneration;
 
-			// Get Image Data
-			var terrainImgData = context.getImageData(0, 0, terrainImg.width, terrainImg.height);
-			// console.dir(terrainImgData.data);
+		// get elevation data for this tile and the 8 tiles around it
+		const neighbors: { dx: number, dy: number, img: Promise<HTMLImageElement | null> }[] = [];
+		for (let dy = -1; dy <= 1; dy++)
+			for (let dx = -1; dx <= 1; dx++)
+				neighbors.push({ dx, dy, img: this.loadTerrainTile(tile.x + dx, tile.y + dy, tile.z) });
 
-			worker.postMessage({
-				bboxArray: this.sphericalMercator.bbox(tile.x, tile.y, tile.z), // [w, s, e, n]
-				terrainImgData: terrainImgData,
+		const terrainImg = await neighbors[4].img;
+		if (!terrainImg || generation !== this.renderGeneration) return;
+
+		// Draw the tile with a 1px border borrowed from its neighbors, so the
+		// slope of every edge pixel can be calculated and the tiles meet without gaps.
+		const size = terrainImg.width;
+		const pad = 1;
+		const canvas: HTMLCanvasElement = document.createElement('canvas');
+		canvas.width = size + pad * 2;
+		canvas.height = size + pad * 2;
+		const context = canvas.getContext('2d', { willReadFrequently: true })!;
+		for (const neighbor of neighbors) {
+			const img = await neighbor.img;
+			if (img) context.drawImage(img, pad + neighbor.dx * size, pad + neighbor.dy * size);
+		}
+		if (generation !== this.renderGeneration) return;
+
+		// Get Image Data
+		const terrainImgData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+		// the bbox grows by the same 1px border
+		const offset = pad / size;
+		const sw = this.sphericalMercator.ll([(tile.x - offset) * 256, (tile.y + 1 + offset) * 256], tile.z);
+		const ne = this.sphericalMercator.ll([(tile.x + 1 + offset) * 256, (tile.y - offset) * 256], tile.z);
+
+		this.workerQueue.push({
+			generation,
+			message: {
+				bboxArray: [sw[0], sw[1], ne[0], ne[1]], // [w, s, e, n]
+				terrainImgData: {
+					data: terrainImgData.data,
+					height: terrainImgData.height,
+					width: terrainImgData.width
+				},
 				terrainImg: {
-					height: terrainImg.height,
-					width: terrainImg.width
+					height: canvas.height,
+					width: canvas.width
 				},
 				boundaryBBox: boundaryBBox // [w, s, e, n]
-			});
+			},
+			// hand the pixel buffer to the worker instead of copying it
+			transfer: [terrainImgData.data.buffer]
+		});
+		this.runWorkerQueue();
+	}
 
-		};
-		terrainImg.crossOrigin = 'Anonymous';
-		terrainImg.src = url;
+	componentWillUnmount() {
+		this.workers.forEach(worker => worker.terminate());
 	}
 
 }

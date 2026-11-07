@@ -10,6 +10,48 @@
 	height: 100%;
 	width: 100%;
 }
+.avymap__map{
+	position: relative;
+	min-height: 0;
+}
+
+.view-toggle{
+	position: absolute;
+	top: 0; left: 0;
+	margin: 8px;
+	margin-top: 60px; /* below the menu button */
+	z-index: 1;
+	padding: 0;
+	color: var(--fgStrong_Color);
+}
+
+/* undo the global button styles from base.css inside mapbox's controls */
+.mapboxgl-ctrl button{
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	transform: none;
+	padding: 0;
+	background-color: transparent;
+	background-size: auto;
+	background-position: center;
+}
+.mapboxgl-ctrl-group button:not(.mapboxgl-ctrl-attrib-button){
+	background-image: none;
+}
+.mapboxgl-ctrl-group button:hover{
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* keep mapbox's own controls in the same visual family */
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl-group{
+	border-radius: 999px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px, rgba(0, 0, 0, 0.1) 0px 0.5px 1px;
+}
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl-group button{
+	width: 40px;
+	height: 40px;
+}
 
 .toolbar{
 	border-top: 1px solid var(--accentMutedLight_Color);
@@ -66,9 +108,24 @@
 	margin-left: 8px;
 }
 
-.slope-button{
+.slope-control{
 	flex: 0 1 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 16px;
+	gap: 6px;
+}
+.slope-control__hint{
+	font-size: var(--fontMeta_Size);
+	color: var(--fgWeak_Color);
+	white-space: nowrap;
+}
+.slope-control__hint.hidden{
+	visibility: hidden;
+}
+
+.slope-button{
 	height: 48px;
 }
 .slope-button__icon{}
@@ -76,6 +133,56 @@
 	margin-left: 12px;
 }
 
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+	.toolbar{
+		flex-wrap: wrap;
+	}
+	.avy-zone{
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 16px 112px 16px 16px; /* room for the round button */
+	}
+	.avy-zone__title{
+		line-height: 1;
+		font-size: 1.25rem;
+	}
+	.advertisement{
+		order: 2;
+		flex: 1 1 100%;
+		height: 50px;
+		margin: 0;
+	}
+
+	/* the slope button becomes a round button straddling the toolbar's top edge */
+	.slope-control{
+		position: absolute;
+		right: 16px;
+		top: -36px;
+		margin: 0;
+		z-index: 2;
+	}
+	.slope-button{
+		height: 72px;
+		width: 72px;
+		padding: 0;
+		border-radius: 999px;
+	}
+	.slope-button__icon{
+		height: 40px;
+		width: 40px;
+	}
+	.slope-button__label{
+		display: none;
+	}
+
+	/* clear the round button */
+	.mapboxgl-ctrl-bottom-right{
+		bottom: 64px;
+	}
+}
 
 
 /* FOR SCREENSHOTS */
