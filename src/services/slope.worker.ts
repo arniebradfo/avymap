@@ -1,4 +1,4 @@
-import { FeatureCollection, GeometryCollection, Feature } from 'geojson';
+import type { FeatureCollection, GeometryCollection, Feature } from 'geojson';
 
 // webworker shit
 // https://github.com/facebook/create-react-app/issues/1277/#issuecomment-292708809\

@@ -2,10 +2,9 @@ import * as React from 'react';
 import './AvyMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { ZoneDataTranslator } from '../services/zone-data-translator/zone-data-translator';
-import { FeatureCollection } from 'geojson';
-import * as mapboxgl from 'mapbox-gl';
-import * as SphericalMercator from '@mapbox/sphericalmercator';
-import * as workerPath from 'file-loader?name=[name].js!../services/slope.worker';
+import type { FeatureCollection } from 'geojson';
+import mapboxgl from 'mapbox-gl';
+import { SphericalMercator } from '@mapbox/sphericalmercator';
 
 // ASSETS
 import dangerIcon from '../assets/icon_SlopeDanger.svg';
@@ -14,11 +13,8 @@ import pointerRightIcon from '../assets/icons/icon_Pointer_Right.svg';
 
 class AvyMap extends React.Component {
 
-	readonly PRODUCTION: boolean = false;
-
 	map: mapboxgl.Map;
-	readonly publicToken  = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ3ZDE3MWFraTN5bDlvYmJ6eHluMiJ9.aYoOUgdMeagdX5t0W6v_6g';
-	readonly privateToken = 'pk.eyJ1IjoiYXJuaWVicmFkZm8iLCJhIjoiY2pzZXZ2eGg4MG11ZzN5cW52M2poeXAydCJ9.Rzu0YVDCCS5aituuEybWeQ';
+	readonly accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 	readonly zoom = 8;
 	readonly lat = -112;
 	readonly lng = 41;
@@ -34,7 +30,7 @@ class AvyMap extends React.Component {
 
 	sphericalMercator: SphericalMercator;
 	zoneDataTranslator: ZoneDataTranslator;
-	state: {
+	declare state: {
 		zone?: {
 			title: string,
 			link: string
@@ -110,7 +106,7 @@ class AvyMap extends React.Component {
 		const avymap = 'mapbox://styles/arniebradfo/cjavxlcpj1toe2slb0yco1z9o';
 		// const outdoors = 'mapbox://styles/mapbox/outdoors-v9';
 
-		(mapboxgl as any).accessToken = this.PRODUCTION ? this.publicToken : this.privateToken;
+		mapboxgl.accessToken = this.accessToken;
 		this.map = new mapboxgl.Map({
 			container: 'avymap',
 			style: avymap,
@@ -381,7 +377,7 @@ class AvyMap extends React.Component {
 		let z = Math.floor(this.map.getZoom()) - 1;
 		let center = this.map.getCenter();
 
-		let bbox = [
+		let bbox: [number, number, number, number] = [
 			bounds._sw.lng, // W
 			bounds._sw.lat, // S
 			bounds._ne.lng, // E
@@ -425,7 +421,7 @@ class AvyMap extends React.Component {
 
 		// if (tile.z != 15) return;
 
-		let worker = new Worker(workerPath);
+		let worker = new Worker(new URL('../services/slope.worker.ts', import.meta.url), { type: 'module' });
 
 		worker.addEventListener('message', message => {
 			// console.log(message.data.featureCollection.features);
@@ -437,7 +433,7 @@ class AvyMap extends React.Component {
 		});
 
 		// get elevation data
-		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.publicToken}`;
+		const url = `https://a.tiles.mapbox.com/v4/mapbox.terrain-rgb/${tile.z}/${tile.x}/${tile.y}.pngraw?access_token=${this.accessToken}`;
 
 		let terrainImg = new Image();
 

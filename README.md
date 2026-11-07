@@ -2,6 +2,17 @@
 
 Avymap is a progressive web app that visualizes avalanche danger by slope angle. It also contains a geo-referenced data set of avalanche reports.
 
+## Development
+Requires Node 24 (`.nvmrc`).
+
+1. `cp .env.example .env.local` and set `VITE_MAPBOX_TOKEN` to a Mapbox public token (`.env.local` is gitignored).
+2. `npm install`
+3. `npm run dev` — dev server; `npm run build` — typecheck + production build into `build/`; `npm run preview` — serve the build.
+
+## Deployment
+Pushes to `master` build and deploy to GitHub Pages via `.github/workflows/deploy.yml`.
+The token comes from the `MAPBOX_TOKEN` repository secret. `public/CNAME` sets the custom domain (`www.avymap.com`).
+
 ## new terrain links
 - https://www.mapbox.com/help/access-elevation-data/
 - https://blog.mapbox.com/realistic-terrain-with-custom-styling-ce1fe98518ab

@@ -1,34 +1,18 @@
 {
 	"compilerOptions": {
-		"outDir": "build/dist",
-		"module": "esnext",
-		"target": "es5",
-		"lib": [
-			"es6",
-			"dom"
-		],
-		"sourceMap": true,
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"types": ["vite/client"],
+		"resolveJsonModule": true,
 		"allowJs": true,
-		"jsx": "react",
-		"moduleResolution": "node",
-		"rootDir": "src",
-		"baseUrl": ".",
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"strict": false,
 		"forceConsistentCasingInFileNames": true
-		// "noImplicitReturns": true,
-		// "noImplicitThis": true,
-		// "noImplicitAny": true,
-		// "strictNullChecks": true,
-		// "suppressImplicitAnyIndexErrors": true,
-		// "noUnusedLocals": true
 	},
-	"exclude": [
-		"_angular",
-		"node_modules",
-		"build",
-		"scripts",
-		"acceptance-tests",
-		"webpack",
-		"jest",
-		"src/setupTests.ts"
-	]
+	"include": ["src", "vite.config.ts"]
 }
