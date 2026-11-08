@@ -450,9 +450,10 @@ class AvyMap extends React.Component<AvyMapProps> {
 	}
 
 	addAvalancheZones() {
-		this.map.addSource('avalanche-zone-source', {
+		this.map.addSource(this.zoneSource, {
 			type: 'geojson',
-			data: this.zoneDataTranslator.geoJson
+			data: this.zoneDataTranslator.geoJson,
+			generateId: true // ids for feature-state selection
 		});
 		this.map.addLayer({
 			'id': 'avalanche-zone-fill',
@@ -466,6 +467,21 @@ class AvyMap extends React.Component<AvyMapProps> {
 					]
 				}
 			}
+		});
+		// selection border, drawn under the zone's own outline
+		this.map.addLayer({
+			'id': 'avalanche-zone-selected',
+			'type': 'line',
+			'source': 'avalanche-zone-source',
+			'layout': {
+				'line-join': 'round'
+			},
+			'paint': {
+				'line-color': '#0368FF', // --accentEmphasis_Color
+				'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 5, 0],
+				'line-opacity': 0.8
+			},
+			'filter': ['!=', ['geometry-type'], 'Point'],
 		});
 		this.map.addLayer({
 			'id': 'avalanche-zone-line',
@@ -482,7 +498,9 @@ class AvyMap extends React.Component<AvyMapProps> {
 			'type': 'circle',
 			'paint': {
 				'circle-radius': 5,
-				'circle-opacity': 1
+				'circle-opacity': 1,
+				'circle-stroke-color': '#0368FF',
+				'circle-stroke-width': ['case', ['boolean', ['feature-state', 'selected'], false], 3, 0]
 			},
 			'filter': ['==', '$type', 'Point'],
 		});
@@ -490,6 +508,10 @@ class AvyMap extends React.Component<AvyMapProps> {
 		this.map.on('click', 'avalanche-zone-fill', this.onZoneClick.bind(this));
 		this.map.on('click', 'avalanche-zone-point', this.onZoneClick.bind(this));
 		this.map.on('moveend', this.onMapMoveEnd.bind(this));
+		// the zone tiles may still be loading when the map stops moving
+		this.map.on('sourcedata', (e: any) => {
+			if (e.sourceId === this.zoneSource && e.isSourceLoaded) this.onMapMoveEnd();
+		});
 		this.map.on('zoom', this.enableButton.bind(this));
 	}
 
@@ -501,47 +523,32 @@ class AvyMap extends React.Component<AvyMapProps> {
 		})
 	}
 
+	readonly zoneSource = 'avalanche-zone-source';
+	selectedZoneId: string | number | undefined;
+
+	/** select the zone automatically when it's the only one in view; otherwise keep the current selection */
 	onMapMoveEnd() {
-
-		// TODO: this should select the current avy zone if there is only one from the layer being shown
-
-		// const bounds = this.map.getBounds()
-		// console.log(bounds);
-
-		// const bBox: [mapboxgl.PointLike,mapboxgl.PointLike] = [[bounds.ne[0],bounds.ne[1]],[bounds.sw[0],bounds.sw[1]]];
-		// const features = this.map.queryRenderedFeatures(bBox , {layers:['airport']});
-
-		// console.log(features);
-
-
-		// if (features) {
-			// var uniqueFeatures = getUniqueFeatures(features, "iata_code");
-			// // Populate features for the listing overlay.
-			// renderListings(uniqueFeatures);
-
-			// // Clear the input container
-			// filterEl.value = '';
-
-			// // Store the current features in sn `airports` variable to
-			// // later use for filtering on `keyup`.
-			// airports = uniqueFeatures;
-		// }
-
+		if (!this.map.getLayer('avalanche-zone-fill')) return;
+		const zones = new Map<string | number, mapboxgl.GeoJSONFeature>();
+		for (const feature of this.map.queryRenderedFeatures({ layers: ['avalanche-zone-fill'] }))
+			if (feature.id !== undefined) zones.set(feature.id, feature);
+		if (zones.size === 1) this.selectZone([...zones.values()][0]);
 	}
 
 	onZoneClick(e: any) {
-		console.log(e)
-		console.log(e.features[0])
-		this.setState({zone:{
-			title: e.features[0].properties.name,
-			link: e.features[0].properties.forecastUrl
-		}})
+		this.selectZone(e.features[0]);
+	}
 
-		// adds a popup to the map
-		// new mapboxgl.Popup()
-		// 	.setLngLat(e.lngLat)
-		// 	.setHTML(`<a style="margin:24px;" href="${e.features[0].properties.forecastUrl}" target="_blank">${e.features[0].properties.name}</a>`)
-		// 	.addTo(this.map);
+	selectZone(feature: mapboxgl.GeoJSONFeature) {
+		if (feature.id === this.selectedZoneId) return;
+		if (this.selectedZoneId !== undefined)
+			this.map.setFeatureState({ source: this.zoneSource, id: this.selectedZoneId }, { selected: false });
+		this.selectedZoneId = feature.id;
+		this.map.setFeatureState({ source: this.zoneSource, id: feature.id }, { selected: true });
+		this.setState({zone:{
+			title: feature.properties.name,
+			link: feature.properties.forecastUrl || ''
+		}});
 	}
 
 	attachLoadSlopeDangerOnRgbLoad() {
