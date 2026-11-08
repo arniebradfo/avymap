@@ -386,13 +386,13 @@ class AvyMap extends React.Component<AvyMapProps> {
 					'icon-size': this.flowIconSize(),
 				},
 				'paint': {
-					// same gradient as the dots, up through red to black on the steepest slopes
+					// the dots' gradient, with pure red at 39° (sigmoid 0.5), then darkening to black
 					'icon-color': [
 						'interpolate', ['linear'], ['get', 'slideProbabilitySigmoid'],
 						0, this.colors.green,
 						0.2, this.colors.yellow,
-						0.4, this.colors.orange,
-						0.6, this.colors.red,
+						0.35, this.colors.orange,
+						0.5, this.colors.red,
 						1, this.colors.black
 					],
 					'icon-opacity': 1,
@@ -409,8 +409,8 @@ class AvyMap extends React.Component<AvyMapProps> {
 	/** arrow length follows danger, and scales with zoom from the analyzed tile's pixel spacing */
 	flowIconSize(): any {
 		// at zoom analysisZoom + 1 the analyzed pixels are ~4px apart;
-		// arrows run 40%-120% of that spacing as the slope steepens
-		const atAnalysis = ['/', ['*', 4, ['+', 0.4, ['*', 0.8, ['get', 'slideProbabilitySigmoid']]]], 32];
+		// arrows run 40%-120% of that spacing, longest at 39° and shorter either side
+		const atAnalysis = ['/', ['*', 4, ['+', 0.4, ['*', 0.8, ['get', 'slideProbabilityGaussian']]]], 32];
 		const z = this.analysisZoom + 1;
 		return ['interpolate', ['exponential', 2], ['zoom'],
 			z - 4, ['*', atAnalysis, 2 ** -4],
