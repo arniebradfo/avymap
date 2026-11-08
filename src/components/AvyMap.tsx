@@ -386,12 +386,14 @@ class AvyMap extends React.Component<AvyMapProps> {
 					'icon-size': this.flowIconSize(),
 				},
 				'paint': {
+					// same gradient as the dots, up through red to black on the steepest slopes
 					'icon-color': [
-						'interpolate', ['linear'], ['get', 'slideProbabilityGaussian'],
+						'interpolate', ['linear'], ['get', 'slideProbabilitySigmoid'],
 						0, this.colors.green,
-						0.33, this.colors.yellow,
-						0.66, this.colors.orange,
-						1, this.colors.red
+						0.2, this.colors.yellow,
+						0.4, this.colors.orange,
+						0.6, this.colors.red,
+						1, this.colors.black
 					],
 					'icon-opacity': 1,
 					'icon-opacity-transition': { duration: 0, delay: 0 },
@@ -407,8 +409,8 @@ class AvyMap extends React.Component<AvyMapProps> {
 	/** arrow length follows danger, and scales with zoom from the analyzed tile's pixel spacing */
 	flowIconSize(): any {
 		// at zoom analysisZoom + 1 the analyzed pixels are ~4px apart;
-		// arrows run 40%-120% of that spacing as danger rises
-		const atAnalysis = ['/', ['*', 4, ['+', 0.4, ['*', 0.8, ['get', 'slideProbabilityGaussian']]]], 32];
+		// arrows run 40%-120% of that spacing as the slope steepens
+		const atAnalysis = ['/', ['*', 4, ['+', 0.4, ['*', 0.8, ['get', 'slideProbabilitySigmoid']]]], 32];
 		const z = this.analysisZoom + 1;
 		return ['interpolate', ['exponential', 2], ['zoom'],
 			z - 4, ['*', atAnalysis, 2 ** -4],
@@ -419,6 +421,7 @@ class AvyMap extends React.Component<AvyMapProps> {
 	setFlowArrows(on: boolean) {
 		if (!this.map || !this.map.getLayer('slope-danger-lines')) return;
 		this.map.setLayoutProperty('slope-danger-lines', 'visibility', on ? 'none' : 'visible');
+		this.map.setLayoutProperty('slope-danger-points', 'visibility', on ? 'none' : 'visible');
 		for (let band = 0; band < this.flowBands; band++) {
 			this.map.setLayoutProperty(this.flowLayerId(band), 'visibility', on ? 'visible' : 'none');
 			this.map.setLayoutProperty(this.flowLayerId(band), 'icon-size', this.flowIconSize());
