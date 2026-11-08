@@ -95,10 +95,7 @@
 	padding-top:    0;
 	padding-bottom: 0;
 }
-.footer__logo{
-	margin-right: 8px;
-	float: right;
-}
+
 
 .menu__header, .menu__footer{
 	background-color: var(--bgPrimary_Color);

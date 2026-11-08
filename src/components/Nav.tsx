@@ -5,7 +5,6 @@ import './Nav.css';
 import logo from '../assets/AvyMap-Logo.svg';
 import legend from '../assets/AvyMap-Map-Slope-Legend.svg';
 import angleGraph from '../assets/AvyMap-Percentage-of-Avalanches-by-Slope-Angle.svg';
-import bradfordDigitalLogo from '../assets/bradford-digital-ogo-32x60.svg';
 import menuIcon from '../assets/icons/icon_Menu.svg';
 import xIcon from '../assets/icons/icon_X.svg';
 
@@ -93,11 +92,12 @@ class Nav extends React.Component<NavProps> {
 					<footer className="menu__footer menu__column">
 
 						<p>
-							<img className="footer__logo" alt="bradford.digital logo" src={bradfordDigitalLogo} height="30" width="16"/>
 							AvyMaps v 0.2.0 - Alpha
 							<br/>
 							&copy; {new Date().getFullYear()}&nbsp;
 							<a href="https://bradford.digital">bradford.digital</a>
+							<br/>
+							<a href="https://github.com/arniebradfo/avymap" target="_blank" rel="noopener noreferrer">GitHub</a>
 						</p>
 					</footer>
 
