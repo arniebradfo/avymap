@@ -48,7 +48,11 @@ class ViewToggleControl implements mapboxgl.IControl {
 	}
 }
 
-class AvyMap extends React.Component {
+type AvyMapProps = {
+	flowArrows?: boolean
+};
+
+class AvyMap extends React.Component<AvyMapProps> {
 
 	map: mapboxgl.Map;
 	readonly accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
@@ -141,6 +145,8 @@ class AvyMap extends React.Component {
 			// this.map.showTileBoundaries = !this.PRODUCTION; // for debug
 			this.addTerrain3d();
 			this.addSlopeDanger();
+			this.addSlopeFlow();
+			this.setFlowArrows(!!this.props.flowArrows);
 			// this.addTerrainRgb();
 			this.addAvalancheZones();
 			// this.renderSlopeDanger();
@@ -331,6 +337,118 @@ class AvyMap extends React.Component {
 		// });
 	}
 
+	// FLOW ARROWS //
+	// An optional look for the slope lines: arrow icons pointing downhill, with a
+	// pulse that ripples down the slope. The arrows are split into layers by
+	// elevation band so the animation only changes each layer's opacity.
+	readonly flowBands = 8;          // number of layers the pulse steps through
+	readonly flowBandHeight = 15;    // meters of elevation per band
+	readonly flowPeriod = 2400;      // ms for the pulse to cross all bands
+	flowAnimationFrame = 0;
+	analysisZoom = 13;               // tile zoom of the last analysis, sets arrow size
+
+	flowLayerId(band: number) {
+		return `slope-danger-flow-${band}`;
+	}
+
+	addSlopeFlow() {
+		// arrow pointing east, rotated by aspect; drawn white for sdf recoloring
+		// chunky proportions so it still reads when scaled down to a few pixels
+		const w = 32, h = 20;
+		const canvas = document.createElement('canvas');
+		canvas.width = w;
+		canvas.height = h;
+		const ctx = canvas.getContext('2d')!;
+		ctx.fillStyle = 'white';
+		ctx.fillRect(1, h / 2 - 4, w - 12, 8);
+		ctx.beginPath();
+		ctx.moveTo(w - 14, 1);
+		ctx.lineTo(w - 1, h / 2);
+		ctx.lineTo(w - 14, h - 1);
+		ctx.closePath();
+		ctx.fill();
+		this.map.addImage('slope-arrow', ctx.getImageData(0, 0, w, h), { sdf: true });
+
+		for (let band = 0; band < this.flowBands; band++) {
+			this.map.addLayer({
+				'id': this.flowLayerId(band),
+				'source': this.slopeDangerSource,
+				'type': 'symbol',
+				'layout': {
+					'visibility': 'none',
+					'icon-image': 'slope-arrow',
+					'icon-anchor': 'left',
+					'icon-rotate': ['get', 'aspectDeg'],
+					'icon-rotation-alignment': 'map',
+					'icon-pitch-alignment': 'map',
+					'icon-allow-overlap': true,
+					'icon-ignore-placement': true,
+					'icon-size': this.flowIconSize(),
+				},
+				'paint': {
+					'icon-color': [
+						'interpolate', ['linear'], ['get', 'slideProbabilityGaussian'],
+						0, this.colors.green,
+						0.33, this.colors.yellow,
+						0.66, this.colors.orange,
+						1, this.colors.red
+					],
+					'icon-opacity': 1,
+					'icon-opacity-transition': { duration: 0, delay: 0 },
+				},
+				'filter': ['all',
+					['==', ['geometry-type'], 'Point'],
+					['==', ['%', ['floor', ['/', ['get', 'elevation'], this.flowBandHeight]], this.flowBands], band]
+				],
+			}, 'slope-danger-points');
+		}
+	}
+
+	/** arrow length follows danger, and scales with zoom from the analyzed tile's pixel spacing */
+	flowIconSize(): any {
+		// at zoom analysisZoom + 1 the analyzed pixels are ~4px apart;
+		// arrows run 40%-120% of that spacing as danger rises
+		const atAnalysis = ['/', ['*', 4, ['+', 0.4, ['*', 0.8, ['get', 'slideProbabilityGaussian']]]], 32];
+		const z = this.analysisZoom + 1;
+		return ['interpolate', ['exponential', 2], ['zoom'],
+			z - 4, ['*', atAnalysis, 2 ** -4],
+			z + 6, ['*', atAnalysis, 2 ** 6]
+		];
+	}
+
+	setFlowArrows(on: boolean) {
+		if (!this.map || !this.map.getLayer('slope-danger-lines')) return;
+		this.map.setLayoutProperty('slope-danger-lines', 'visibility', on ? 'none' : 'visible');
+		for (let band = 0; band < this.flowBands; band++) {
+			this.map.setLayoutProperty(this.flowLayerId(band), 'visibility', on ? 'visible' : 'none');
+			this.map.setLayoutProperty(this.flowLayerId(band), 'icon-size', this.flowIconSize());
+		}
+		cancelAnimationFrame(this.flowAnimationFrame);
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (on && !reduceMotion) this.animateFlow(0);
+		else for (let band = 0; band < this.flowBands; band++)
+			this.map.setPaintProperty(this.flowLayerId(band), 'icon-opacity', 0.9);
+	}
+
+	animateFlow(lastFrame: number) {
+		this.flowAnimationFrame = requestAnimationFrame(now => {
+			if (now - lastFrame < 33) return this.animateFlow(lastFrame); // ~30fps is plenty
+			const t = (now % this.flowPeriod) / this.flowPeriod;
+			for (let band = 0; band < this.flowBands; band++) {
+				// phase 0 is the crest; higher bands reach it first, so the pulse runs downhill
+				const phase = (band / this.flowBands + t) % 1;
+				const opacity = 0.45 + 0.55 * (1 - phase) ** 3;
+				this.map.setPaintProperty(this.flowLayerId(band), 'icon-opacity', opacity);
+			}
+			this.animateFlow(now);
+		});
+	}
+
+	componentDidUpdate(prevProps: AvyMapProps) {
+		if (prevProps.flowArrows !== this.props.flowArrows)
+			this.setFlowArrows(!!this.props.flowArrows);
+	}
+
 	addAvalancheZones() {
 		this.map.addSource('avalanche-zone-source', {
 			type: 'geojson',
@@ -481,6 +599,11 @@ class AvyMap extends React.Component {
 		  }];
 		this.updateSlopeDangerSource();
 		console.log(bounds, z, center, xyz, tilesXyz);
+
+		if (this.analysisZoom !== z) {
+			this.analysisZoom = z;
+			if (this.props.flowArrows) this.setFlowArrows(true);
+		}
 
 		// drop any work still queued from a previous click
 		this.renderGeneration++;
@@ -635,6 +758,7 @@ class AvyMap extends React.Component {
 	}
 
 	componentWillUnmount() {
+		cancelAnimationFrame(this.flowAnimationFrame);
 		this.workers.forEach(worker => worker.terminate());
 	}
 

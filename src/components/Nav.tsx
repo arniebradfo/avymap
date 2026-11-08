@@ -9,7 +9,12 @@ import bradfordDigitalLogo from '../assets/bradford-digital-ogo-32x60.svg';
 import menuIcon from '../assets/icons/icon_Menu.svg';
 import xIcon from '../assets/icons/icon_X.svg';
 
-class Nav extends React.Component {
+type NavProps = {
+	flowArrows?: boolean,
+	onFlowArrowsChange?: (flowArrows: boolean) => void
+};
+
+class Nav extends React.Component<NavProps> {
 
 	state: {
 		isOpen: boolean,
@@ -57,6 +62,17 @@ class Nav extends React.Component {
 
 							<h2 className="avy-info__title meta-text">Map Slope Legend</h2>
 							<img alt="Slope angle color representation legend" src={legend}/>
+
+							<label className="setting-toggle">
+								<input
+									type="checkbox"
+									className="setting-toggle__input"
+									checked={!!this.props.flowArrows}
+									onChange={e => this.props.onFlowArrowsChange?.(e.target.checked)}
+								/>
+								<span className="setting-toggle__switch" aria-hidden="true"></span>
+								<span className="setting-toggle__label meta-text">Animated flow arrows</span>
+							</label>
 
 						</section>
 						<hr className="avy-info__horizontal-rule"/>

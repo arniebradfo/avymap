@@ -103,3 +103,53 @@
 .menu__header, .menu__footer{
 	background-color: var(--bgPrimary_Color);
 }
+
+
+.setting-toggle{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 16px;
+	cursor: pointer;
+	user-select: none;
+}
+.setting-toggle__input{
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+}
+.setting-toggle__switch{
+	position: relative;
+	flex: 0 0 auto;
+	width: 36px;
+	height: 20px;
+	border-radius: 999px;
+	background-color: var(--accentMutedLight_Color);
+	transition: background-color 200ms ease;
+}
+.setting-toggle__switch::after{
+	content: '';
+	position: absolute;
+	top: 2px; left: 2px;
+	width: 16px;
+	height: 16px;
+	border-radius: 999px;
+	background-color: var(--bgStrong_Color);
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
+	transition: transform 200ms ease;
+}
+.setting-toggle__input:checked + .setting-toggle__switch{
+	background-color: var(--accentEmphasis_Color);
+}
+.setting-toggle__input:checked + .setting-toggle__switch::after{
+	transform: translateX(16px);
+}
+.setting-toggle__input:focus-visible + .setting-toggle__switch{
+	outline: 2px solid var(--accentEmphasis_Color);
+	outline-offset: 2px;
+}
+.setting-toggle__label{
+	font-size: var(--fontMeta_Size);
+	color: var(--fgStrong_Color);
+}
