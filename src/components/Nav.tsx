@@ -71,7 +71,7 @@ class Nav extends React.Component<NavProps> {
 									onChange={e => this.props.onFlowArrowsChange?.(e.target.checked)}
 								/>
 								<span className="setting-toggle__switch" aria-hidden="true"></span>
-								<span className="setting-toggle__label meta-text">Animated flow arrows</span>
+								<span className="setting-toggle__label">Animated flow arrows</span>
 							</label>
 
 						</section>

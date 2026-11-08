@@ -107,7 +107,9 @@
 	gap: 6px;
 }
 .slope-control__hint{
-	font-size: var(--fontMeta_Size);
+	font-family: var(--fontMeta_Family);
+	font-weight: bold;
+	font-size: 11px;
 	color: var(--fgWeak_Color);
 	white-space: nowrap;
 }

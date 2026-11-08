@@ -150,6 +150,8 @@
 	outline-offset: 2px;
 }
 .setting-toggle__label{
-	font-size: var(--fontMeta_Size);
+	font-family: var(--fontMeta_Family);
+	font-weight: bold;
+	font-size: 11px;
 	color: var(--fgStrong_Color);
 }

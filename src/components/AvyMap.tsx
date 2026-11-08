@@ -127,7 +127,7 @@ class AvyMap extends React.Component<AvyMapProps> {
 						</button>
 						<span
 							id="slope-hint"
-							className={'slope-control__hint meta-text' + (this.state.buttonEnabled ? ' hidden' : '')}
+							className={'slope-control__hint' + (this.state.buttonEnabled ? ' hidden' : '')}
 							aria-live="polite">
 							Zoom in more
 						</span>
