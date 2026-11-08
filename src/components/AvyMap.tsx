@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './AvyMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import './AvyMap.css'; // after mapbox's css so these overrides win
 import { ZoneDataTranslator } from '../services/zone-data-translator/zone-data-translator';
 import type { FeatureCollection } from 'geojson';
 import mapboxgl from 'mapbox-gl';
@@ -10,6 +10,43 @@ import { SphericalMercator } from '@mapbox/sphericalmercator';
 import dangerIcon from '../assets/icon_SlopeDanger.svg';
 import pointerRightIcon from '../assets/icons/icon_Pointer_Right.svg';
 
+
+/** A map control button that tilts the map into 3D and back. */
+class ViewToggleControl implements mapboxgl.IControl {
+	map: mapboxgl.Map;
+	container: HTMLDivElement;
+	button: HTMLButtonElement;
+
+	onAdd(map: mapboxgl.Map) {
+		this.map = map;
+		this.container = document.createElement('div');
+		this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+		this.button = document.createElement('button');
+		this.button.type = 'button';
+		this.button.className = 'view-toggle meta-text';
+		this.button.addEventListener('click', () => {
+			const is3d = this.map.getPitch() > 0;
+			this.map.easeTo({ pitch: is3d ? 0 : 60, bearing: is3d ? 0 : this.map.getBearing() });
+		});
+		this.container.appendChild(this.button);
+		this.update = this.update.bind(this);
+		this.map.on('pitchend', this.update);
+		this.update();
+		return this.container;
+	}
+
+	onRemove() {
+		this.map.off('pitchend', this.update);
+		this.container.remove();
+	}
+
+	update() {
+		const is3d = this.map.getPitch() > 0;
+		this.button.textContent = is3d ? '2D' : '3D';
+		this.button.title = is3d ? 'Switch to 2D' : 'Switch to 3D';
+		this.button.setAttribute('aria-pressed', String(is3d));
+	}
+}
 
 class AvyMap extends React.Component {
 
@@ -35,8 +72,7 @@ class AvyMap extends React.Component {
 			title: string,
 			link: string
 		},
-		buttonEnabled?: boolean,
-		is3d?: boolean
+		buttonEnabled?: boolean
 	};
 	readonly minAnalyzeZoom = 13;
 	readonly slopeDangerSource = 'slope-danger-source';
@@ -50,30 +86,19 @@ class AvyMap extends React.Component {
 		this.sphericalMercator = new SphericalMercator();
 		this.zoneDataTranslator = new ZoneDataTranslator();
 		this.renderSlopeDanger = this.renderSlopeDanger.bind(this);
-		this.toggle3d = this.toggle3d.bind(this);
 		this.state = {
 			zone: {
 				title: 'Click A Zone',
 				link: ''
 			},
-			buttonEnabled: false,
-			is3d: false
+			buttonEnabled: false
 		};
 	}
 
 	public render() {
 		return (
 			<div className="avymap">
-				<div className="avymap__map">
-					<div id="avymap" />
-					<button
-						className="view-toggle button--round button--overlay meta-text"
-						onClick={this.toggle3d}
-						aria-pressed={this.state.is3d}
-						title={this.state.is3d ? 'Switch to 2D' : 'Switch to 3D'}>
-						{this.state.is3d ? '2D' : '3D'}
-					</button>
-				</div>
+				<div id="avymap" />
 				<div className="toolbar">
 					<div className="advertisement">AD</div>
 					<div className="avy-zone">
@@ -140,8 +165,9 @@ class AvyMap extends React.Component {
 			logoPosition: 'top-right'
 		});
 		this.map.addControl(new mapboxgl.AttributionControl({compact:true}), 'top-right');
+		// bottom corners stack upward, so the 3D toggle sits above the compass
 		this.map.addControl(new mapboxgl.NavigationControl({ showZoom: false, visualizePitch: true }), 'bottom-right');
-		this.map.on('pitchend', () => this.setState({ is3d: this.map.getPitch() > 0 }));
+		this.map.addControl(new ViewToggleControl(), 'bottom-right');
 		this.enableButton();
 	}
 
@@ -156,12 +182,6 @@ class AvyMap extends React.Component {
 		});
 		this.map.setTerrain({ source: 'mapbox-dem', exaggeration: 1 });
 		this.map.setFog({});
-		this.setState({ is3d: this.map.getPitch() > 0 });
-	}
-
-	toggle3d() {
-		const is3d = this.map.getPitch() > 0;
-		this.map.easeTo({ pitch: is3d ? 0 : 60, bearing: is3d ? 0 : this.map.getBearing() });
 	}
 
 	addTerrainRgb() {

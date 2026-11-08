@@ -10,18 +10,8 @@
 	height: 100%;
 	width: 100%;
 }
-.avymap__map{
-	position: relative;
-	min-height: 0;
-}
-
 .view-toggle{
-	position: absolute;
-	top: 0; left: 0;
-	margin: 8px;
-	margin-top: 60px; /* below the menu button */
-	z-index: 1;
-	padding: 0;
+	font-size: var(--fontMeta_Size);
 	color: var(--fgStrong_Color);
 }
 
@@ -177,10 +167,22 @@
 	.slope-button__label{
 		display: none;
 	}
+	/* keep the hint out of the layout so the column is exactly as wide as the circle */
+	.slope-control__hint{
+		position: absolute;
+		top: 100%;
+		right: 0;
+		margin-top: 6px;
+	}
 
-	/* clear the round button */
+	/* stack the map buttons right above the round button, on its center line:
+	   button center = 16px + 72px / 2 = 52px from the right; controls are 40px wide */
 	.mapboxgl-ctrl-bottom-right{
-		bottom: 64px;
+		bottom: 48px;
+		right: 0;
+	}
+	.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl{
+		margin-right: 32px;
 	}
 }
 
